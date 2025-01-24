@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Suporte </title>
+    <link rel="stylesheet" href="./src/assets/css/suporte.css">
+</head>
+
+<body>
+    <header class="header">
+        <h2 id="h2header">Sistema de Gerenciamento e Reserva <br>de Notebooks</h2>
+    </header>
+
+    <section id="pagina-suporte">
+        <div>
+            <H1 class="titulo">SUPORTE</H1>
+        </div>
+
+        <div id="main-suporte">
+            <div id="container-forms-suport">
+                <form id="formulario-suporte" action="submit">
+                    <div id="container-1">
+                        <div id="img-pc"></div>
+                        <div id="ccontainer-inventario">
+                            <label class="label-suporte" for=" inventario">Matrícula do colaborador:</label>
+                            <input class="input-suporte" type="text" name="inventario"
+                                placeholder="Digite o número de identificação do notebook">
+                        </div>
+                    </div>
+
+
+                    <label class="label-suporte" for=" matricula">Matrícula do colaborador:</label>
+                    <input class="input-suporte" type="text" name="matricula" placeholder="Digite sua matrícula"
+                        required>
+
+                    <label class="label-suporte" for="tipo-solicitacao">Tipo de solicitação:</label>
+                    <select class="select-suporte" id="tipo-solicitacao" name="tipo-solicitacao" required>
+                        <option value="">Selecione</option>
+                        <option value="male">Problema</option>
+                        <option value="female">Dúvida</option>
+                        <option value="other">Melhoria</option>
+                    </select>
+
+                    <label class="label-suporte" for="tipo-problema">Tipo de solicitação:</label>
+                    <select class="select-suporte" id="tipo-problema" name="tipo-problema" required>
+                        <option value="">Selecione</option>
+                        <option value="male">Não liga</option>
+                        <option value="female">Lentidão</option>
+                        <option value="other">Instalar programa</option>
+                        <option value="other">Falta de armazenamento</option>
+                        <option value="other">fisicamente danificado</option>
+                        <option value="other">Solicitar periférico</option>
+                    </select>
+
+                    <label class="label-suporte" for="descricao-problema">Descreva o problema</label>
+                    <textarea class="textarea-suporte" id="descricao-problema" name="descricao-problema" rows="4"
+                        placeholder="Escreva sua mensagem"></textarea>
+                    <div id="container-btn-enviar">
+                        <button id="btn-enviar" type="submit">Enviar</button>
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <script src=""></script>
+</body>
+
+</html>

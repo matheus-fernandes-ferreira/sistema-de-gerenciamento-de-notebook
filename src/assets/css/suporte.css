@@ -1,0 +1,164 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    background-image: url('../image/Topo_Site\ \(1\).png');
+    background-size: cover;
+    /* Faz a imagem caber dentro do elemento */
+    background-position: center;
+    /* Centraliza a imagem */
+    background-repeat: no-repeat;
+    /* Impede que a imagem se repita */
+    height: 130px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#h2header {
+    color: white;
+    text-align: center;
+    font-size: 2.rem;
+    margin-left: 20px;
+}
+
+
+
+/* =========== inicio suporte ===========*/
+
+#pagina-suporte {
+    padding-inline: 100px;
+
+}
+
+#main-suporte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo {
+    font-size: 30px;
+    padding: 20px;
+}
+
+#content-suporte {
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+#container-forms-suport {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: min-content;
+    justify-content: center;
+}
+
+#formulario-suporte {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.label-suporte {
+    font-size: 2rem;
+    color: #004A8D;
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.input-suporte {
+    border: 0.75px solid #004A8D;
+    outline: 1px;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    padding-left: 15px;
+    background-color: #f1f1f1;
+    transition: 3ms;
+
+}
+
+.input-suporte:focus {
+    border: 0.75px solid #F7941D;
+    border-bottom: 2px solid #F7941D;
+    background-color: #ffffff;
+    transition: 3ms;
+}
+
+.select-suporte {
+    width: 100%;
+    height: 30px;
+}
+
+.textarea-suporte {
+    width: 100%;
+    height: 200px;
+    border: 0.75px solid #004A8D;
+    background-color: #f1f1f1;
+    font-size: 2rem;
+    padding: 10px;
+
+}
+
+.textarea-suporte:focus {
+    border: 0.75px solid #F7941D;
+    background-color: #ffffff;
+    transition: 400ms;
+    padding: 10px;
+    font-size: 2rem;
+
+}
+
+#container-btn-enviar {
+    display: flex;
+}
+
+#btn-enviar {
+    width: 256px;
+    height: 59px;
+    background-color: #004A8D;
+    border-radius: 16px;
+    font-size: 2.4rem;
+    color: white;
+    margin-top: 20px;
+}
+
+#img-pc {
+    width: 150px;
+    height: 90px;
+    border: 1px solid #004A8D;
+}
+
+#container-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#ccontainer-inventario {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    width: 100%;
+}
