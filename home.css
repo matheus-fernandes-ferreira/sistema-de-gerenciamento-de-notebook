@@ -44,7 +44,7 @@ body {
     justify-content: center;
     align-items: end;
     display: flex;
-    
+
 }
 
 .imgmenu {
@@ -145,17 +145,18 @@ h1 {
 
 .containerhome {
     width: 1000px;
-    height: 400px;
+    height: 500px;
     margin-top: 15px;
     display: flex;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
 
 
 }
 
 #mainesquerda {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 10px;
     width: 50%;
     height: 100%;
 }
@@ -185,7 +186,6 @@ h1 {
     align-items: center;
     gap: 15px;
     /* Espaçamento entre o figure e as informações */
-    margin-bottom: 20px;
     /* Espaçamento entre a seção superior e inferior */
 }
 
@@ -226,6 +226,13 @@ h1 {
     gap: 10px;
 
 }
+.linha-input-button {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
 
 .bottom-section2 {
     display: flex;
@@ -239,7 +246,7 @@ h1 {
 
 
 main label {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     color: #004A8D;
 }
 
@@ -267,7 +274,7 @@ input:focus {
     outline: none;
 }
 
-.notebooksinfos{
+.notebooksinfos {
     margin-top: 15px;
     color: #454545;
     font-size: 20px;
@@ -281,14 +288,15 @@ input:focus {
     right: 33px;
 }
 
-#indisponivel{
+#indisponivel {
     width: 12px;
     height: 12px;
     background-color: #8493B3;
     margin-right: 5px;
     border-radius: 2px;
 }
-#livres{
+
+#livres {
     width: 12px;
     height: 12px;
     background-color: #0A3174;
@@ -296,7 +304,8 @@ input:focus {
     border-radius: 2px;
 
 }
-#selecionou{
+
+#selecionou {
     width: 12px;
     height: 12px;
     background-color: #E37C02;
@@ -305,7 +314,7 @@ input:focus {
 
 }
 
-#notestatus{
+#notestatus {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     width: 450px;
@@ -313,49 +322,46 @@ input:focus {
     overflow-y: scroll;
 }
 
-#DivbuttonHome{
-width: 300px;
-justify-items: center;
-align-items: center;
-display: flex;
-margin-top: 20px;
-}
 
-#DivbuttonHome button{
-    width: 256px;
-    height: 59px;
+
+button {
+    width: 150px;
+    height: 40px;
     background-color: #004A8D;
     border-radius: 16px;
-    font-size: 2.4rem;
+    font-size: 1.5rem;
     color: white;
-    margin-top: 20px;
-
-}
-
-#DivbuttonHome h2{
-color: #ffffff;
-
-}
-
-#rodape{
-width: 1440px;
-background-color: #005185;
-height: 120px;
-margin-top: 100px;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
+    border: none;
+    font-family: "Open Sans", serif;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 15px;
 
 
 }
-#rodape h2{
+
+
+
+#rodape {
+    width: 1440px;
+    background-color: #005185;
+    height: 120px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+#rodape h2 {
     font-size: 2.4rem;
     color: #ffffff;
     margin-right: 20px;
 }
 
-#logorodapeHome{
+#logorodapeHome {
     width: 120px;
     height: 120px;
     margin-left: 20px;
@@ -370,44 +376,44 @@ align-items: center;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  .radio-inputs > * {
+}
+
+.radio-inputs>* {
     margin: 6px;
-  }
-  
-  .radio-input:checked + .radio-tile {
+}
+
+.radio-input:checked+.radio-tile {
     border-color: #E37C02;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     color: #E37C02;
-  }
-  
-  .radio-input:checked + .radio-tile:before {
+}
+
+.radio-input:checked+.radio-tile:before {
     transform: scale(1);
     opacity: 1;
     background-color: #E37C02;
     border-color: #E37C02;
-  }
-  
-  .radio-input:checked + .radio-tile .radio-icon svg {
+}
+
+.radio-input:checked+.radio-tile .radio-icon svg {
     fill: #E37C02;
-  }
-  
-  .radio-input:checked + .radio-tile .radio-label {
+}
+
+.radio-input:checked+.radio-tile .radio-label {
     color: #E37C02;
-  }
-  
-  .radio-input:focus + .radio-tile {
+}
+
+.radio-input:focus+.radio-tile {
     border-color: #E37C02;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
-  }
-  
-  .radio-input:focus + .radio-tile:before {
+}
+
+.radio-input:focus+.radio-tile:before {
     transform: scale(1);
     opacity: 1;
-  }
-  
-  .radio-tile {
+}
+
+.radio-tile {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -421,9 +427,9 @@ align-items: center;
     transition: 0.15s ease;
     cursor: pointer;
     position: relative;
-  }
-  
-  .radio-tile:before {
+}
+
+.radio-tile:before {
     content: "";
     position: absolute;
     display: block;
@@ -437,31 +443,31 @@ align-items: center;
     opacity: 0;
     transform: scale(0);
     transition: 0.25s ease;
-  }
-  
-  .radio-tile:hover {
+}
+
+.radio-tile:hover {
     border-color: #2260ff;
-  }
-  
-  .radio-tile:hover:before {
+}
+
+.radio-tile:hover:before {
     transform: scale(1);
     opacity: 1;
-  }
-  
-  .radio-icon svg {
+}
+
+.radio-icon svg {
     width: 2rem;
     height: 2rem;
     fill: #0A3174;
-  }
-  
-  .radio-label {
+}
+
+.radio-label {
     color: #707070;
     transition: 0.375s ease;
     text-align: center;
     font-size: 13px;
-  }
-  
-  .radio-input {
+}
+
+.radio-input {
     clip: rect(0 0 0 0);
     -webkit-clip-path: inset(100%);
     clip-path: inset(100%);
@@ -470,5 +476,4 @@ align-items: center;
     position: absolute;
     white-space: nowrap;
     width: 1px;
-  }
-  
+}

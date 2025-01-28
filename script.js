@@ -1,5 +1,5 @@
 const container = document.getElementById("notestatus");
-const quantidadeElement = document.querySelector(".bottom-section2 p"); // Selecione o elemento de quantidade
+const quantidadeElement = document.querySelector(".formInputHome1 p"); // Selecione o elemento de quantidade
 
 let quantidade = 0; // Variável para armazenar a quantidade de notebooks selecionados
 
