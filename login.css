@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    flex-direction: column;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* Centraliza todo o conteúdo da página*/
+    align-items: center;
+    /* Centraliza todo o conteúdo da página*/
+    background: url("./img/background.jpg") no-repeat center center;
+    background-size: cover;
+    /* Faz com que a imagem ocupe toda a largura */
+    min-height: 100vh;
+    /* Faz com que a imagem ocupe toda a altura */
+}
+
+.conteudo-principal {
+    display: flex;
+}
+
+.logo-do-sistema {
+    width: 40%;
+    height: 40%;
+}
+
+.card-botao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudo {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    font-family: "Inter", serif;
+    text-align: center;
+}
+
+.logoSenac {
+    width: 20%;
+    height: 20%;
+}
+
+.titulo {
+    font-weight: 550;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
+    margin-top: 0;
+    font-size: 45px;
+    letter-spacing: 0ex;
+}
+
+.boasVindas {
+    font-family: "Poppins", serif;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.bloco-login {
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.card {
+    width: 20px;
+    height: 20px;
+    padding-right: 10px;
+
+}
+
+.subtitulo {
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0;
+}
+
+.matricula {
+    background-color: #D5D5D5;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+
+.botao-acessar {
+    margin-top: 20px;
+    background-color: #004A8D;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 360px) {
+    .conteudo-principal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conteudo {
+        width: 250px;
+    }
+
+    .titulo {
+        font-weight: 550;
+        font-family: "Poppins", serif;
+        font-weight: 600;
+        font-style: normal;
+        margin-top: 0;
+        font-size: 30px;
+        letter-spacing: 0ex;
+    }
+
+    body {
+        background: url("./img/background-mobile.jpg") no-repeat center center;
+        background-size: cover;
+        /* Faz com que a imagem ocupe toda a largura */
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .conteudo-principal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conteudo {
+        width: 250px;
+    }
+
+    .titulo {
+        font-weight: 550;
+        font-family: "Poppins", serif;
+        font-weight: 600;
+        font-style: normal;
+        margin-top: 0;
+        font-size: 30px;
+        letter-spacing: 0ex;
+    }
+
+    body {
+        background: url("./img/background-mobile.jpg") no-repeat center center;
+        background-size: cover;
+        /* Faz com que a imagem ocupe toda a largura */
+
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .conteudo-principal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conteudo {
+        width: 250px;
+    }
+
+    .titulo {
+        font-weight: 550;
+        font-family: "Poppins", serif;
+        font-weight: 600;
+        font-style: normal;
+        margin-top: 0;
+        font-size: 30px;
+        letter-spacing: 0ex;
+    }
+
+    body {
+        background: url("./img/background-mobile.jpg") no-repeat center center;
+        background-size: cover;
+        /* Faz com que a imagem ocupe toda a largura */
+
+    }
+}
