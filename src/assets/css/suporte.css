@@ -19,25 +19,35 @@ body {
 .header {
     background-image: url('../image/header.png');
     background-size: contain;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
     height: 130px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 
 .menu {
     height: 100%;
-    width: 1437px;
+    width: 1920px;
     justify-content: center;
     align-items: end;
     display: flex;
+    padding-bottom: 16px;
 
 }
+
+.menu a:hover {
+    color: #F7941D;
+}
+
+.menu a:hover svg {
+    fill: #F7941D;
+}
+
+
 
 .imgmenu {
     width: 28px;
@@ -91,9 +101,6 @@ li {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     justify-content: space-between;
-
-
-
 }
 
 .menuleft {
@@ -111,12 +118,12 @@ li {
 }
 
 #divgradientHome {
-    width: 1440px;
+    width: 1920px;
     height: 50px;
     background: linear-gradient(#005185, #ffffff);
-
-
 }
+
+
 
 /* =========== FIM HEADER ===========*/
 
@@ -141,7 +148,6 @@ li {
 #content-suporte {
     display: flex;
     flex-direction: row;
-
 }
 
 
@@ -247,7 +253,7 @@ li {
 
 /* =========== inicio FOOTER ===========*/
 #rodape {
-    width: 1440px;
+    width: 1920px;
     background-color: #005185;
     height: 120px;
     margin-top: 100px;
