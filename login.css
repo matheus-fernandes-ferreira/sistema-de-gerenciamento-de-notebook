@@ -27,22 +27,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 60px;
 }
 
 .conteudo {
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 20px;
-    width: 350px;
+    width: 500px;
     font-family: "Inter", serif;
     text-align: center;
+    height: 400px;
 }
-
-.logoSenac {
-    width: 20%;
-    height: 20%;
-}
-
 .titulo {
     font-weight: 550;
     font-family: "Poppins", serif;
@@ -55,15 +51,14 @@ body {
 
 .boasVindas {
     font-family: "Poppins", serif;
-    font-size: 15px;
-    font-weight: 400;
-    margin-bottom: 0;
+    font-size: 35px;
+    font-weight: 600;
 }
 
 .bloco-login {
     display: flex;
     margin-bottom: 15px;
-    justify-content: center;
+    margin-left: 85px;
 }
 
 .card {
@@ -74,9 +69,11 @@ body {
 }
 
 .subtitulo {
-    font-weight: 500;
-    font-size: 15px;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-size: 16px;
     margin: 0;
+    font-style: italic;
 }
 
 .matricula {
@@ -84,9 +81,17 @@ body {
     border: none;
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
+    width: 300px;
 }
-
+.senha {
+    background-color: #D5D5D5;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 35px;
+    width: 300px;
+}
 
 .botao-acessar {
     margin-top: 20px;
@@ -98,6 +103,12 @@ body {
     width: 150px;
     height: 40px;
     border-radius: 10px;
+}
+
+.logo-do-senac{
+    width: 380px;
+    height: 222px;
+    margin-bottom: 30px;
 }
 
 
