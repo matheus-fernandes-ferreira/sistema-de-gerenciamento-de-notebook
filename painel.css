@@ -195,21 +195,23 @@ main input:focus {
     display: flex;
     flex-direction: row;
     width: 255px;
-    height: 120px;
+    height: auto;
+    color: #454545;
 }
 
 .colaborador{
-    border: 1px solid #F68B1F;
-    width: 70%;
+    width: 100%;
     display: flex;
-    align-items: center;
-    background-color: #EEEEEE;
+    align-items: baseline;
     border-radius: 5px;
     padding: 3px;
+    
 }
 
-strong{
+u{
     font-size: 9px;
+    position: relative;
+    bottom: 1.5px;
 }
 
 .top-section {
@@ -220,9 +222,9 @@ strong{
 }
 
 .top-section figure {
-    width: 7px; /* Largura da figura */
-    height: 7px; /* Altura da figura */
-    margin: 5px;
+    width: 10px; 
+    height: 10px; 
+    margin: 3px;
 }
 
 
@@ -230,17 +232,17 @@ strong{
 .leftCard{
     background: #F68B1F;
     width: 35px;
-    height: 100%;
+    height: auto;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
+    box-shadow: rgba(14, 30, 37, 0.30) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .bodyCard{
     display: flex;
-    justify-content: flex-start;
     align-items: flex-start;
     border: 1px #AFAFAF solid;
-    width: 190px;
+    width: 250px;
     height: 100%;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -249,15 +251,83 @@ strong{
     
 }
 
+.data-hora{
+    display: flex;
+    width: 125%;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
 .infosreserva{
     height: 50%;
-    padding: 1px 1px 1px 5px;
+    padding: 1px 1px 1px 3px;
 }
 
 .textreserva{
-    font-size: 8px;
-    font-weight: 600;
+    font-size: 7px;
+    font-weight: 400;
     margin-top: 2px;
+}
+
+#notereserv{
+    padding-top: 5px;
+}
+
+#scrollreservas{
+    background-color: #E7E7E7;
+    width: 100px;
+    padding: 5px;
+    border-radius: 2px;
+    margin: 3px 0 0 0;
+    overflow-x: scroll;
+}
+
+#scrollreservas::-webkit-scrollbar {
+    height: 1px; /* Altura da barra de rolagem horizontal */
+  }
+  
+  #scrollreservas::-webkit-scrollbar-track {
+    background: #C9C9C9; /* Cor do fundo da barra de rolagem */
+    border-radius: 4px;
+  }
+  
+  #scrollreservas::-webkit-scrollbar-thumb {
+    background: #004A8D; /* Cor do scroll */
+    border-radius: 4px;
+  }
+  
+
+
+.buttons{
+    margin-top: 5px;
+    width: 85px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonicon{
+    width: 5px;
+    height: 5px;
+}
+
+button{
+    border: none;
+    padding: 2px;
+    border-radius: 3px;
+    font-family: "Open Sans", serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+#cancel{
+    background-color: #F7941D;
+    color: #ffffff;
+
+}
+
+#finish{
+    background-color: #004A8D;
+    color: #ffffff;
 }
 
 .textCard{
