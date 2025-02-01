@@ -16,16 +16,13 @@ body {
 
 }
 
-.header {
-    background-image: url('/image/header.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 130px;
-    width: 100%;
+header {
+    height: 170px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('/image/Header-wallpaper.png');
+    width: 1920px;
 
 }
 
@@ -34,15 +31,18 @@ body {
     text-align: center;
     font-size: 2.4rem;
     margin-left: 20px;
+    
+
 }
 
 .menu {
-    
     height: 100%;
-    width: 1437px;
+    width: 600px;
     justify-content: center;
     align-items: end;
     display: flex;
+    
+
 }
 
 .imgmenu {
@@ -57,7 +57,7 @@ body {
     height: 28px;
 }
 
-ul{
+.paginasmenu {
     color: #F8F8F8;
     list-style-type: none;
     display: flex;
@@ -78,9 +78,29 @@ a {
     color: #F8F8F8;
 }
 
-li{
+li {
     position: relative;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    
+}
+
+ul :hover{
+    color: #F7941D;
+    transition: 0.4s;  
+
+}
+
+a :hover{
+    color: #F7941D;
+    transition: 0.4s;  
+    
+}
+
+.menu a:hover svg {
+    fill: #F7941D;
+    transition: 0.3s;
 }
 
 .suportePainel {
