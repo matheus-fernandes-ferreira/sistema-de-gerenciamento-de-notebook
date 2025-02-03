@@ -11,8 +11,6 @@ body {
     flex-direction: column;
     display: flex;
     font-family: "Open Sans", serif;
-    
-
 }
 
 header {
@@ -22,7 +20,10 @@ header {
     align-items: center;
     background-image: url('/image/Header-wallpaper.png');
     width: 1920px;
+}
 
+nav{
+    padding-left: 300px;
 }
 
 #h2header {
@@ -46,7 +47,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid rebeccapurple;
     font-size: 40px;
     height: 100px;
     width: 550px;
@@ -167,10 +167,15 @@ a :hover{
 
 
 .container {
-    padding: 50px;
-    border: 1px red solid;
-    width: 70%;
+    margin-top: 20px;
+    width: 80%;
     height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    justify-items: center;
+    /* grid-template-rows: repeat(3, 1fr) */
+    
 }
 
 .cardSeparator {
@@ -190,14 +195,14 @@ a :hover{
 }
 
 u{
-    font-size: 16px;
+    font-size: 20px;
     position: relative;
-    bottom: 1.5px;
+    bottom: 5px;
 }
 
 
 figure {
-    width: 20px; 
+    width: 30px; 
     margin: 5px;
 }
 
@@ -221,7 +226,8 @@ figure {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     flex-direction: column;
-    padding: 5px 25px 5px 5px;
+    padding:15px 45px 15px 15px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     
 }
 
@@ -242,8 +248,8 @@ b{
 }
 
 .textreserva{
-    font-size: 11px;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 500;
     margin-top: 2px;
     letter-spacing: 0.5px;
 }
@@ -254,13 +260,13 @@ b{
 
 #scrollreservas{
     background-color: #E7E7E7;
-    width: 180px;
-    height: 27px;
+    width: 220px;
+    height: 37px;
     border-radius: 2px;
     overflow-x: auto;
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 #scrollreservas::-webkit-scrollbar {
@@ -280,25 +286,25 @@ b{
 
 
 .buttons{
-    margin: 5px;
-    width: 89%;
+    margin-top: 15px;
+    width: 95%;
     display: flex;
     justify-content: space-between;
 }
 
 .buttonicon{
     width: 9px;
-    margin: 0 5px 0 0;
+    margin-right: 7px;
 }
 
 button{
     border: none;
-    padding: 5px;
-    border-radius: 3px;
+    padding: 6px;
+    border-radius: 5px;
     font-family: "Open Sans", serif;
     letter-spacing: 0.5px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 14px;
     display: flex;
     align-items: center;
 }
@@ -325,10 +331,10 @@ button{
 }
 
 #Footerhistory{
-    width: 1440px;
+    width: 100%;
     background-color: #005185;
     height: 120px;
-    margin-top: 450px;
+    margin-top: 300px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
