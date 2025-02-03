@@ -1,0 +1,260 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #ffffff;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    font-family: "Open Sans", serif;
+    width: 1920px;
+    
+
+}
+
+header {
+    
+    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#h2header {
+    color: white;
+    text-align: center;
+    font-size: 2.4rem;
+    margin-left: 20px;
+}
+
+.menu {
+    height: 100%;
+    width: 600px;
+    justify-content: center;
+    align-items: end;
+    display: flex;
+    
+
+}
+
+#tituloPainel{
+    display: flex;
+    align-items: center;
+    border: 1px solid rebeccapurple;
+    font-size: 40px;
+    height: 100px;
+    width: 550px;
+    color: #454545;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.paginasmenu {
+    color: #F8F8F8;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    justify-content: space-around;
+    font-size: 3.7rem;
+    font-weight: bold;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+p{
+    font-size: 10pt;
+}
+
+a {
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    color: #F8F8F8;
+}
+
+li {
+    position: relative;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    
+}
+
+ul :hover{
+    color: #F7941D;
+    transition: 0.4s;  
+
+}
+
+a :hover{
+    color: #F7941D;
+    transition: 0.4s;  
+    
+}
+
+.menu a:hover svg {
+    fill: #F7941D;
+    transition: 0.3s;
+}
+
+.suportePainel {
+    border: 1px solid #BCBCBC;
+    display: flex;
+    width: 700px;
+    height: 60px;
+    background-color: #F8F8F8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    justify-content: space-between;
+
+
+
+}
+
+.menuleft {
+    text-decoration: none;
+
+    color: #004A8D;
+    font-size: 1.6rem;
+}
+
+.menuright {
+    text-decoration: none;
+    color: #004A8D;
+    font-size: 1.6rem;
+
+}
+
+#divgradientHome{
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(#005185, #ffffff);
+    
+}
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+    width: 100%;
+}
+
+.bottom-section1 {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* Espaçamento entre os campos */
+    align-items: center;
+    height: 100px;
+}
+
+
+
+.bottom-section2 {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* Espaçamento entre os campos */
+    align-items: center;
+    margin-top: 20px;
+    
+}
+
+
+
+
+.container {
+    padding: 50px;
+    border: 1px red solid;
+    width: 70%;
+    height: 100%;
+}
+
+.cardSeparator {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    color: #454545;
+}
+
+.colaborador{
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    border-radius: 5px;
+    padding: 3px;
+    
+}
+
+u{
+    font-size: 16px;
+    position: relative;
+    bottom: 1.5px;
+}
+
+
+figure {
+    width: 20px; 
+    margin: 5px;
+}
+
+
+.textCard{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px rgb(20, 44, 225) solid;
+    width: 200px;
+    height: 100px;
+}
+
+#Footerhistory{
+    width: 100%;
+    background-color: #005185;
+    height: 120px;
+    margin-top: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+    }
+    #Footerhistory h2{
+        font-size: 2.4rem;
+        color: #ffffff;
+        margin-right: 20px;
+    }
+    
+    #logoFooterhistory{
+        width: 120px;
+        height: 120px;
+        margin-left: 20px;
+    }
+
+    .source{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border: 1px red solid;
+        height: 20px;
+        width: 100%;
+    }
+
+    input{
+        height: 50px;
+        width: 250px;
+    }
