@@ -19,7 +19,7 @@ header {
     justify-content: center;
     align-items: center;
     background-image: url('/image/Header-wallpaper.png');
-    width: 1920px;
+    width: 100%;
 }
 
 nav{
