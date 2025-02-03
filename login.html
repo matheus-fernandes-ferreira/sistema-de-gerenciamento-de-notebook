@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <title>Login</title>
 </head>
@@ -24,18 +24,76 @@
                     <h2 class="subtitulo">Faça seu login</h2>
                 </div>
                 <div>
-                    <input class="matricula" type="text" id="username" name="username"
-                        placeholder="Insira sua matrícula"/>
+                    <input class="matricula" type="text" id="username" name="username" placeholder="Insira sua matrícula"/>
                 </div>
                 <div>
-                    <input class="senha" type="text" id="senha" name="senha"
-                        placeholder="Digite sua senha"/>
+                    <input class="senha" type="password" id="senha" name="senha" placeholder="Digite sua senha"/>
                 </div>
-                <input class="botao-acessar" type="submit" value="Acessar" />
+                <input id="loginButton" class="botao-acessar" type="submit" value="acessar" />
             </main>
-            
         </div>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiFzkz8fypa5R29cdNvIDGyBMTGD9mfs8",
+            authDomain: "sistema-de-notebooks.firebaseapp.com",
+            projectId: "sistema-de-notebooks",
+            storageBucket: "sistema-de-notebooks.appspot.com",
+            messagingSenderId: "80287744691",
+            appId: "1:80287744691:web:53b1056f5530a3d695a6c6",
+            measurementId: "G-0T0Q5SB2C7"
+        };
+
+        // Inicializa o Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Função de login
+        async function login() {
+            const matricula = document.getElementById("username").value;
+            const senha = document.getElementById("senha").value;
+
+            if (!matricula || !senha) {
+                alert("Preencha todos os campos!");
+                return;
+            }
+
+            try {
+                const q = query(
+                    collection(db, "sistema-note"),
+                    where("matricula", "==", matricula),
+                    where("senha", "==", senha)
+                );
+
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    const userData = querySnapshot.docs[0].data(); // Obtém os dados do primeiro documento encontrado
+
+                    alert(`Bem-vindo, ${userData.nome}!`);
+                    
+                    // Redireciona para outra página com a matrícula como parâmetro na URL
+                    window.location.href = `home.html?matricula=${userData.matricula}`;
+                } else {
+                    alert("Matrícula ou senha incorreta.");
+                }
+            } catch (error) {
+                console.error("Erro ao fazer login:", error);
+                alert("Erro ao tentar login. Tente novamente.");
+            }
+        }
+
+        // Expõe a função login globalmente
+        window.login = login;
+
+        // Adiciona evento ao botão de login
+        document.getElementById("loginButton").addEventListener("click", login);
+    </script>
 </body>
 
 </html>
