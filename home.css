@@ -18,14 +18,27 @@ body {
 }
 
 .header {
-    height: 170px;
+    height: 130px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-image: url('/image/Header-wallpaper.png');
+    justify-content: center;
+    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
     width: 100%;
+    
 
 }
+
+.headerleft{
+    width: 30%;
+}
+
+.imgheader{
+width: 150px;
+margin-left: 50px;
+
+
+}
+
 
 #h2header {
     color: white;
@@ -38,25 +51,14 @@ body {
 
 .menu {
     height: 100%;
-    width: 600px;
-    justify-content: center;
+    width: 70%;
+    justify-content: flex-start;
     align-items: end;
     display: flex;
     
 
 }
 
-.imgmenu {
-    width: 28px;
-    height: 28px;
-    position: relative;
-    top: 3px;
-}
-
-.imgmenu2 {
-    width: 28px;
-    height: 28px;
-}
 
 .paginasmenu {
     color: #F8F8F8;
