@@ -16,28 +16,44 @@ body {
     align-items: center;
 }
 
-.header {
-    background-image: url('../image/header.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 130px;
+main {
     width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
+header {
+    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+    height: 100px;
+    width: 100%;
+    display: flex;
+}
+
+.container-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img{
+    height: 70px;
+    width: max-content;
+}
+
+.container-menu{
+    height: max-content;
+    width: 100%;
+
+    background-color: yellow;
+    padding-bottom: 10px;
+}
 
 .menu {
-    height: 100%;
-    width: 1920px;
     justify-content: center;
-    align-items: end;
     display: flex;
-    padding-bottom: 16px;
-
 }
+
 
 .menu a:hover {
     color: #F7941D;
@@ -47,21 +63,7 @@ body {
     fill: #F7941D;
 }
 
-
-
-.imgmenu {
-    width: 28px;
-    height: 28px;
-    position: relative;
-    top: 3px;
-}
-
-.imgmenu2 {
-    width: 28px;
-    height: 28px;
-}
-
-.paginasmenu {
+.menu ul {
     color: #F8F8F8;
     list-style-type: none;
     display: flex;
@@ -89,32 +91,6 @@ li {
     display: flex;
     align-items: center;
     font-weight: 300;
-}
-
-
-.suportePainel {
-    border: 1px solid #BCBCBC;
-    display: flex;
-    width: 700px;
-    height: 60px;
-    background-color: #F8F8F8;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    justify-content: space-between;
-}
-
-.menuleft {
-    text-decoration: none;
-
-    color: #004A8D;
-    font-size: 1.6rem;
-}
-
-.menuright {
-    text-decoration: none;
-    color: #004A8D;
-    font-size: 1.6rem;
-
 }
 
 #divgradientHome {
