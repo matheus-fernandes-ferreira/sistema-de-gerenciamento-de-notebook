@@ -2,22 +2,21 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-size: 62.5%;
+    font-size: 20px;
 }
 
 body {
+    display: flex;
     background-color: #ffffff;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
-    display: flex;
     font-family: "Open Sans", serif;
-    width: 1920px;
-    
+    width: 100%;
 
 }
 
 header {
-    
     background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
     background-size: contain;
     background-repeat: no-repeat;
@@ -29,7 +28,39 @@ header {
     align-items: center;
 }
 
+.central-page {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 1140px;
+    height: 500px;
+}
 
+table {
+    margin-top: 20px;
+    border: 1px solid rgb(168, 168, 168);
+
+    border-radius: 5px;
+}
+
+th {
+    height: 10px;
+}
+
+
+td {
+    width: 100px;
+    text-align: center;
+    height: 10px;
+}
+
+.btn-details {
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #004A8D;
+    border: none;
+}
 
 #h2header {
     color: white;
@@ -44,20 +75,21 @@ header {
     justify-content: center;
     align-items: end;
     display: flex;
-    
+
 
 }
 
-#tituloPainel{
+#tituloPainel {
     display: flex;
     align-items: center;
-    border: 1px solid rebeccapurple;
     font-size: 40px;
     height: 100px;
     width: 550px;
+    border: 1px solid red;
     color: #454545;
     font-weight: 700;
     letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
 .paginasmenu {
@@ -73,8 +105,8 @@ header {
     margin-bottom: 2px;
 }
 
-p{
-    font-size: 10pt;
+p {
+    font-size: 20px;
 }
 
 a {
@@ -90,19 +122,19 @@ li {
     padding: 5px;
     display: flex;
     align-items: center;
-    
-}
-
-ul :hover{
-    color: #F7941D;
-    transition: 0.4s;  
 
 }
 
-a :hover{
+ul :hover {
     color: #F7941D;
-    transition: 0.4s;  
-    
+    transition: 0.4s;
+
+}
+
+a :hover {
+    color: #F7941D;
+    transition: 0.4s;
+
 }
 
 .menu a:hover svg {
@@ -138,25 +170,26 @@ a :hover{
 
 }
 
-#divgradientHome{
+#divgradientHome {
     width: 100%;
     height: 50px;
     background: linear-gradient(#005185, #ffffff);
-    
+
 }
 
 
 .info {
     display: flex;
     flex-direction: column;
-    gap: 5px; 
+    gap: 5px;
     width: 100%;
 }
 
 .bottom-section1 {
     display: flex;
     flex-direction: row;
-    gap: 15px; /* Espaçamento entre os campos */
+    gap: 15px;
+    /* Espaçamento entre os campos */
     align-items: center;
     height: 100px;
 }
@@ -166,39 +199,16 @@ a :hover{
 .bottom-section2 {
     display: flex;
     flex-direction: row;
-    gap: 15px; /* Espaçamento entre os campos */
+    gap: 15px;
+    /* Espaçamento entre os campos */
     align-items: center;
     margin-top: 20px;
-    
+
 }
 
 
 
-
-.container {
-    padding: 50px;
-    border: 1px red solid;
-    width: 70%;
-    height: 100%;
-}
-
-.cardSeparator {
-    display: flex;
-    flex-direction: row;
-    height: auto;
-    color: #454545;
-}
-
-.colaborador{
-    width: 100%;
-    display: flex;
-    align-items: baseline;
-    border-radius: 5px;
-    padding: 3px;
-    
-}
-
-u{
+u {
     font-size: 16px;
     position: relative;
     bottom: 1.5px;
@@ -206,12 +216,12 @@ u{
 
 
 figure {
-    width: 20px; 
+    width: 20px;
     margin: 5px;
 }
 
 
-.textCard{
+.textCard {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -221,7 +231,7 @@ figure {
     height: 100px;
 }
 
-#Footerhistory{
+#Footerhistory {
     width: 100%;
     background-color: #005185;
     height: 120px;
@@ -230,31 +240,40 @@ figure {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
-    
-    }
-    #Footerhistory h2{
-        font-size: 2.4rem;
-        color: #ffffff;
-        margin-right: 20px;
-    }
-    
-    #logoFooterhistory{
-        width: 120px;
-        height: 120px;
-        margin-left: 20px;
-    }
 
-    .source{
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        border: 1px red solid;
-        height: 20px;
-        width: 100%;
-    }
 
-    input{
-        height: 50px;
-        width: 250px;
-    }
+}
+
+#Footerhistory h2 {
+    font-size: 2.4rem;
+    color: #ffffff;
+    margin-right: 20px;
+}
+
+#logoFooterhistory {
+    width: 120px;
+    height: 120px;
+    margin-left: 20px;
+}
+
+.source {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 20px;
+    width: 100%;
+}
+
+.pesquisa {
+    height: 30px;
+    width: 250px;
+    border: none;
+}
+
+.line {
+  background-color: rgb(88, 88, 88);
+   height: 1px;
+   width: 221px;
+   margin-left: 850px;
+
+}
