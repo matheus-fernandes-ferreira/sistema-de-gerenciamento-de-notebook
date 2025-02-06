@@ -360,6 +360,7 @@ input:focus {
 
 #notestatus {
     display: grid;
+    gap: 10px;
     grid-template-columns: repeat(5, 1fr);
     width: 450px;
     margin-top: 30px;

@@ -46,9 +46,9 @@ for (let i = 1; i <= 20; i++) { // Começar de 1, incluindo o "01"
   // Adiciona o evento de mudança para atualizar a quantidade
   input.addEventListener("change", function() {
     if (input.checked) {
-      quantidade++; // Incrementa a quantidade se o checkbox for selecionado
+     quantidade++; // Incrementa a quantidade se o checkbox for selecionado
     } else {
-      quantidade--; // Decrementa se o checkbox for desmarcado
+      quantidade --; // Decrementa se o checkbox for desmarcado
     }
     quantidadeElement.textContent = quantidade; // Atualiza o número exibido em "Quantidade"
   });
