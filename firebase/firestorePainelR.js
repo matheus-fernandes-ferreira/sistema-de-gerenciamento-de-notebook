@@ -48,7 +48,7 @@ async function carregarColaboradores() {
               <div class="infosreserva">
                 <div class="data-hora">
                   <p class="textreserva">Data <br> <b>${data.data}</b></p>
-                  <p class="textreserva">Horário <br> <b>${data.horaInicio}</b></p>
+                  <p class="textreserva">Horário <br> <b>${data.horaInicio} - ${data.horaFim}</b></p>
                 </div>
                 <p class="textreserva" id="notereserv">
                   ${data.notebooks ? data.notebooks + " Notebook(s) reservado(s)" : "Notebook reservado"}

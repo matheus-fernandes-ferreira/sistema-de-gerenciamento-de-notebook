@@ -33,13 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const matricula = urlParams.get("matricula");
 
-    // if (!matricula) {
-    //   alert("Matrícula não encontrada.");
-    //   return;
-    // }
-
-
-
     try {
       const q = query(
         collection(db, "sistema-note"),
@@ -54,8 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Exibe os dados na página
         nomeInput.textContent = userData.nome;
         matriculaInput.textContent = userData.matricula;
-      } else {
-        // alert("Usuário não encontrado.");
       }
     } catch (error) {
       console.error("Erro ao carregar os dados do usuário:", error);
@@ -64,23 +55,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function carregarNote() {
-    let quantidade = 0; // Contador de notebooks selecionados
-    const notebooksContainer = document.getElementById("notestatus"); // Elemento onde os notebooks serão inseridos
-    const quantidadeElement = document.getElementById("quantidade"); // Elemento que exibe a quantidade
+    let quantidade = 0;
+    const notebooksContainer = document.getElementById("notestatus");
+    const quantidadeElement = document.getElementById("quantidade");
 
     try {
-      // Criando uma query ordenada pelo campo 'inventario' em ordem crescente
       const q = query(collection(db, "Notebooks"), orderBy("inventario", "asc"));
-      const querySnapshot = await getDocs(q); // Executa a consulta
+      const querySnapshot = await getDocs(q);
 
-      notebooksContainer.innerHTML = ""; // Limpa o conteúdo antes de adicionar os novos elementos
+      notebooksContainer.innerHTML = "";
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        const inventario = data.inventario || "Sem inventário"; // Pega o campo 'inventario'
-        const notebookStatus = data.status_notebook; // Pega o campo 'notebook_status'
+        const inventario = data.inventario || "Sem inventário";
+        const notebookStatus = data.status_notebook;
 
-        // Criando o HTML dinamicamente
         const label = document.createElement("label");
         label.innerHTML = `
                 <input class="radio-input" type="checkbox" name="notebook" ${notebookStatus ? '' : 'disabled'}>
@@ -94,27 +83,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 </span>
             `;
 
-        // Altera a cor do ícone se o notebook estiver inativo (status false)
         const radioIcon = label.querySelector(".radio-icon svg");
         if (!notebookStatus) {
-          radioIcon.style.fill = "#8493B3"; // Cor para quando o status for false
+          radioIcon.style.fill = "#8493B3";
         }
 
-        // Adiciona o label ao container
         notebooksContainer.appendChild(label);
 
-        // Pegando o checkbox dentro do label
         const input = label.querySelector("input");
 
-        // Se o notebook estiver habilitado (status true), adiciona o evento de contagem
         if (notebookStatus) {
           input.addEventListener("change", function () {
             if (input.checked) {
-              quantidade++; // Incrementa a quantidade se o checkbox for selecionado
+              quantidade++;
             } else {
-              quantidade--; // Decrementa se o checkbox for desmarcado
+              quantidade--;
             }
-            quantidadeElement.textContent = quantidade; // Atualiza o número exibido em "Quantidade"
+            quantidadeElement.textContent = quantidade;
           });
         }
       });
@@ -122,6 +107,46 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error("Erro ao buscar os notebooks:", error);
     }
+  }
+
+  async function verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados) {
+    const q = query(
+      collection(db, "reserva"),
+      where("data", "==", data)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    let totalReservados = 0; // Contador de notebooks já reservados no mesmo horário
+
+    for (const doc of querySnapshot.docs) {
+      const reserva = doc.data();
+      const reservaInicio = reserva.horaInicio;
+      const reservaFim = reserva.horaFim;
+
+      // Verifica se há conflito de horário
+      if (
+        (horaInicio >= reservaInicio && horaInicio < reservaFim) ||
+        (horaFim > reservaInicio && horaFim <= reservaFim) ||
+        (horaInicio <= reservaInicio && horaFim >= reservaFim)
+      ) {
+        // Soma a quantidade de notebooks já reservados nesse horário
+        totalReservados += reserva.notebooksSelecionados.length;
+
+        // Verifica se há conflito de notebooks específicos
+        const reservaNotebooks = reserva.notebooksSelecionados || [];
+        if (reservaNotebooks.some(notebook => notebooksSelecionados.includes(notebook))) {
+          return { conflito: true, mensagem: "Um ou mais notebooks selecionados já estão reservados nesse horário." };
+        }
+      }
+    }
+
+    // Verifica se a quantidade total de notebooks reservados excede o limite (20)
+    if (totalReservados + notebooksSelecionados.length > 20) {
+      return { conflito: true, mensagem: "Limite de notebooks reservados excedido para esse horário." };
+    }
+
+    return { conflito: false };
   }
 
   // Chama a função para carregar os notebooks
@@ -139,9 +164,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const horaFim = horaFimInput.value;
     const quantidade = quantidadeInput.textContent.trim();
 
+    // Captura os notebooks selecionados
+    const notebooksSelecionados = Array.from(document.querySelectorAll('input[name="notebook"]:checked'))
+      .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
 
-    if (!nome || !matricula || !turma || !data || !horaInicio || !horaFim || !quantidade) {
-      statusMsg.textContent = "Preencha todos os campos!";
+    if (!nome || !matricula || !turma || !data || !horaInicio || !horaFim || !quantidade || notebooksSelecionados.length === 0) {
+      statusMsg.textContent = "Preencha todos os campos e selecione pelo menos um notebook!";
+      statusMsg.style.color = "red";
+      return;
+    }
+
+    // Verifica se há conflitos antes de criar a reserva
+    const { conflito, mensagem } = await verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados);
+
+    if (conflito) {
+      statusMsg.textContent = mensagem || "Já existe uma reserva nesse horário para um ou mais notebooks selecionados. Escolha outro horário!";
       statusMsg.style.color = "red";
       return;
     }
@@ -154,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
         data: data,
         horaInicio: horaInicio,
         horaFim: horaFim,
-        quantidade: quantidade,
+        quantidade: notebooksSelecionados.length, // Usa o número de notebooks selecionados
+        notebooksSelecionados: notebooksSelecionados, // Adiciona os notebooks selecionados
         criadoEm: new Date().toISOString()
       });
 
@@ -166,12 +204,28 @@ document.addEventListener("DOMContentLoaded", () => {
       dataInput.value = "";
       horaInicioInput.value = "";
       horaFimInput.value = "";
-      quantidadeInput.textContent = "";  // Atualize o campo de quantidade para exibir corretamente
+      quantidadeInput.textContent = "";
+      document.querySelectorAll('input[name="notebook"]:checked').forEach(input => input.checked = false);
     } catch (error) {
       console.error("Erro ao salvar reserva: ", error);
       statusMsg.textContent = "Erro ao salvar!";
       statusMsg.style.color = "red";
     }
   });
-
 });
+
+// Obtém o elemento onde a data será exibida
+const dataElemento = document.querySelector("#maindireita p");
+
+// Cria uma nova instância de Date para obter a data e hora atuais
+const dataAtual = new Date();
+
+// Formata a data e hora no formato desejado (ex: 28/01/2025 14:30)
+const dataFormatada = dataAtual.toLocaleString("pt-BR", {
+  year: 'numeric',
+  month: 'long', // Mês completo (ex: janeiro)
+  day: 'numeric',
+});
+
+// Adiciona a data formatada ao parágrafo
+dataElemento.innerHTML = `Notebooks Disponíveis dia ${dataFormatada} .`;

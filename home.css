@@ -388,6 +388,9 @@ button {
 
 
 #rodape {
+
+    position: absolute;
+    bottom: 0;
     width: 100%;
     background-color: #005185;
     height: 120px;

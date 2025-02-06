@@ -3,6 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
     font-size: 62.5%;
+
 }
 
 body {
@@ -332,6 +333,8 @@ button{
 
 #Footerhistory{
     width: 100%;
+
+    bottom: 0;
     background-color: #005185;
     height: 120px;
     margin-top: 300px;
