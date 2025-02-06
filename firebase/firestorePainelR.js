@@ -16,11 +16,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
 // Função para buscar os colaboradores e montar os cards
 async function carregarColaboradores() {
     try {
-        // Referência à coleção "colaborador" (verifique o nome da sua coleção)
+        // Referência à coleção "reserva"
         const colRef = collection(db, "reserva");
         const querySnapshot = await getDocs(colRef);
 
@@ -51,11 +50,11 @@ async function carregarColaboradores() {
                   <p class="textreserva">Horário <br> <b>${data.horaInicio} - ${data.horaFim}</b></p>
                 </div>
                 <p class="textreserva" id="notereserv">
-                  ${data.notebooks ? data.notebooks + " Notebook(s) reservado(s)" : "Notebook reservado"}
+                  ${data.notebooksSelecionados ? data.notebooksSelecionados.length + " Notebook(s) reservado(s)" : "Notebook reservado"}
                 </p>
               </div>
               <div id="scrollreservas">
-                
+                ${data.notebooksSelecionados ? data.notebooksSelecionados.map(notebook => `<p>${notebook}</p>`).join('') : ''}
               </div>
               <div class="buttons">
                 <button id="cancel">
