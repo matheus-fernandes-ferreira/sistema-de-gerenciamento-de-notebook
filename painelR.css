@@ -334,7 +334,7 @@ button{
 }
 
 .custom-swal-container{
-    width: 650px !important;
+    width: 550px !important;
     height: 350px !important;
     border: 5px solid #004A8D;
 }
@@ -353,14 +353,17 @@ button{
 }
 
 .confirm-swal-button{
-    font-size: 16px !important;
+    font-size: 14px !important;
 }
 
 .cancel-swal-button{
-    font-size: 16px !important;
+    font-size: 14px !important;
 
 }
 
+.custom-swal-check strong{
+    border: 1px solid;
+}
 
 
 

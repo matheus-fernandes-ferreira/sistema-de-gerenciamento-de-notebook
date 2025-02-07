@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const q = query(
-        collection(db, "sistema-note"),
+        collection(db, "colaboradores"),
         where("matricula", "==", matricula)
       );
 

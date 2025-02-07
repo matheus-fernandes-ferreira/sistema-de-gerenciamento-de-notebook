@@ -28,7 +28,7 @@ async function login() {
 
     try {
         const q = query(
-            collection(db, "sistema-note"),
+            collection(db, "colaboradores"),
             where("matricula", "==", matricula),
             where("senha", "==", senha)
         );
