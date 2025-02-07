@@ -1,6 +1,7 @@
+/* =========== RESET E GERAL =========== */
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     list-style: none;
@@ -9,6 +10,7 @@
 
 :root {
     font-size: 62.5%;
+    /* Tamanho base para fonte */
 }
 
 body {
@@ -22,14 +24,15 @@ main {
     width: 100%;
     justify-content: center;
     align-items: center;
+    padding-inline: 390px;
 }
 
+/* =========== HEADER =========== */
 header {
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
     background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
 }
 
@@ -41,27 +44,28 @@ header {
 
 .logo {
     display: flex;
-    align-items: center;
-    width: 17%;
-    background-color: yellow;
+    justify-content: center;
+    width: 390px;
 }
 
 .logo img {
     height: 80px;
-    padding-left: 150px;
 }
 
 .container-menu {
     flex: 1;
     display: flex;
-    background-color: red;
+    width: 100%;
 }
 
 .menu ul {
     display: flex;
-    gap: 50px;
-    position: relative;
-    background-color: green;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #F8F8F8;
+    gap: 5px;
 }
 
 .menu a {
@@ -69,65 +73,42 @@ header {
     color: white;
     display: flex;
     align-items: center;
+    transition: 300ms;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
     gap: 5px;
+    padding-left: 5px;
+    justify-content: center;
+
+
 }
-
-
 
 .menu a:hover {
     color: #F7941D;
+    background-color: #012342;
 }
 
 .menu a:hover svg {
     fill: #F7941D;
 }
 
-.menu ul {
-    color: #F8F8F8;
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    width: 600px;
-    justify-content: space-around;
-    font-size: 2rem;
-    font-weight: bold;
-    align-items: center;
-    margin-bottom: 2px;
-}
-
-a {
-    text-decoration: none;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    color: #F8F8F8;
-    transition: 300ms;
-}
-
 li {
-    position: relative;
     padding: 5px;
     display: flex;
     align-items: center;
     font-weight: 300;
 }
 
+/* =========== DIV GRADIENTO =========== */
 #divgradientHome {
-    width: 1920px;
+    width: 100%;
     height: 50px;
     background: linear-gradient(#005185, #ffffff);
 }
 
+/* =========== SEÇÃO SUPORTE =========== */
 
-
-/* =========== FIM HEADER ===========*/
-
-/* =========== INICIO SUPORTE ===========*/
-
-#pagina-suporte {
-    padding-inline: 390px;
-
-}
 
 #main-suporte {
     display: flex;
@@ -135,82 +116,136 @@ li {
     justify-content: center;
 }
 
-.titulo {
-    font-size: 30px;
-    padding: 20px;
+.container-totulo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
 }
 
-#content-suporte {
+.container-icone {
     display: flex;
     flex-direction: row;
+    width: 110px;
+    height: 110px;
+    padding-right: 17px;
 }
 
 
+.titulo {
+    font-size: 66px;
+    color: #454545;
+}
+
+.container-paragrafo {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    color: #454545;
+    padding-bottom: 20px;
+}
+
+.container-paragrafo p {
+    font-size: 18px;
+    line-height: 20px;
+    color: black;
+
+
+}
+
+/* FORMULÁRIO DE SUPORTE */
 #container-forms-suport {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: min-content;
-    justify-content: center;
 }
 
 #formulario-suporte {
     display: flex;
     flex-direction: column;
-
 }
 
 .label-suporte {
     font-size: 2rem;
     color: #004A8D;
-    margin-top: 20px;
+    margin-top: 35px;
     margin-bottom: 4px;
 }
 
 .input-suporte {
     border: 0.75px solid #004A8D;
-    outline: 1px;
     border-radius: 5px;
     width: 100%;
     height: 40px;
-    font-size: 18px;
+    font-size: 14px;
     padding-left: 15px;
     background-color: #f1f1f1;
     transition: 3ms;
-
 }
 
 .input-suporte:focus {
     border: 0.75px solid #F7941D;
     border-bottom: 2px solid #F7941D;
     background-color: #ffffff;
-    transition: 3ms;
+    outline: none;
 }
 
-.select-suporte {
+select {
     width: 100%;
-    height: 30px;
+    height: 40px;
+    background-color: #E7E7E7;
+    border: 0.7px solid #004A8D;
+    border-radius: 8px;
+    padding-left: 10px;
+    font-size: 2rem;
+    outline: none;
+
 }
+
+
+select:focus {
+    border-style: solid 0.7px;
+}
+
+select:hover {
+    background-color: #e0e0e0;
+}
+
+select:focus {
+    background-color: white;
+    border: solid 1px #F7941D;
+}
+
+select option {
+    height: 85px;
+    padding: 10px;
+    color: #012342;
+}
+
 
 .textarea-suporte {
     width: 100%;
     height: 200px;
     border: 0.75px solid #004A8D;
+    border-radius: 8px;
     background-color: #f1f1f1;
     font-size: 2rem;
-    padding: 10px;
-
+    padding: 20px;
 }
 
 .textarea-suporte:focus {
     border: 0.75px solid #F7941D;
     background-color: #ffffff;
-    transition: 400ms;
-    padding: 10px;
+    padding: 20px;
     font-size: 2rem;
-
+    transition: 400ms;
+    outline: none;
 }
 
+
+
+/* -----estilos botao */
 #container-btn-enviar {
     display: flex;
 }
@@ -218,18 +253,40 @@ li {
 #btn-enviar {
     width: 256px;
     height: 59px;
+    border-style: none;
     background-color: #004A8D;
     border-radius: 16px;
     font-size: 2.4rem;
     color: white;
     margin-top: 20px;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+#btn-enviar:hover {
+    background-color: #F7941D;
+    transition: 300ms;
+}
+
+#btn-enviar:active {
+    transform: scale(0.95);
+    background-color: #012342;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 #img-pc {
-    width: 150px;
-    height: 90px;
-    border: 1px solid #004A8D;
+    display: flex;
 }
+
+
+#img-pc svg {
+    width: 178px;
+    height: 118px;
+    display: flex;
+    justify-content: c;
+}
+
+
 
 #container-1 {
     display: flex;
@@ -244,11 +301,9 @@ li {
     width: 100%;
 }
 
-
-
-/* =========== inicio FOOTER ===========*/
+/* =========== FOOTER =========== */
 #rodape {
-    width: 1920px;
+    width: 100%;
     background-color: #005185;
     height: 120px;
     margin-top: 100px;
@@ -256,8 +311,6 @@ li {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-
 }
 
 #rodape h2 {
@@ -271,5 +324,3 @@ li {
     height: 120px;
     margin-left: 20px;
 }
-
-/* =========== FIM FOOTER ===========*/
