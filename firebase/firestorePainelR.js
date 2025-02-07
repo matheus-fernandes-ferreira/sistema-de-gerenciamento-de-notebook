@@ -16,6 +16,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+function formatarData(dataString) {
+  if (!dataString) return ''; // Se a data for nula ou indefinida, retorna vazio
+  const [ano, mes, dia] = dataString.split('-'); // Divide a data pelo "-"
+  return `${dia}/${mes}/${ano}`; // Retorna no formato brasileiro
+}
+
+
 // Função para buscar os colaboradores e montar os cards
 async function carregarColaboradores() {
     try {
@@ -46,7 +53,7 @@ async function carregarColaboradores() {
               </div>
               <div class="infosreserva">
                 <div class="data-hora">
-                  <p class="textreserva">Data <br> <b>${data.data}</b></p>
+                  <p class="textreserva">Data <br> <b>${formatarData(data.data)}</b></p>
                   <p class="textreserva">Horário <br> <b>${data.horaInicio} - ${data.horaFim}</b></p>
                 </div>
                 <p class="textreserva" id="notereserv">
@@ -54,7 +61,7 @@ async function carregarColaboradores() {
                 </p>
               </div>
               <div id="scrollreservas">
-                ${data.notebooksSelecionados ? data.notebooksSelecionados.map(notebook => `<p>${notebook}</p>`).join('') : ''}
+                ${data.notebooksSelecionados ? data.notebooksSelecionados.map(notebook => `<p class='notebookItem'>${notebook}</p>`).join('') : ''}
               </div>
               <div class="buttons">
                 <button id="cancel">

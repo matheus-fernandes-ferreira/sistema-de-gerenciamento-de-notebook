@@ -262,16 +262,17 @@ b{
 #scrollreservas{
     background-color: #E7E7E7;
     width: 220px;
-    height: 37px;
+    height: 50px;
     border-radius: 2px;
     overflow-x: auto;
     display: flex;
     align-items: center;
     margin-top: 5px;
+    gap: 5px;
 }
 
 #scrollreservas::-webkit-scrollbar {
-    height: 2px; 
+    height: 6px; 
   }
   
   #scrollreservas::-webkit-scrollbar-track {
@@ -284,7 +285,18 @@ b{
     border-radius: 4px;
   }
   
+  .notebookItem{
+    font-size: 16px; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Deixa em negrito */
+    color: #333; /* Define uma cor */
+    margin-bottom: 5px; /* Adiciona espaço entre os itens */
+    padding: 5px 10px; /* Adiciona espaçamento interno */
+    background-color: #c4c1c1; /* Fundo cinza claro */
+    border-radius: 5px; /* Borda arredondada */
+    display: inline-block; /* Mantém os itens organizados */
 
+
+  }
 
 .buttons{
     margin-top: 15px;
