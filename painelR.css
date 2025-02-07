@@ -235,7 +235,7 @@ figure {
 
 .data-hora{
     display: flex;
-    width: 130%;
+    width: 100%;
     justify-content: space-between;
     margin-top: 10px;
 }
@@ -269,10 +269,11 @@ b{
     align-items: center;
     margin-top: 5px;
     gap: 5px;
+    padding: 5px;
 }
 
 #scrollreservas::-webkit-scrollbar {
-    height: 6px; 
+    height: 4px; 
   }
   
   #scrollreservas::-webkit-scrollbar-track {
@@ -289,7 +290,6 @@ b{
     font-size: 16px; /* Aumenta o tamanho da fonte */
     font-weight: bold; /* Deixa em negrito */
     color: #333; /* Define uma cor */
-    margin-bottom: 5px; /* Adiciona espaço entre os itens */
     padding: 5px 10px; /* Adiciona espaçamento interno */
     background-color: #c4c1c1; /* Fundo cinza claro */
     border-radius: 5px; /* Borda arredondada */
@@ -333,6 +333,37 @@ button{
     color: #ffffff;
 }
 
+.custom-swal-container{
+    width: 650px !important;
+    height: 350px !important;
+    border: 5px solid #004A8D;
+}
+
+.custom-swal-title {
+    font-size: 22px !important; /* Aumenta o tamanho do título */
+    color: #454545 !important; /* Cor do título */
+}
+
+.custom-swal-text {
+    font-size: 18px !important;
+}
+
+.icon-swal{
+    font-size: 19px !important;
+}
+
+.confirm-swal-button{
+    font-size: 16px !important;
+}
+
+.cancel-swal-button{
+    font-size: 16px !important;
+
+}
+
+
+
+
 .textCard{
     text-align: center;
     display: flex;
@@ -349,7 +380,7 @@ button{
     bottom: 0;
     background-color: #005185;
     height: 120px;
-    margin-top: 300px;
+    margin-top: 200px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

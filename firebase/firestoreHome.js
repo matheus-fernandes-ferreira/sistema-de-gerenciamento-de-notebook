@@ -155,77 +155,131 @@ document.addEventListener("DOMContentLoaded", () => {
   // Chama a função para carregar os dados ao carregar a página
   loadUserData();
 
-  reservarBtn.addEventListener("click", async () => {
-    const nome = nomeInput.textContent.trim();
-    const matricula = matriculaInput.textContent.trim();
-    const turma = turmaInput.value;
-    const data = dataInput.value;
-    const horaInicio = horaInicioInput.value;
-    const horaFim = horaFimInput.value;
-    const quantidade = quantidadeInput.textContent.trim();
+  
 
-    // Captura os notebooks selecionados
-    const notebooksSelecionados = Array.from(document.querySelectorAll('input[name="notebook"]:checked'))
-      .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
+    async function marcarNotebooksIndisponiveis() {
+      const data = dataInput.value;
+      const horaInicio = horaInicioInput.value;
 
-    if (!nome || !matricula || !turma || !data || !horaInicio || !horaFim || !quantidade || notebooksSelecionados.length === 0) {
-      statusMsg.textContent = "Preencha todos os campos e selecione pelo menos um notebook!";
-      statusMsg.style.color = "red";
-      return;
+      if (!data || !horaInicio) {
+        return; // Não faz nada se a data ou hora não forem preenchidas
+      }
+
+      try {
+        const q = query(
+          collection(db, "reserva"),
+          where("data", "==", data)
+        );
+
+        const querySnapshot = await getDocs(q);
+        let notebooksIndisponiveis = [];
+
+        querySnapshot.forEach((doc) => {
+          const reserva = doc.data();
+          const reservaInicio = reserva.horaInicio;
+          const reservaFim = reserva.horaFim;
+
+          // Verifica se há conflito de horário
+          if (
+            (horaInicio >= reservaInicio && horaInicio < reservaFim) ||
+            (horaInicio <= reservaInicio && horaInicio >= reservaFim)
+          ) {
+            notebooksIndisponiveis.push(...reserva.notebooksSelecionados);
+          }
+        });
+
+        // Atualiza a interface
+        document.querySelectorAll('input[name="notebook"]').forEach(input => {
+          const notebookLabel = input.parentElement.querySelector('.radio-label').textContent.trim();
+
+          if (notebooksIndisponiveis.includes(notebookLabel)) {
+            input.disabled = true; // Torna o notebook indisponível
+            input.checked = false; // Caso estivesse selecionado, desmarca
+            input.parentElement.querySelector('.radio-icon svg').style.fill = "#8493B3";
+          } else {
+            input.disabled = false; // Deixa disponível se não estiver reservado
+            input.parentElement.querySelector('.radio-icon svg').style.fill = "#0A3174";
+          }
+        });
+
+      } catch (error) {
+        console.error("Erro ao buscar reservas:", error);
+      }
     }
+    dataInput.addEventListener("change", marcarNotebooksIndisponiveis);
+    horaInicioInput.addEventListener("change", marcarNotebooksIndisponiveis);
 
-    // Verifica se há conflitos antes de criar a reserva
-    const { conflito, mensagem } = await verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados);
+    reservarBtn.addEventListener("click", async () => {
+      const nome = nomeInput.textContent.trim();
+      const matricula = matriculaInput.textContent.trim();
+      const turma = turmaInput.value;
+      const data = dataInput.value;
+      const horaInicio = horaInicioInput.value;
+      const horaFim = horaFimInput.value;
+      const quantidade = quantidadeInput.textContent.trim();
 
-    if (conflito) {
-      statusMsg.textContent = mensagem || "Já existe uma reserva nesse horário para um ou mais notebooks selecionados. Escolha outro horário!";
-      statusMsg.style.color = "red";
-      return;
-    }
+      // Captura os notebooks selecionados
+      const notebooksSelecionados = Array.from(document.querySelectorAll('input[name="notebook"]:checked'))
+        .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
 
-    try {
-      await addDoc(collection(db, "reserva"), {
-        nome: nome,
-        matricula: matricula,
-        turma: turma,
-        data: data,
-        horaInicio: horaInicio,
-        horaFim: horaFim,
-        quantidade: notebooksSelecionados.length, // Usa o número de notebooks selecionados
-        notebooksSelecionados: notebooksSelecionados, // Adiciona os notebooks selecionados
-        criadoEm: new Date().toISOString()
-      });
+      if (!nome || !matricula || !turma || !data || !horaInicio || !horaFim || !quantidade || notebooksSelecionados.length === 0) {
+        statusMsg.textContent = "Preencha todos os campos e selecione pelo menos um notebook!";
+        statusMsg.style.color = "red";
+        return;
+      }
 
-      statusMsg.textContent = "Reserva salva com sucesso!";
-      statusMsg.style.color = "green";
+      // Verifica se há conflitos antes de criar a reserva
+      const { conflito, mensagem } = await verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados);
 
-      // Limpar apenas os campos de entrada
-      turmaInput.value = "";
-      dataInput.value = "";
-      horaInicioInput.value = "";
-      horaFimInput.value = "";
-      quantidadeInput.textContent = "";
-      document.querySelectorAll('input[name="notebook"]:checked').forEach(input => input.checked = false);
-    } catch (error) {
-      console.error("Erro ao salvar reserva: ", error);
-      statusMsg.textContent = "Erro ao salvar!";
-      statusMsg.style.color = "red";
-    }
+      if (conflito) {
+        statusMsg.textContent = mensagem || "Já existe uma reserva nesse horário para um ou mais notebooks selecionados. Escolha outro horário!";
+        statusMsg.style.color = "red";
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "reserva"), {
+          nome: nome,
+          matricula: matricula,
+          turma: turma,
+          data: data,
+          horaInicio: horaInicio,
+          horaFim: horaFim,
+          quantidade: notebooksSelecionados.length, // Usa o número de notebooks selecionados
+          notebooksSelecionados: notebooksSelecionados, // Adiciona os notebooks selecionados
+          criadoEm: new Date().toISOString()
+        });
+
+        statusMsg.textContent = "Reserva salva com sucesso!";
+        statusMsg.style.color = "green";
+
+        // Limpar apenas os campos de entrada
+        turmaInput.value = "";
+        dataInput.value = "";
+        horaInicioInput.value = "";
+        horaFimInput.value = "";
+        quantidadeInput.textContent = "";
+        document.querySelectorAll('input[name="notebook"]:checked').forEach(input => input.checked = false);
+      } catch (error) {
+        console.error("Erro ao salvar reserva: ", error);
+        statusMsg.textContent = "Erro ao salvar!";
+        statusMsg.style.color = "red";
+      }
+    });
   });
-});
 
-// Obtém o elemento onde a data será exibida
-const dataElemento = document.querySelector("#maindireita p");
+  // Obtém o elemento onde a data será exibida
+  const dataElemento = document.querySelector("#maindireita p");
 
-// Cria uma nova instância de Date para obter a data e hora atuais
-const dataAtual = new Date();
+  // Cria uma nova instância de Date para obter a data e hora atuais
+  const dataAtual = new Date();
 
-// Formata a data e hora no formato desejado (ex: 28/01/2025 14:30)
-const dataFormatada = dataAtual.toLocaleString("pt-BR", {
-  year: 'numeric',
-  month: 'long', // Mês completo (ex: janeiro)
-  day: 'numeric',
-});
+  // Formata a data e hora no formato desejado (ex: 28/01/2025 14:30)
+  const dataFormatada = dataAtual.toLocaleString("pt-BR", {
+    year: 'numeric',
+    month: 'long', // Mês completo (ex: janeiro)
+    day: 'numeric',
+  });
 
-// Adiciona a data formatada ao parágrafo
-dataElemento.innerHTML = `Notebooks Disponíveis dia ${dataFormatada} .`;
+  // Adiciona a data formatada ao parágrafo
+  dataElemento.innerHTML = `Notebooks Disponíveis dia ${dataFormatada} .`;
