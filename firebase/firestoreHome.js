@@ -163,6 +163,45 @@ document.addEventListener("DOMContentLoaded", loadUserData);
   // Chama a função para carregar os dados ao carregar a página
   loadUserData();
 
+  function atualizarCheckboxes() {
+    document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      const icon = input.parentElement.querySelector('.radio-icon svg');
+  
+      if (notebooksIndisponiveis.includes(input.value)) {
+        input.disabled = true;
+        input.checked = false;
+        icon.style.fill = "#8493B3"; // Cinza para indisponíveis
+      } else {
+        input.disabled = false;
+        icon.style.fill = "#0A3174"; // Azul padrão para disponíveis
+      }
+    });
+  }
+  
+  // Adiciona evento para mudar a cor ao selecionar
+  document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+    input.addEventListener('change', function() {
+      const icon = this.parentElement.querySelector('.radio-icon svg');
+  
+      if (this.checked) {
+        icon.style.fill = "#E37C02"; // Laranja quando selecionado
+      } else {
+        icon.style.fill = "#0A3174"; // Azul quando desmarcado
+      }
+    });
+  });
+  
+  // Quando a reserva for feita, limpe os checkboxes e atualize os ícones
+  function limparReservas() {
+    document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      input.checked = false; // Desmarca os checkboxes
+    });
+  
+    
+    atualizarCheckboxes(); // Reaplica a lógica de cores corretamente
+  }
+  
+
   
 
     async function marcarNotebooksIndisponiveis() {
@@ -207,8 +246,11 @@ document.addEventListener("DOMContentLoaded", loadUserData);
           } else {
             input.disabled = false; // Deixa disponível se não estiver reservado
             input.parentElement.querySelector('.radio-icon svg').style.fill = "#0A3174";
+            
           }
         });
+
+        
 
       } catch (error) {
         console.error("Erro ao buscar reservas:", error);
@@ -231,8 +273,18 @@ document.addEventListener("DOMContentLoaded", loadUserData);
         .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
 
       if (!nome || !matricula || !turma || !data || !horaInicio || !horaFim || !quantidade || notebooksSelecionados.length === 0) {
-        statusMsg.textContent = "Preencha todos os campos e selecione pelo menos um notebook!";
-        statusMsg.style.color = "red";
+        Swal.fire({
+          icon: "error",
+          title: "Ocorreu um erro!",
+          text: "Preencha todos os campos para realizar a reserva.",
+          customClass: {
+            popup: "custom-swal-container",  // Define tamanho do container
+            title: "custom-swal-title",      // Estiliza o título
+            htmlContainer: "custom-swal-text", // Estiliza o texto
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+          }
+        });
         return;
       }
 
@@ -240,8 +292,19 @@ document.addEventListener("DOMContentLoaded", loadUserData);
       const { conflito, mensagem } = await verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados);
 
       if (conflito) {
-        statusMsg.textContent = mensagem || "Já existe uma reserva nesse horário para um ou mais notebooks selecionados. Escolha outro horário!";
-        statusMsg.style.color = "red";
+
+        Swal.fire({
+          icon: "error",
+          title: "Escolha outro horário!",
+          text: "Já existe uma reserva nesse horário para um ou mais notebooks selecionados.",
+          customClass: {
+            popup: "custom-swal-container",  // Define tamanho do container
+            title: "custom-swal-title",      // Estiliza o título
+            htmlContainer: "custom-swal-text", // Estiliza o texto
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+          }
+        });
         return;
       }
 
@@ -258,9 +321,17 @@ document.addEventListener("DOMContentLoaded", loadUserData);
           criadoEm: new Date().toISOString()
         });
 
-        statusMsg.textContent = "Reserva salva com sucesso!";
-        statusMsg.style.color = "green";
-
+        Swal.fire({
+          title: "Reserva realizada com sucesso!",
+          icon: "success",
+          customClass: {
+            popup: "custom-swal-container",  // Define tamanho do container
+            title: "custom-swal-title",      // Estiliza o título
+            htmlContainer: "custom-swal-text", // Estiliza o texto
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+          }
+        });
         // Limpar apenas os campos de entrada
         turmaInput.value = "";
         dataInput.value = "";

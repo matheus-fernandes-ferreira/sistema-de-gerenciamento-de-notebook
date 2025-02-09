@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-size: 62.5%;
 }
 
 body {
@@ -67,7 +66,7 @@ margin-left: 50px;
     flex-direction: row;
     width: 600px;
     justify-content: space-around;
-    font-size: 3.7rem;
+    font-size: 5.5rem;
     font-weight: bold;
     align-items: center;
     margin-bottom: 2px;
@@ -79,6 +78,7 @@ a {
     display: flex;
     justify-content: center;
     color: #F8F8F8;
+    font-size: 25.5%;
 }
 
 li {
@@ -86,6 +86,8 @@ li {
     padding: 5px;
     display: flex;
     align-items: center;
+    font-size: 65.5%;
+
     
 }
 
@@ -145,16 +147,21 @@ a :hover{
 
 
 #sectionhome {
-    margin-top: 30px;
-    height: 50px;
-    position: relative;
-    width: 1000px;
-    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 40px;
+    height: 100px;
+    width:610px;
+    color: #454545;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-right: 28%;
 
 }
 
 h1 {
-    font-size: 4.9rem;
+    font-size: 2.9rem;
     color: #454545;
     font-family: "Poppins", serif;
     letter-spacing: 3px;
@@ -165,7 +172,6 @@ h1 {
 .containerhome {
     width: 1000px;
     height: 500px;
-    margin-top: 15px;
     display: flex;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
@@ -270,12 +276,12 @@ h1 {
 
 
 main label {
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     color: #004A8D;
 }
 
 main p {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     color: #000000;
 }
 
@@ -301,7 +307,7 @@ main select:focus{
 
 
 input {
-    font-size: 1.4rem;
+    font-size: 1rem;
     height: 40px;
     width: 150px;
     background-color: #e7e7e7;
@@ -374,7 +380,7 @@ button {
     height: 40px;
     background-color: #004A8D;
     border-radius: 16px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: white;
     border: none;
     font-family: "Open Sans", serif;
@@ -440,6 +446,7 @@ button {
     opacity: 1;
     background-color: #E37C02;
     border-color: #E37C02;
+    
 }
 
 .radio-input:checked+.radio-tile .radio-icon svg {
@@ -458,6 +465,7 @@ button {
 .radio-input:focus+.radio-tile:before {
     transform: scale(1);
     opacity: 1;
+    
 }
 
 .radio-tile {
@@ -480,8 +488,8 @@ button {
     content: "";
     position: absolute;
     display: block;
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.45rem;
+    height: 0.45rem;
     border: 2px solid #b5bfd9;
     background-color: #fff;
     border-radius: 50%;
@@ -502,8 +510,8 @@ button {
 }
 
 .radio-icon svg {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1rem;
     fill: #0A3174;
 }
 
@@ -518,9 +526,42 @@ button {
     clip: rect(0 0 0 0);
     -webkit-clip-path: inset(100%);
     clip-path: inset(100%);
-    height: 1px;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
 }
+
+
+/* swal custom */
+
+.custom-swal-container {
+    width: 450px;
+    height: 280px;
+    border: 5px solid #004A8D;
+}
+
+.custom-swal-title {
+    font-size: 22px !important;
+    padding: 0;
+    /* Aumenta o tamanho do título */
+    color: #454545 !important;
+    /* Cor do título */
+}
+
+.custom-swal-text {
+    font-size: 14px !important;
+    padding: 0;
+}
+
+.icon-swal {
+    font-size: 13px !important;
+}
+
+.confirm-swal-button {
+    font-size: 15px !important;
+    width: 100px;
+    background-color: #E37C02;
+}
+
+
+
