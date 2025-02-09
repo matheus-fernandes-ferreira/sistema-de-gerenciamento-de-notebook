@@ -23,7 +23,7 @@ header {
     width: 100%;
 }
 
-nav{
+nav {
     padding-left: 300px;
 }
 
@@ -40,11 +40,11 @@ nav{
     justify-content: center;
     align-items: end;
     display: flex;
-    
+
 
 }
 
-#tituloPainel{
+#tituloPainel {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -82,19 +82,19 @@ li {
     padding: 5px;
     display: flex;
     align-items: center;
-    
-}
-
-ul :hover{
-    color: #F7941D;
-    transition: 0.4s;  
 
 }
 
-a :hover{
+ul :hover {
     color: #F7941D;
-    transition: 0.4s;  
-    
+    transition: 0.4s;
+
+}
+
+a :hover {
+    color: #F7941D;
+    transition: 0.4s;
+
 }
 
 .menu a:hover svg {
@@ -130,25 +130,26 @@ a :hover{
 
 }
 
-#divgradientHome{
+#divgradientHome {
     width: 100%;
     height: 50px;
     background: linear-gradient(#005185, #ffffff);
-    
+
 }
 
 
 .info {
     display: flex;
     flex-direction: column;
-    gap: 5px; 
+    gap: 5px;
     width: 100%;
 }
 
 .bottom-section1 {
     display: flex;
     flex-direction: row;
-    gap: 15px; /* Espaçamento entre os campos */
+    gap: 15px;
+    /* Espaçamento entre os campos */
     align-items: center;
     height: 100px;
 }
@@ -158,10 +159,11 @@ a :hover{
 .bottom-section2 {
     display: flex;
     flex-direction: row;
-    gap: 15px; /* Espaçamento entre os campos */
+    gap: 15px;
+    /* Espaçamento entre os campos */
     align-items: center;
     margin-top: 20px;
-    
+
 }
 
 
@@ -176,7 +178,7 @@ a :hover{
     gap: 50px;
     justify-items: center;
     /* grid-template-rows: repeat(3, 1fr) */
-    
+
 }
 
 .cardSeparator {
@@ -186,16 +188,16 @@ a :hover{
     color: #454545;
 }
 
-.colaborador{
+.colaborador {
     width: 100%;
     display: flex;
     align-items: baseline;
     border-radius: 5px;
     padding: 3px;
-    
+
 }
 
-u{
+u {
     font-size: 20px;
     position: relative;
     bottom: 5px;
@@ -203,13 +205,13 @@ u{
 
 
 figure {
-    width: 30px; 
+    width: 30px;
     margin: 5px;
 }
 
 
 
-.leftCard{
+.leftCard {
     background: #F68B1F;
     width: 35px;
     height: auto;
@@ -218,7 +220,7 @@ figure {
     box-shadow: rgba(14, 30, 37, 0.30) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-.bodyCard{
+.bodyCard {
     display: flex;
     align-items: flex-start;
     border: 1px #AFAFAF solid;
@@ -227,39 +229,39 @@ figure {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     flex-direction: column;
-    padding:15px 45px 15px 15px;
+    padding: 15px 45px 15px 15px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    
+
 }
 
 
-.data-hora{
+.data-hora {
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-b{
+b {
     font-size: 12px;
 }
 
-.infosreserva{
+.infosreserva {
     padding: 1px 1px 1px 3px;
 }
 
-.textreserva{
+.textreserva {
     font-size: 15px;
     font-weight: 500;
     margin-top: 2px;
     letter-spacing: 0.5px;
 }
 
-#notereserv{
+#notereserv {
     padding-top: 10px;
 }
 
-#scrollreservas{
+#scrollreservas {
     background-color: #E7E7E7;
     width: 220px;
     height: 50px;
@@ -273,44 +275,51 @@ b{
 }
 
 #scrollreservas::-webkit-scrollbar {
-    height: 4px; 
-  }
-  
-  #scrollreservas::-webkit-scrollbar-track {
+    height: 4px;
+}
+
+#scrollreservas::-webkit-scrollbar-track {
     background: #C9C9C9;
     border-radius: 4px;
-  }
-  
-  #scrollreservas::-webkit-scrollbar-thumb {
+}
+
+#scrollreservas::-webkit-scrollbar-thumb {
     background: #004A8D;
     border-radius: 4px;
-  }
-  
-  .notebookItem{
-    font-size: 16px; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Deixa em negrito */
-    color: #333; /* Define uma cor */
-    padding: 5px 10px; /* Adiciona espaçamento interno */
-    background-color: #c4c1c1; /* Fundo cinza claro */
-    border-radius: 5px; /* Borda arredondada */
-    display: inline-block; /* Mantém os itens organizados */
+}
+
+.notebookItem {
+    font-size: 16px;
+    /* Aumenta o tamanho da fonte */
+    font-weight: bold;
+    /* Deixa em negrito */
+    color: #333;
+    /* Define uma cor */
+    padding: 5px 10px;
+    /* Adiciona espaçamento interno */
+    background-color: #c4c1c1;
+    /* Fundo cinza claro */
+    border-radius: 5px;
+    /* Borda arredondada */
+    display: inline-block;
+    /* Mantém os itens organizados */
 
 
-  }
+}
 
-.buttons{
+.buttons {
     margin-top: 15px;
     width: 95%;
     display: flex;
     justify-content: space-between;
 }
 
-.buttonicon{
+.buttonicon {
     width: 9px;
     margin-right: 7px;
 }
 
-button{
+button {
     border: none;
     padding: 6px;
     border-radius: 5px;
@@ -322,52 +331,20 @@ button{
     align-items: center;
 }
 
-#cancel{
+#cancel {
     background-color: #F7941D;
     color: #ffffff;
 
 }
 
-#finish{
+#finish {
     background-color: #004A8D;
     color: #ffffff;
 }
 
-.custom-swal-container{
-    width: 550px !important;
-    height: 350px !important;
-    border: 5px solid #004A8D;
-}
-
-.custom-swal-title {
-    font-size: 22px !important; /* Aumenta o tamanho do título */
-    color: #454545 !important; /* Cor do título */
-}
-
-.custom-swal-text {
-    font-size: 18px !important;
-}
-
-.icon-swal{
-    font-size: 19px !important;
-}
-
-.confirm-swal-button{
-    font-size: 14px !important;
-}
-
-.cancel-swal-button{
-    font-size: 14px !important;
-
-}
-
-.custom-swal-check strong{
-    border: 1px solid;
-}
 
 
-
-.textCard{
+.textCard {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -377,10 +354,8 @@ button{
     height: 100px;
 }
 
-#Footerhistory{
+#Footerhistory {
     width: 100%;
-
-    bottom: 0;
     background-color: #005185;
     height: 120px;
     margin-top: 200px;
@@ -388,17 +363,130 @@ button{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
-    
-    }
-    #Footerhistory h2{
-        font-size: 2.4rem;
-        color: #ffffff;
-        margin-right: 20px;
-    }
-    
-    #logoFooterhistory{
-        width: 120px;
-        height: 120px;
-        margin-left: 20px;
-    }
+
+
+}
+
+#Footerhistory h2 {
+    font-size: 2.4rem;
+    color: #ffffff;
+    margin-right: 20px;
+}
+
+#logoFooterhistory {
+    width: 120px;
+    height: 120px;
+    margin-left: 20px;
+}
+
+
+/* swal styles cancel*/
+
+.custom-swal-container {
+    width: 550px !important;
+    height: 350px !important;
+    border: 5px solid #004A8D;
+}
+
+.custom-swal-title {
+    font-size: 22px !important;
+    /* Aumenta o tamanho do título */
+    color: #454545 !important;
+    /* Cor do título */
+}
+
+.custom-swal-text {
+    font-size: 18px !important;
+}
+
+.icon-swal {
+    font-size: 19px !important;
+}
+
+.confirm-swal-button {
+    font-size: 14px !important;
+}
+
+.cancel-swal-button {
+    font-size: 14px !important;
+
+}
+
+.custom-swal-check strong {
+    border: 1px solid;
+}
+
+
+/* swal styles finish*/
+
+
+
+.swal-title {
+    font-size: 22px;
+    color: #454545;
+    font-weight: bold;
+}
+.swal-check {
+    font-size: 13px;
+    color: #454545;
+
+}
+
+.swal-aviso {
+    font-size: 13px;
+    font-weight: 600;
+    color: #454545;
+    margin-top: 10px;
+
+}
+
+/* Estiliza o fundo do alerta */
+.swal-popup {
+    color: #cccccc;
+    border-radius: 10px;
+    width: 450px;
+    height: 250px;
+    border: 5px solid #004A8D;
+}
+
+/* Estiliza o texto do alerta */
+.swal-text {
+    font-size: 9px;
+    color: red;
+    display: inline;
+}
+
+/* Estiliza o link */
+.swal-link {
+    color: red;
+    font-weight: bold;
+    font-size: 9px;
+    display: inline;
+}
+
+.swal-link:hover {
+    text-decoration: underline;
+}
+
+/* Estiliza o botão de confirmação */
+.swal-confirm {
+    background-color: #F7941D;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+/* Estiliza o botão de cancelamento */
+.swal-cancel {
+    background-color: #004A8D;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+/* Estiliza o botão de fechar */
+.swal-close {
+    color: white;
+}

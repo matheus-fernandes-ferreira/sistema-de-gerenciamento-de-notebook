@@ -29,30 +29,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusMsg = document.getElementById("status");
 
   // Função para carregar os dados do usuário
-  async function loadUserData() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const matricula = urlParams.get("matricula");
+  function loadUserData() {
+    const matricula = localStorage.getItem("matricula"); // **Pegar a matrícula do localStorage**
 
-    try {
-      const q = query(
-        collection(db, "colaboradores"),
-        where("matricula", "==", matricula)
-      );
-
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        const userData = querySnapshot.docs[0].data();
-
-        // Exibe os dados na página
-        nomeInput.textContent = userData.nome;
-        matriculaInput.textContent = userData.matricula;
-      }
-    } catch (error) {
-      console.error("Erro ao carregar os dados do usuário:", error);
-      alert("Erro ao tentar carregar os dados do usuário.");
+    if (!matricula) {
+        alert('Você precisa fazer login primeiro.');
+        window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
+        return;
     }
-  }
+
+    const colaboradoresRef = collection(db, "colaboradores");
+    const q = query(colaboradoresRef, where("matricula", "==", matricula));
+
+    getDocs(q)
+        .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+                const userDoc = querySnapshot.docs[0];
+                const userData = userDoc.data();
+
+                document.getElementById("nome").textContent = userData.nome;
+                document.getElementById("matricula").textContent = userData.matricula;
+            } else {
+                alert('Usuário não encontrado.');
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao buscar dados do usuário:", error);
+        });
+}
+
+// **Chamar loadUserData() ao carregar a página**
+document.addEventListener("DOMContentLoaded", loadUserData);
+
 
   async function carregarNote() {
     let quantidade = 0;

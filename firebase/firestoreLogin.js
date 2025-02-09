@@ -17,39 +17,39 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Função de login
-async function login() {
-    const matricula = document.getElementById("username").value;
-    const senha = document.getElementById("senha").value;
+function login() {
+    const matricula = document.getElementById('username').value;
+    const senha = document.getElementById('senha').value;
 
     if (!matricula || !senha) {
-        alert("Preencha todos os campos!");
+        alert('Por favor, preencha todos os campos!');
         return;
     }
 
-    try {
-        const q = query(
-            collection(db, "colaboradores"),
-            where("matricula", "==", matricula),
-            where("senha", "==", senha)
-        );
+    const colaboradoresRef = collection(db, "colaboradores");
+    const q = query(colaboradoresRef, where("matricula", "==", matricula), where("senha", "==", senha));
 
-        const querySnapshot = await getDocs(q);
+    getDocs(q)
+        .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+                const userDoc = querySnapshot.docs[0];
+                const userData = userDoc.data();
 
-        if (!querySnapshot.empty) {
-            const userData = querySnapshot.docs[0].data(); // Obtém os dados do primeiro documento encontrado
+                // **Salvar a matrícula no localStorage**
+                localStorage.setItem("matricula", matricula);
 
-            alert(`Bem-vindo, ${userData.nome}!`);
-
-            // Redireciona para outra página com a matrícula como parâmetro na URL
-            window.location.href = `home.html?matricula=${userData.matricula}`;
-        } else {
-            alert("Matrícula ou senha incorreta.");
-        }
-    } catch (error) {
-        console.error("Erro ao fazer login:", error);
-        alert("Erro ao tentar login. Tente novamente.");
-    }
+                alert(`Bem-vindo, ${userData.nome}!`);
+                window.location.href = "home.html";
+            } else {
+                alert('Matrícula ou senha incorretas.');
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao fazer login:", error);
+            alert('Erro ao fazer login. Tente novamente.');
+        });
 }
+
 
 // Expõe a função login globalmente
 window.login = login;
