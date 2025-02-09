@@ -35,7 +35,7 @@ function login() {
                 const userDoc = querySnapshot.docs[0];
                 const userData = userDoc.data();
 
-                // **Salvar a matrícula no localStorage**
+                // Salvar apenas a matrícula no localStorage
                 localStorage.setItem("matricula", matricula);
 
                 alert(`Bem-vindo, ${userData.nome}!`);
@@ -49,7 +49,6 @@ function login() {
             alert('Erro ao fazer login. Tente novamente.');
         });
 }
-
 
 // Expõe a função login globalmente
 window.login = login;

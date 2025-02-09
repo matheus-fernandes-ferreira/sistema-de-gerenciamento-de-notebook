@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -23,9 +23,31 @@ function formatarData(dataString) {
 }
 
 const matricula = localStorage.getItem("matricula");
+
 if (!matricula) {
   alert("Você precisa fazer login primeiro.");
   window.location.href = "login.html";
+}
+
+// Função para buscar o cargo do usuário logado
+async function getCargoUsuario(matricula) {
+  try {
+    const colaboradoresRef = collection(db, "colaboradores");
+    const q = query(colaboradoresRef, where("matricula", "==", matricula));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+      return userData.cargo; // Retorna o cargo do usuário
+    } else {
+      console.error("Usuário não encontrado no banco de dados.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Erro ao buscar o cargo do usuário:", error);
+    return null;
+  }
 }
 
 // Função para buscar as reservas e montar os cards
@@ -35,11 +57,18 @@ async function carregarReservas() {
     const querySnapshot = await getDocs(colRef);
     const container = document.getElementById("container");
 
+    // Busca o cargo do usuário logado
+    const cargo = await getCargoUsuario(matricula);
+
     container.innerHTML = ""; // Limpa antes de adicionar novos elementos
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       const reservaMatricula = data.matricula; // Supondo que a reserva tenha um campo "matricula"
+
+      // Verifica se o usuário é o dono da reserva ou se é um coordenador
+      const isOwner = reservaMatricula === matricula;
+      const isCoordinator = cargo === "coordenador";
 
       // Cria o card da reserva
       const cardHTML = `
@@ -65,7 +94,7 @@ async function carregarReservas() {
                     ${data.notebooksSelecionados ? data.notebooksSelecionados.map(notebook => `<p class='notebookItem'>${notebook}</p>`).join('') : ''}
                 </div>
                 <div class="buttons">
-                    ${reservaMatricula === matricula ? `
+                    ${isOwner || isCoordinator ? `
                     <button id="cancel" class="cancel" data-id="${doc.id}">
                         <svg class="buttonicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#ffffff" d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
                         Cancelar
@@ -90,6 +119,8 @@ async function carregarReservas() {
   }
 }
 
+// Restante do código (configurarEventos, cancelarReserva, finalizarReserva, etc.) permanece o mesmo
+
 // Função para configurar os eventos de cancelar e finalizar
 function configurarEventos() {
   // Evento de cancelar
@@ -111,7 +142,6 @@ function configurarEventos() {
   });
 }
 
-// Função para cancelar uma reserva
 // Função para cancelar uma reserva
 async function cancelarReserva(reservaId) {
   try {
@@ -170,8 +200,6 @@ async function cancelarReserva(reservaId) {
     });
   }
 }
-
-
 
 // Função para finalizar uma reserva
 function finalizarReserva(reservaId) {
