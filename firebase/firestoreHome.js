@@ -22,8 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const matriculaInput = document.getElementById("matricula");
   const turmaInput = document.getElementById("turma");
   const dataInput = document.getElementById("data");
-  const horaInicioInput = document.getElementById("horaInicio");
-  const horaFimInput = document.getElementById("horaFim");
+  const horarioSelect = document.getElementById("horario");
   const quantidadeInput = document.getElementById("quantidade");
   const reservarBtn = document.getElementById("reservar");
   const statusMsg = document.getElementById("status");
@@ -33,35 +32,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const matricula = localStorage.getItem("matricula"); // **Pegar a matrícula do localStorage**
 
     if (!matricula) {
-        alert('Você precisa fazer login primeiro.');
-        window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
-        return;
+      alert('Você precisa fazer login primeiro.');
+      window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
+      return;
     }
 
     const colaboradoresRef = collection(db, "colaboradores");
     const q = query(colaboradoresRef, where("matricula", "==", matricula));
 
     getDocs(q)
-        .then((querySnapshot) => {
-            if (!querySnapshot.empty) {
-                const userDoc = querySnapshot.docs[0];
-                const userData = userDoc.data();
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const userDoc = querySnapshot.docs[0];
+          const userData = userDoc.data();
 
-                document.getElementById("nome").textContent = userData.nome;
-                document.getElementById("matricula").textContent = userData.matricula;
-            } else {
-                alert('Usuário não encontrado.');
-            }
-        })
-        .catch((error) => {
-            console.error("Erro ao buscar dados do usuário:", error);
-        });
-}
+          document.getElementById("nome").textContent = userData.nome;
+          document.getElementById("matricula").textContent = userData.matricula;
+        } else {
+          alert('Usuário não encontrado.');
+        }
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar dados do usuário:", error);
+      });
+  }
 
-// **Chamar loadUserData() ao carregar a página**
-document.addEventListener("DOMContentLoaded", loadUserData);
+  // **Chamar loadUserData() ao carregar a página**
+  document.addEventListener("DOMContentLoaded", loadUserData);
 
-
+  // Função para carregar os notebooks
   async function carregarNote() {
     let quantidade = 0;
     const notebooksContainer = document.getElementById("notestatus");
@@ -80,16 +79,16 @@ document.addEventListener("DOMContentLoaded", loadUserData);
 
         const label = document.createElement("label");
         label.innerHTML = `
-                <input class="radio-input" type="checkbox" name="notebook" ${notebookStatus ? '' : 'disabled'}>
-                <span class="radio-tile">
-                    <span class="radio-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                            <path d="M128 32C92.7 32 64 60.7 64 96l0 256 64 0 0-256 384 0 0 256 64 0 0-256c0-35.3-28.7-64-64-64L128 32zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480l486.4 0c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2L19.2 384z"/>
-                        </svg>
-                    </span>
-                    <span class="radio-label">${inventario}</span>
-                </span>
-            `;
+          <input class="radio-input" type="checkbox" name="notebook" ${notebookStatus ? '' : 'disabled'}>
+          <span class="radio-tile">
+            <span class="radio-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path d="M128 32C92.7 32 64 60.7 64 96l0 256 64 0 0-256 384 0 0 256 64 0 0-256c0-35.3-28.7-64-64-64L128 32zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480l486.4 0c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2L19.2 384z"/>
+              </svg>
+            </span>
+            <span class="radio-label">${inventario}</span>
+          </span>
+        `;
 
         const radioIcon = label.querySelector(".radio-icon svg");
         if (!notebookStatus) {
@@ -117,7 +116,10 @@ document.addEventListener("DOMContentLoaded", loadUserData);
     }
   }
 
-  async function verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados) {
+  // Função para verificar conflitos de reserva
+  async function verificarConflitoReserva(data, horarioSelecionado, notebooksSelecionados) {
+    const [horaInicio, horaFim] = horarioSelecionado.split("-");
+
     const q = query(
       collection(db, "reserva"),
       where("data", "==", data)
@@ -157,208 +159,159 @@ document.addEventListener("DOMContentLoaded", loadUserData);
     return { conflito: false };
   }
 
-  // Chama a função para carregar os notebooks
-  carregarNote();
+  // Função para marcar notebooks indisponíveis
+  async function marcarNotebooksIndisponiveis() {
+    const data = dataInput.value;
+    const horarioSelecionado = document.getElementById("horario").value;
+    const [horaInicio, horaFim] = horarioSelecionado.split("-");
 
-  // Chama a função para carregar os dados ao carregar a página
-  loadUserData();
-
-  function atualizarCheckboxes() {
-    document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-      const icon = input.parentElement.querySelector('.radio-icon svg');
-  
-      if (notebooksIndisponiveis.includes(input.value)) {
-        input.disabled = true;
-        input.checked = false;
-        icon.style.fill = "#8493B3"; // Cinza para indisponíveis
-      } else {
-        input.disabled = false;
-        icon.style.fill = "#0A3174"; // Azul padrão para disponíveis
-      }
-    });
-  }
-  
-  // Adiciona evento para mudar a cor ao selecionar
-  document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-    input.addEventListener('change', function() {
-      const icon = this.parentElement.querySelector('.radio-icon svg');
-  
-      if (this.checked) {
-        icon.style.fill = "#E37C02"; // Laranja quando selecionado
-      } else {
-        icon.style.fill = "#0A3174"; // Azul quando desmarcado
-      }
-    });
-  });
-  
-  // Quando a reserva for feita, limpe os checkboxes e atualize os ícones
-  function limparReservas() {
-    document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-      input.checked = false; // Desmarca os checkboxes
-    });
-  
-    
-    atualizarCheckboxes(); // Reaplica a lógica de cores corretamente
-  }
-  
-
-  
-
-    async function marcarNotebooksIndisponiveis() {
-      const data = dataInput.value;
-      const horaInicio = horaInicioInput.value;
-
-      if (!data || !horaInicio) {
-        return; // Não faz nada se a data ou hora não forem preenchidas
-      }
-
-      try {
-        const q = query(
-          collection(db, "reserva"),
-          where("data", "==", data)
-        );
-
-        const querySnapshot = await getDocs(q);
-        let notebooksIndisponiveis = [];
-
-        querySnapshot.forEach((doc) => {
-          const reserva = doc.data();
-          const reservaInicio = reserva.horaInicio;
-          const reservaFim = reserva.horaFim;
-
-          // Verifica se há conflito de horário
-          if (
-            (horaInicio >= reservaInicio && horaInicio < reservaFim) ||
-            (horaInicio <= reservaInicio && horaInicio >= reservaFim)
-          ) {
-            notebooksIndisponiveis.push(...reserva.notebooksSelecionados);
-          }
-        });
-
-        // Atualiza a interface
-        document.querySelectorAll('input[name="notebook"]').forEach(input => {
-          const notebookLabel = input.parentElement.querySelector('.radio-label').textContent.trim();
-
-          if (notebooksIndisponiveis.includes(notebookLabel)) {
-            input.disabled = true; // Torna o notebook indisponível
-            input.checked = false; // Caso estivesse selecionado, desmarca
-            input.parentElement.querySelector('.radio-icon svg').style.fill = "#8493B3";
-          } else {
-            input.disabled = false; // Deixa disponível se não estiver reservado
-            input.parentElement.querySelector('.radio-icon svg').style.fill = "#0A3174";
-            
-          }
-        });
-
-        
-
-      } catch (error) {
-        console.error("Erro ao buscar reservas:", error);
-      }
+    if (!data || !horarioSelecionado) {
+      return; // Não faz nada se a data ou horário não forem preenchidos
     }
-    dataInput.addEventListener("change", marcarNotebooksIndisponiveis);
-    horaInicioInput.addEventListener("change", marcarNotebooksIndisponiveis);
 
-    reservarBtn.addEventListener("click", async () => {
-      const nome = nomeInput.textContent.trim();
-      const matricula = matriculaInput.textContent.trim();
-      const turma = turmaInput.value;
-      const data = dataInput.value;
-      const horaInicio = horaInicioInput.value;
-      const horaFim = horaFimInput.value;
-      const quantidade = quantidadeInput.textContent.trim();
+    try {
+      const q = query(
+        collection(db, "reserva"),
+        where("data", "==", data)
+      );
 
-      // Captura os notebooks selecionados
-      const notebooksSelecionados = Array.from(document.querySelectorAll('input[name="notebook"]:checked'))
-        .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
+      const querySnapshot = await getDocs(q);
+      let notebooksIndisponiveis = [];
 
-      if (!nome || !matricula || !turma || !data || !horaInicio || !horaFim || !quantidade || notebooksSelecionados.length === 0) {
-        Swal.fire({
-          icon: "error",
-          title: "Ocorreu um erro!",
-          text: "Preencha todos os campos para realizar a reserva.",
-          customClass: {
-            popup: "custom-swal-container",  // Define tamanho do container
-            title: "custom-swal-title",      // Estiliza o título
-            htmlContainer: "custom-swal-text", // Estiliza o texto
-            icon: 'icon-swal',
-            confirmButton: 'confirm-swal-button',
-          }
-        });
-        return;
-      }
+      querySnapshot.forEach((doc) => {
+        const reserva = doc.data();
+        const reservaInicio = reserva.horaInicio;
+        const reservaFim = reserva.horaFim;
 
-      // Verifica se há conflitos antes de criar a reserva
-      const { conflito, mensagem } = await verificarConflitoReserva(data, horaInicio, horaFim, notebooksSelecionados);
+        // Verifica se há conflito de horário
+        if (
+          (horaInicio >= reservaInicio && horaInicio < reservaFim) ||
+          (horaInicio <= reservaInicio && horaInicio >= reservaFim)
+        ) {
+          notebooksIndisponiveis.push(...reserva.notebooksSelecionados);
+        }
+      });
 
-      if (conflito) {
+      // Atualiza a interface
+      document.querySelectorAll('input[name="notebook"]').forEach(input => {
+        const notebookLabel = input.parentElement.querySelector('.radio-label').textContent.trim();
 
-        Swal.fire({
-          icon: "error",
-          title: "Escolha outro horário!",
-          text: "Já existe uma reserva nesse horário para um ou mais notebooks selecionados.",
-          customClass: {
-            popup: "custom-swal-container",  // Define tamanho do container
-            title: "custom-swal-title",      // Estiliza o título
-            htmlContainer: "custom-swal-text", // Estiliza o texto
-            icon: 'icon-swal',
-            confirmButton: 'confirm-swal-button',
-          }
-        });
-        return;
-      }
+        if (notebooksIndisponiveis.includes(notebookLabel)) {
+          input.disabled = true; // Torna o notebook indisponível
+          input.checked = false; // Caso estivesse selecionado, desmarca
+          input.parentElement.querySelector('.radio-icon svg').style.fill = "#8493B3";
+        } else {
+          input.disabled = false; // Deixa disponível se não estiver reservado
+          input.parentElement.querySelector('.radio-icon svg').style.fill = "#0A3174";
+        }
+      });
 
-      try {
-        await addDoc(collection(db, "reserva"), {
-          nome: nome,
-          matricula: matricula,
-          turma: turma,
-          data: data,
-          horaInicio: horaInicio,
-          horaFim: horaFim,
-          quantidade: notebooksSelecionados.length, // Usa o número de notebooks selecionados
-          notebooksSelecionados: notebooksSelecionados, // Adiciona os notebooks selecionados
-          criadoEm: new Date().toISOString()
-        });
+    } catch (error) {
+      console.error("Erro ao buscar reservas:", error);
+    }
+  }
 
-        Swal.fire({
-          title: "Reserva realizada com sucesso!",
-          icon: "success",
-          customClass: {
-            popup: "custom-swal-container",  // Define tamanho do container
-            title: "custom-swal-title",      // Estiliza o título
-            htmlContainer: "custom-swal-text", // Estiliza o texto
-            icon: 'icon-swal',
-            confirmButton: 'confirm-swal-button',
-          }
-        });
-        // Limpar apenas os campos de entrada
-        turmaInput.value = "";
-        dataInput.value = "";
-        horaInicioInput.value = "";
-        horaFimInput.value = "";
-        quantidadeInput.textContent = "";
-        document.querySelectorAll('input[name="notebook"]:checked').forEach(input => input.checked = false);
-      } catch (error) {
-        console.error("Erro ao salvar reserva: ", error);
-        statusMsg.textContent = "Erro ao salvar!";
-        statusMsg.style.color = "red";
-      }
-    });
+  // Event listeners para atualizar notebooks indisponíveis
+  dataInput.addEventListener("change", marcarNotebooksIndisponiveis);
+  horarioSelect.addEventListener("change", marcarNotebooksIndisponiveis);
+
+  // Evento de clique no botão de reserva
+  reservarBtn.addEventListener("click", async () => {
+    const nome = nomeInput.textContent.trim();
+    const matricula = matriculaInput.textContent.trim();
+    const turma = turmaInput.value;
+    const data = dataInput.value;
+    const horarioSelecionado = document.getElementById("horario").value;
+    const [horaInicio, horaFim] = horarioSelecionado.split("-");
+    const quantidade = quantidadeInput.textContent.trim();
+
+    // Captura os notebooks selecionados
+    const notebooksSelecionados = Array.from(document.querySelectorAll('input[name="notebook"]:checked'))
+      .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
+
+    if (!nome || !matricula || !turma || !data || !horarioSelecionado || !quantidade || notebooksSelecionados.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Ocorreu um erro!",
+        text: "Preencha todos os campos para realizar a reserva.",
+        customClass: {
+          popup: "custom-swal-container",  // Define tamanho do container
+          title: "custom-swal-title",      // Estiliza o título
+          htmlContainer: "custom-swal-text", // Estiliza o texto
+          icon: 'icon-swal',
+          confirmButton: 'confirm-swal-button',
+        }
+      });
+      return;
+    }
+
+    // Verifica se há conflitos antes de criar a reserva
+    const { conflito, mensagem } = await verificarConflitoReserva(data, horarioSelecionado, notebooksSelecionados);
+
+    if (conflito) {
+      Swal.fire({
+        icon: "error",
+        title: "Escolha outro horário!",
+        text: mensagem,
+        customClass: {
+          popup: "custom-swal-container",  // Define tamanho do container
+          title: "custom-swal-title",      // Estiliza o título
+          htmlContainer: "custom-swal-text", // Estiliza o texto
+          icon: 'icon-swal',
+          confirmButton: 'confirm-swal-button',
+        }
+      });
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "reserva"), {
+        nome: nome,
+        matricula: matricula,
+        turma: turma,
+        data: data,
+        horaInicio: horaInicio,
+        horaFim: horaFim,
+        quantidade: notebooksSelecionados.length, // Usa o número de notebooks selecionados
+        notebooksSelecionados: notebooksSelecionados, // Adiciona os notebooks selecionados
+        criadoEm: new Date().toISOString()
+      });
+
+      Swal.fire({
+        title: "Reserva realizada com sucesso!",
+        icon: "success",
+        customClass: {
+          popup: "custom-swal-container",  // Define tamanho do container
+          title: "custom-swal-title",      // Estiliza o título
+          htmlContainer: "custom-swal-text", // Estiliza o texto
+          icon: 'icon-swal',
+          confirmButton: 'confirm-swal-button',
+        }
+      });
+      // Limpar apenas os campos de entrada
+      turmaInput.value = "";
+      dataInput.value = "";
+      document.getElementById("horario").value = "";
+      quantidadeInput.textContent = "";
+      document.querySelectorAll('input[name="notebook"]:checked').forEach(input => input.checked = false);
+    } catch (error) {
+      console.error("Erro ao salvar reserva: ", error);
+      statusMsg.textContent = "Erro ao salvar!";
+      statusMsg.style.color = "red";
+    }
   });
 
-  // Obtém o elemento onde a data será exibida
-  const dataElemento = document.querySelector("#maindireita p");
+  // Carregar notebooks e dados do usuário ao iniciar
+  carregarNote();
+  loadUserData();
+});
 
-  // Cria uma nova instância de Date para obter a data e hora atuais
-  const dataAtual = new Date();
-
-  // Formata a data e hora no formato desejado (ex: 28/01/2025 14:30)
-  const dataFormatada = dataAtual.toLocaleString("pt-BR", {
-    year: 'numeric',
-    month: 'long', // Mês completo (ex: janeiro)
-    day: 'numeric',
-  });
-
-  // Adiciona a data formatada ao parágrafo
-  dataElemento.innerHTML = `Notebooks Disponíveis dia ${dataFormatada} .`;
+// Exibir data atual na interface
+const dataElemento = document.querySelector("#maindireita p");
+const dataAtual = new Date();
+const dataFormatada = dataAtual.toLocaleString("pt-BR", {
+  year: 'numeric',
+  month: 'long', // Mês completo (ex: janeiro)
+  day: 'numeric',
+});
+dataElemento.innerHTML = `Notebooks Disponíveis dia ${dataFormatada}.`;

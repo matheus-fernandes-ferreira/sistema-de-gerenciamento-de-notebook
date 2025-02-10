@@ -117,7 +117,7 @@
       <div class="bottom-section2">
         <div class="formInputHome1">
           <label for="">Data:</label>
-          <input type="date" id="data">
+          <input type="date" id="data" min="2025-01-01">
         </div>
         <div class="formInputHome1">
           <label for="">Turma:</label>
@@ -126,14 +126,24 @@
       </div>
       <div class="bottom-section1">
         <div class="formInputHome1">
-          <label for="">Horario de início:</label>
-          <input type="time" id="horaInicio">
+          <label for="">Horario de término:</label>
+          <Select id="horario">
+            <option value="" disabled selected hidden>Escolha o Horario</option>
+            <optgroup label="Manhã"></optgroup>
+            <option value="07:30-09:30">07:30 ás 09:30</option>
+            <option value="09:30-11:30">09:30 ás 11:30</option>
+            <optgroup label="Tarde"></optgroup>
+            <option value="13:30-15:30">13:30 ás 15:30</option>
+            <option value="15:30-17:30">15:30 ás 17:30</option>
+            <optgroup label="Noite"></optgroup>
+            <option value="18:30-20:00">18:30 ás 20:00</option>
+            <option value="20:00-21:30">20:00 ás 21:30</option>
+          </Select>
 
 
         </div>
         <div class="formInputHome1">
-          <label for="">Horario de término:</label>
-          <input type="time" id="horaFim">
+          
         </div>
       </div>
 

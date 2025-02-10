@@ -88,10 +88,12 @@ async function carregarReservas() {
                     </div>
                     <p class="textreserva" id="notereserv">
                         ${data.notebooksSelecionados ? data.notebooksSelecionados.length + " Notebook(s) reservado(s)" : "Notebook reservado"}
+                        <p class="textreserva">Turma: ${data.turma}</p>
                     </p>
                 </div>
                 <div id="scrollreservas">
                     ${data.notebooksSelecionados ? data.notebooksSelecionados.map(notebook => `<p class='notebookItem'>${notebook}</p>`).join('') : ''}
+                 
                 </div>
                 <div class="buttons">
                     ${isOwner || isCoordinator ? `
@@ -204,35 +206,57 @@ async function cancelarReserva(reservaId) {
 // Função para finalizar uma reserva
 function finalizarReserva(reservaId) {
   Swal.fire({
-    title: "Check in",
+    title: "Finalizar Reserva",
     html: `
-      <p class="swal-check">Confirme se todos os notebooks foram entregues.
-      <input type="checkbox">
-      </p>
-      <span  class="swal-text">
-        Atenção! Se algum notebook estiver com algum problema que implique seu uso, comunique ao suporte  
+      <p class="swal-check">Confirme se todos os notebooks foram entregues.</p>
+      <div class="swal-radio-group">
+        <label>
+          <input type="radio" name="confirmacao" value="sim" checked> Sim
+        </label>
+        <label>
+          <input type="radio" name="confirmacao" value="nao"> Não
+        </label>
+      </div>
+      <div id="swal-textarea-container" style="display: none;">
+        <textarea id="swal-textarea" placeholder="Descreva o problema..."></textarea>
+      </div>
+      <span class="swal-text">
+        Atenção! Se algum notebook estiver com algum problema que implique seu uso, comunique ao suporte
         <a href="#" class="swal-link">clicando aqui</a>.
-      </span >
+      </span>
       <p class="swal-aviso">Após o uso dos notebooks, coloque-os no local apropriado para carregamento e no carrinho.</p>
     `,
     showCloseButton: true,
     showCancelButton: true,
     focusConfirm: false,
-    confirmButtonText: `
-      <i class="fa fa-thumbs-up"></i> Confirmar
-    `,
-    cancelButtonText: `
-      <i class="fa fa-thumbs-down"></i> Cancelar
-    `,
+    confirmButtonText: 
+      `<i class="fa fa-thumbs-up"></i> Confirmar`,
+    cancelButtonText: 
+      `<i class="fa fa-thumbs-down"></i> Cancelar`,
     customClass: {
       title: "swal-title",
       popup: "swal-popup",
       confirmButton: "swal-confirm",
       cancelButton: "swal-cancel",
       closeButton: "swal-close"
+    },
+    didOpen: () => {
+      // Adiciona eventos para mostrar/ocultar a caixa de texto
+      const radioSim = Swal.getPopup().querySelector('input[value="sim"]');
+      const radioNao = Swal.getPopup().querySelector('input[value="nao"]');
+      const textareaContainer = Swal.getPopup().querySelector('#swal-textarea-container');
+
+      function toggleTextarea() {
+        textareaContainer.style.display = radioNao.checked ? 'block' : 'none';
+      }
+
+      radioSim.addEventListener('change', toggleTextarea);
+      radioNao.addEventListener('change', toggleTextarea);
     }
   });
 }
 
 // Chama a função após o carregamento do DOM
 window.addEventListener("DOMContentLoaded", carregarReservas);
+
+
