@@ -107,7 +107,7 @@ body {
 }
 
 
-@media screen and (max-width: 360px) {
+/* @media screen and (max-width: 360px) {
     .conteudo-principal {
         display: flex;
         flex-direction: column;
@@ -160,65 +160,79 @@ body {
     body {
         background: url("./img/background-mobile.jpg") no-repeat center center;
         background-size: cover;
-        /* Faz com que a imagem ocupe toda a largura */
 
+    }
+} */
+
+@media screen and (max-width: 414px) {
+    .conteudo{
+        width: 300px;
+    }
+    .logo-do-senac {
+        width: 170px;
+        height: 100px;
+        margin-bottom: 30px;
+    }
+    .boasVindas{
+        font-size: 30px;
+    }
+    .matricula{
+        width: 200px;
+    }
+    .senha{
+        width: 200px;
+    }
+   
+}
+
+
+@media screen and (max-width: 768px) {
+    .conteudo{
+        width: 400px;
+    }
+    .logo-do-senac {
+        width: 180px;
+        height: 110px;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    .logo-do-senac {
+        width: 270px;
+        height: 152px;
+        margin-bottom: 30px;
+    }
+    .matricula{
+        font-size: 17px;
+    }
+    .senha{
+        font-size: 17px;
+    }
+    .subtitulo{
+        font-size: 20px;
+    }
+    .botao-acessar {
+        width: 180px;
+        height: 45px;
+        font-size: 20px;
+    }
+    .card {
+        width: 30px;
+        height: 30px;
     }
 }
 
-@media screen and (max-width: 600px) {
-    .conteudo-principal {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+@media screen and (max-width: 1280px) {
+    .logo-do-senac {
+        width: 200px;
+        height: 130px;
     }
-
-    .conteudo {
-        width: 250px;
-    }
-
-    .titulo {
-        font-weight: 550;
-        font-family: "Poppins", serif;
-        font-weight: 600;
-        font-style: normal;
-        margin-top: 0;
+    .boasVindas {
         font-size: 30px;
         letter-spacing: 0ex;
     }
-
-    body {
-        background: url("./img/background-mobile.jpg") no-repeat center center;
-        background-size: cover;
-        /* Faz com que a imagem ocupe toda a largura */
-
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .conteudo-principal {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .conteudo {
-        width: 250px;
-    }
-
-    .titulo {
-        font-weight: 550;
-        font-family: "Poppins", serif;
-        font-weight: 600;
-        font-style: normal;
-        margin-top: 0;
-        font-size: 30px;
-        letter-spacing: 0ex;
-    }
-
-    body {
-        background: url("./img/background-mobile.jpg") no-repeat center center;
-        background-size: cover;
-        /* Faz com que a imagem ocupe toda a largura */
-
+    .senha{
+        font-size: 16px;
     }
 }
