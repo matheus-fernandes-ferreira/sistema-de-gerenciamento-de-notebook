@@ -106,133 +106,113 @@ body {
     margin-bottom: 30px;
 }
 
-
-/* @media screen and (max-width: 360px) {
-    .conteudo-principal {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+@media (max-width: 320px) {
+    body {
+        background-size: auto;
     }
-    .matricula {
-        background-color: #D5D5D5;
-        border: none;
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        width: 220px;
+    .conteudo {
+        width: 80vw;
+        height: 60vh;
     }
-    .senha {
-        background-color: #D5D5D5;
-        border: none;
-        padding: 15px;
-        border-radius: 10px;
-        width: 220px;
+    .logo-do-senac {
+        width: 45vw;
+        height: auto;
+        margin-bottom: 5vh;
+        margin-top: 5vh;
+    }
+    .boasVindas {
+        font-size: 1.5em;
     }
     .bloco-login {
         display: flex;
-        margin-bottom: 15px;
-        margin-left: 0;
+        margin-bottom: 5%;
+        margin-left: 5%;
     }
-    .logo-do-senac{
-        width: 40%;
-        height: 10%;
-        margin-bottom: 30px;
+    .matricula,
+    .senha {
+        width: 60vw;
+        margin-bottom: 10%;
+        padding: 4%;
     }
-    .boasVindas {
-        font-family: "Poppins", serif;
-        font-size: 25px;
-        font-weight: 600;
-    }
-    .conteudo {
-        width: 250px;
-        height: auto;
-    }
-    .titulo {
-        font-weight: 550;
-        font-family: "Poppins", serif;
-        font-weight: 600;
-        font-style: normal;
+    .card-botao {
         margin-top: 0;
-        font-size: 30px;
-        letter-spacing: 0ex;
-    }
-
-    body {
-        background: url("./img/background-mobile.jpg") no-repeat center center;
-        background-size: cover;
-
-    }
-} */
-
-@media screen and (max-width: 414px) {
-    .conteudo{
-        width: 300px;
-    }
-    .logo-do-senac {
-        width: 170px;
-        height: 100px;
-        margin-bottom: 30px;
-    }
-    .boasVindas{
-        font-size: 30px;
-    }
-    .matricula{
-        width: 200px;
-    }
-    .senha{
-        width: 200px;
-    }
-   
-}
-
-
-@media screen and (max-width: 768px) {
-    .conteudo{
-        width: 400px;
-    }
-    .logo-do-senac {
-        width: 180px;
-        height: 110px;
-    }
-
-}
-
-@media screen and (max-width: 1024px) {
-    .logo-do-senac {
-        width: 270px;
-        height: 152px;
-        margin-bottom: 30px;
-    }
-    .matricula{
-        font-size: 17px;
-    }
-    .senha{
-        font-size: 17px;
-    }
-    .subtitulo{
-        font-size: 20px;
     }
     .botao-acessar {
-        width: 180px;
-        height: 45px;
-        font-size: 20px;
-    }
-    .card {
-        width: 30px;
-        height: 30px;
+        margin-top: 0;
     }
 }
 
-@media screen and (max-width: 1280px) {
+@media (min-width: 360px) and (max-width: 428px) {
+    .conteudo {
+        width: 75vw;
+        height: 50vh;
+    }
     .logo-do-senac {
-        width: 200px;
-        height: 130px;
+        width: 45vw;
+        height: auto;
+        margin-bottom: 5vh;
+        margin-top: 5vh;
     }
     .boasVindas {
-        font-size: 30px;
-        letter-spacing: 0ex;
+        font-size: 1.6em;
     }
-    .senha{
-        font-size: 16px;
+    .bloco-login {
+        display: flex;
+        margin-bottom: 5%;
+        margin-left: 5%;
+    }
+    .matricula,
+    .senha {
+        width: 60vw;
+        margin-bottom: 10%;
+        padding: 4%;
+    }
+    .card-botao {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 890px) {
+    .conteudo {
+        width: 65vw;
+        height: 50vh;
+    }
+    .logo-do-senac {
+        width: 35vw;
+        height: auto;
+        margin-bottom: 5vh;
+        margin-top: 5vh;
+    }
+    .boasVindas {
+        font-size: 2.0em;
+    }
+    .bloco-login {
+        display: flex;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+    .card{
+        width: 4vw;
+        height: auto;
+        padding-right: 2vw;
+    }
+    .subtitulo{
+        font-size: 1.5em;
+    }
+    .matricula,
+    .senha {
+        width: 50vw;
+        margin-bottom: 8%;
+        padding: 4%;
+        font-size: 1.4em;
+    }
+    .card-botao {
+        margin-top: 0;
+    }
+    .botao-acessar {
+        font-size: 1.5em;
+        width: 30vw;
+        height: 6vh;
+        border-radius: 8px;
     }
 }
