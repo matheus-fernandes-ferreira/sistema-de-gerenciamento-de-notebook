@@ -46,9 +46,9 @@ async function fetchReservas() {
     row.innerHTML = `
       <td>${reserva.nome}</td>
       <td>${dataFinal}</td>
-      <td>${reserva.horaInicio}</td>
+      <td>${reserva.horaInicio}-${reserva.horaFim}</td>
       <td>${reserva.quantidade}</td>
-      <td><button class="btn-details"><img src="" alt="icone"></button></td>
+      <td><button class="btn-details"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="20" fill="white"><path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 224 32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 512c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-192-32 0c-17.7 0-32-14.3-32-32z"/></svg></button></td>
     `;
     tableBody.appendChild(row);
   });

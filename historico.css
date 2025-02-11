@@ -55,11 +55,14 @@ td {
 }
 
 .btn-details {
-    width: 100px;
+    width: 80px;
     height: 40px;
     border-radius: 8px;
     background-color: #004A8D;
     border: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 #h2header {
@@ -230,6 +233,53 @@ figure {
     width: 200px;
     height: 100px;
 }
+
+
+table { 
+    width: 100%;
+    border-collapse: collapse;
+    
+  }
+  
+  /* Estilizando o cabeçalho */
+  thead .header {
+    color: black;
+    border-bottom: 3px solid #004A8D; /* Linha azul separando o cabeçalho */
+  }
+  
+  th{
+    padding: 10px;
+    text-align: left;
+    
+
+
+  } 
+
+
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #7c7d7e; /* Linha azul separando o cabeçalho */
+}
+
+  
+  /* Centralizar a coluna "Detalhes" */
+  th:nth-child(5) td:nth-child(5) {
+    text-align: right;
+  }
+  
+ 
+  
+  /* Linhas alternadas */
+  tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Branco */
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e4e4e4; /* Cinza mais claro */
+  }
+  
+  
 
 #Footerhistory {
     width: 100%;
