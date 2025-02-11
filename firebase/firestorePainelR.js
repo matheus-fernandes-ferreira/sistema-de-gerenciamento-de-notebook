@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where ,updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where ,updateDoc, serverTimestamp, setDoc, getDoc  } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -159,9 +159,9 @@ async function cancelarReserva(reservaId) {
       confirmButtonText: "Sim, cancelar!",
       cancelButtonText: "Não, voltar!",
       customClass: {
-        popup: "custom-swal-container",  // Define tamanho do container
-        title: "custom-swal-title",      // Estiliza o título
-        htmlContainer: "custom-swal-text", // Estiliza o texto
+        popup: "custom-swal-container",
+        title: "custom-swal-title",
+        htmlContainer: "custom-swal-text",
         icon: 'icon-swal',
         confirmButton: 'confirm-swal-button',
         cancelButton: 'cancel-swal-button'
@@ -170,27 +170,43 @@ async function cancelarReserva(reservaId) {
 
     // Se o usuário confirmar o cancelamento
     if (result.isConfirmed) {
-      // Deleta a reserva do Firestore
-      await deleteDoc(doc(db, "reserva", reservaId));
+      const reservaRef = doc(db, "reserva", reservaId);
+      const reservaSnapshot = await getDoc(reservaRef); // Usando getDoc para buscar o documento
 
-      // Exibe a confirmação do sucesso no cancelamento
-      Swal.fire({
-        title: "Reserva cancelada!",
-        confirmButtonColor: "#F7941D",
-        text: "Sua reserva foi cancelada com sucesso.",
-        icon: "success",
-        customClass: {
-          popup: "custom-swal-container",
-          title: "custom-swal-title",
-          htmlContainer: "custom-swal-text",
-          icon: 'icon-swal',
-          confirmButton: 'confirm-swal-button',
-          cancelButton: 'cancel-swal-button'
-        }
-      });
+      if (reservaSnapshot.exists()) {
+        const dadosReserva = reservaSnapshot.data();
 
-      // Recarrega as reservas após o cancelamento
-      carregarReservas();
+        // Adiciona a reserva à coleção 'historico' com o status "cancelado"
+        await setDoc(doc(db, "historico", reservaId), {
+          ...dadosReserva, // Copia todos os dados da reserva
+          status: "cancelado", // Adiciona o status de cancelamento
+          dataFinalizacao: serverTimestamp(), // Adiciona a data/hora do cancelamento
+        });
+
+        // Deleta a reserva da coleção original
+        await deleteDoc(reservaRef);
+
+        // Exibe a confirmação do sucesso no cancelamento
+        Swal.fire({
+          title: "Reserva cancelada!",
+          text: "Sua reserva foi cancelada com sucesso.",
+          icon: "success",
+          confirmButtonColor: "#F7941D",
+          customClass: {
+            popup: "custom-swal-container",
+            title: "custom-swal-title",
+            htmlContainer: "custom-swal-text",
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+            cancelButton: 'cancel-swal-button'
+          }
+        });
+
+        // Recarrega as reservas após o cancelamento
+        carregarReservas();
+      } else {
+        console.error("Reserva não encontrada.");
+      }
     }
   } catch (error) {
     console.error("Erro ao cancelar reserva:", error);
@@ -199,12 +215,20 @@ async function cancelarReserva(reservaId) {
       text: "Ocorreu um erro ao cancelar a reserva.",
       icon: "error",
       confirmButtonColor: "#F7941D",
+      customClass: {
+        popup: "custom-swal-container",
+        title: "custom-swal-title",
+        htmlContainer: "custom-swal-text",
+        icon: 'icon-swal',
+        confirmButton: 'confirm-swal-button',
+        cancelButton: 'cancel-swal-button'
+      }
     });
   }
 }
 
 // Função para finalizar uma reserva
-// Função para finalizar uma reserva
+
 async function finalizarReserva(reservaId) {
   const { value: formValues } = await Swal.fire({
     title: "Finalizar Reserva",
@@ -264,25 +288,48 @@ async function finalizarReserva(reservaId) {
     const { confirmacao, descricaoProblema } = formValues;
 
     try {
-      // Atualiza o documento da reserva no Firestore
+      // Referência ao documento da reserva
       const reservaRef = doc(db, "reserva", reservaId);
-      await updateDoc(reservaRef, {
-        entregue: confirmacao === "sim" ? "Todos os Notebooks Foram Entregues" : descricaoProblema
-      });
+      const reservaSnapshot = await getDoc(reservaRef); // Usando getDoc em vez de getDocs
 
-      // Remove o card do HTML
-      const card = document.querySelector(`.finish[data-id="${reservaId}"]`).closest('.cardSeparator');
-      if (card) {
-        card.remove();
+      if (reservaSnapshot.exists()) {
+        const dadosReserva = reservaSnapshot.data();
+
+        // Adiciona à coleção 'historico' antes de deletar
+        await setDoc(doc(db, "historico", reservaId), {
+          ...dadosReserva,
+          status: "finalizado",
+          entregue: confirmacao === "sim" ? "Todos os Notebooks Foram Entregues" : descricaoProblema,
+          dataFinalizacao: serverTimestamp(),
+        });
+
+        // Remove a reserva da coleção original
+        await deleteDoc(reservaRef);
+
+        // Remove o card do HTML
+        const card = document.querySelector(`.finish[data-id="${reservaId}"]`).closest('.cardSeparator');
+        if (card) {
+          card.remove();
+        }
+
+        // Exibe a confirmação de sucesso
+        Swal.fire({
+          title: "Reserva Finalizada!",
+          text: "A reserva foi finalizada com sucesso.",
+          icon: "success",
+          confirmButtonColor: "#F7941D",
+          customClass: {
+            popup: "custom-swal-container",
+            title: "custom-swal-title",
+            htmlContainer: "custom-swal-text",
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+            cancelButton: 'cancel-swal-button'
+          }
+        });
+      } else {
+        console.error("Reserva não encontrada.");
       }
-
-      // Exibe a confirmação de sucesso
-      Swal.fire({
-        title: "Reserva Finalizada!",
-        text: "A reserva foi finalizada com sucesso.",
-        icon: "success",
-        confirmButtonColor: "#F7941D",
-      });
     } catch (error) {
       console.error("Erro ao finalizar reserva:", error);
       Swal.fire({
@@ -290,6 +337,14 @@ async function finalizarReserva(reservaId) {
         text: "Ocorreu um erro ao finalizar a reserva.",
         icon: "error",
         confirmButtonColor: "#F7941D",
+        customClass: {
+          popup: "custom-swal-container",
+          title: "custom-swal-title",
+          htmlContainer: "custom-swal-text",
+          icon: 'icon-swal',
+          confirmButton: 'confirm-swal-button',
+          cancelButton: 'cancel-swal-button'
+        }
       });
     }
   }
