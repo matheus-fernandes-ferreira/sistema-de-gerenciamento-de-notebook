@@ -18,7 +18,11 @@ const db = getFirestore(app);
 async function fetchReservas() {
   const reservasCollection = collection(db, "reserva");
   const reservasSnapshot = await getDocs(reservasCollection);
-  const reservasList = reservasSnapshot.docs.map(doc => doc.data());
+
+  // Filtra as reservas que possuem a coluna "entregue"
+  const reservasList = reservasSnapshot.docs
+    .map(doc => doc.data())
+    .filter(reserva => reserva.entregue); // Filtra apenas as reservas com a coluna "entregue"
 
   const tableBody = document.getElementById('reservas-body');
   tableBody.innerHTML = ''; // Limpa o conteúdo atual

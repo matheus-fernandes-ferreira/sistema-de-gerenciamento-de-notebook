@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where ,updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -204,8 +204,9 @@ async function cancelarReserva(reservaId) {
 }
 
 // Função para finalizar uma reserva
-function finalizarReserva(reservaId) {
-  Swal.fire({
+// Função para finalizar uma reserva
+async function finalizarReserva(reservaId) {
+  const { value: formValues } = await Swal.fire({
     title: "Finalizar Reserva",
     html: `
       <p class="swal-check">Confirme se todos os notebooks foram entregues.</p>
@@ -229,10 +230,8 @@ function finalizarReserva(reservaId) {
     showCloseButton: true,
     showCancelButton: true,
     focusConfirm: false,
-    confirmButtonText: 
-      `<i class="fa fa-thumbs-up"></i> Confirmar`,
-    cancelButtonText: 
-      `<i class="fa fa-thumbs-down"></i> Cancelar`,
+    confirmButtonText: `<i class="fa fa-thumbs-up"></i> Confirmar`,
+    cancelButtonText: `<i class="fa fa-thumbs-down"></i> Cancelar`,
     customClass: {
       title: "swal-title",
       popup: "swal-popup",
@@ -252,8 +251,48 @@ function finalizarReserva(reservaId) {
 
       radioSim.addEventListener('change', toggleTextarea);
       radioNao.addEventListener('change', toggleTextarea);
+    },
+    preConfirm: () => {
+      const confirmacao = Swal.getPopup().querySelector('input[name="confirmacao"]:checked').value;
+      const descricaoProblema = Swal.getPopup().querySelector('#swal-textarea')?.value;
+
+      return { confirmacao, descricaoProblema };
     }
   });
+
+  if (formValues) {
+    const { confirmacao, descricaoProblema } = formValues;
+
+    try {
+      // Atualiza o documento da reserva no Firestore
+      const reservaRef = doc(db, "reserva", reservaId);
+      await updateDoc(reservaRef, {
+        entregue: confirmacao === "sim" ? "Todos os Notebooks Foram Entregues" : descricaoProblema
+      });
+
+      // Remove o card do HTML
+      const card = document.querySelector(`.finish[data-id="${reservaId}"]`).closest('.cardSeparator');
+      if (card) {
+        card.remove();
+      }
+
+      // Exibe a confirmação de sucesso
+      Swal.fire({
+        title: "Reserva Finalizada!",
+        text: "A reserva foi finalizada com sucesso.",
+        icon: "success",
+        confirmButtonColor: "#F7941D",
+      });
+    } catch (error) {
+      console.error("Erro ao finalizar reserva:", error);
+      Swal.fire({
+        title: "Erro!",
+        text: "Ocorreu um erro ao finalizar a reserva.",
+        icon: "error",
+        confirmButtonColor: "#F7941D",
+      });
+    }
+  }
 }
 
 // Chama a função após o carregamento do DOM
