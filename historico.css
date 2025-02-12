@@ -60,9 +60,11 @@ td {
 }
 
 
-#btn-details {
+.btn-details {
     width: 80px;
-    height: 28px;
+    height: 30px;
+
+
     border-radius: 8px;
     background-color: #004A8D;
     border: none;
@@ -71,8 +73,24 @@ td {
     justify-content: center;
     cursor: pointer;
 }
-#btn-details:hover {
+.btn-details:hover {
     background-color: #188fff;
+    transition: 0.5s;
+}
+.btn-delete {
+    height: 30px;
+    width: 80px;
+
+    border-radius: 8px;
+    background-color: #F7941D;
+    border: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.btn-delete:hover {
+    background-color: #f76d1d;
     transition: 0.5s;
 }
 
@@ -243,6 +261,34 @@ figure {
     width: 200px;
     height: 100px;
 }
+
+.carrossel-meses {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+  }
+
+  .carrossel-meses button {
+    background-color: #3085d6;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .carrossel-meses button:hover {
+    background-color: #1c6aa8;
+  }
+
+  #mes-atual {
+    font-weight: bold;
+    margin: 0 20px;
+  }
 
 
 

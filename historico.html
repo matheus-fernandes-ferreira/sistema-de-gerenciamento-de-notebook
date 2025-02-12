@@ -64,7 +64,13 @@
 
     <div class="line"></div>
 
-    <table>
+    <div class="carrossel-meses">
+      <button id="btn-anterior">&lt;</button>
+      <span id="mes-atual">Janeiro</span>
+      <button id="btn-proximo">&gt;</button>
+    </div>
+
+    <table id="reservas-table">
       <thead>
         <tr class="header">
           <th>Nome colaborador</th>
@@ -72,6 +78,7 @@
           <th>Horário</th>
           <th>Qt.</th>
           <th>Detalhes</th>
+          <th>Excluir</th>
         </tr>
       </thead>
       <tbody id="reservas-body">
