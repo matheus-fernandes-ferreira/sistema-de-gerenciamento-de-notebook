@@ -51,11 +51,34 @@ async function fetchReservas() {
       <td>${dataFinal}</td>
       <td>${reserva.horaInicio} - ${reserva.horaFim}</td>
       <td>${reserva.quantidade}</td>
-      <td><button class="btn-details">
+      <td><button id="btn-details">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="35" height="20" ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#c9c9c9" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
       </button></td>
     `;
     tableBody.appendChild(row);
+
+    // Adiciona o event listener ao botão
+    const btnDetails = row.querySelector('#btn-details');
+    btnDetails.addEventListener('click', () => {
+      Swal.fire({
+        title: `Detalhes da Reserva`,
+        html: `
+          <p><strong>Nome:</strong> ${reserva.nome}</p>
+          <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
+          <p><strong>Turma:</strong> ${reserva.turma}</p>
+          <p><strong>Data:</strong> ${dataFinal}</p>
+          <p><strong>Horário:</strong> ${reserva.horaInicio} - ${reserva.horaFim}</p>
+          <p><strong>Quantidade:</strong> ${reserva.quantidade}</p>
+          <p><strong>Status:</strong> ${reserva.status}</p>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Fechar',
+        confirmButtonColor: '#3085d6',
+        customClass: {
+          popup: 'custom-swal-popup', // Classe personalizada para o popup
+        },
+      });
+    });
   });
 }
 
