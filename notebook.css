@@ -1,0 +1,316 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root {
+    font-size: 62.5%;
+    /* Tamanho base para fonte */
+}
+
+body {
+    width: 100%;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 390px;
+}
+
+/* =========== HEADER =========== */
+header {
+    width: 100%;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 390px;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.container-menu {
+    flex: 1;
+    display: flex;
+    width: 100%;
+}
+
+.menu ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #F8F8F8;
+    gap: 5px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    transition: 300ms;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    gap: 5px;
+    padding-left: 5px;
+    justify-content: center;
+}
+
+.menu a:hover {
+    color: #F7941D;
+    background-color: #012342;
+}
+
+.menu a:hover svg {
+    fill: #F7941D;
+}
+
+li {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+}
+
+#divgradientHome {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(#005185, #ffffff);
+}
+
+
+
+.container-titulo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.container-icone {
+    display: flex;
+    flex-direction: row;
+    width: 120px;
+    height: 110px;
+    padding-right: 17px;
+}
+
+
+.titulo {
+    font-size: 6.6rem;
+    color: #454545;
+}
+
+.container-paragrafo {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    color: #454545;
+    padding-bottom: 20px;
+    font-size: 1.8rem;
+    line-height: 20px;
+}
+
+
+
+.container-main {
+    width: 1000px;
+    border: solid red 1px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Impede que o conteúdo ultrapasse o container */
+  }
+  
+  .main-header {
+    width: 100%;
+    height: 10%;
+    border: solid red 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .main-header h2 {
+    font-size: 2.8rem;
+    color: #454545;
+    font-weight: bold;
+  }
+  
+  .main-header button {
+    padding: 5px;
+    background-color: #F7941D;
+    gap: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 2.0rem;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    border-style: none;
+    cursor: pointer;
+  }
+  
+  .main-header button:hover {
+    background-color: #fdae4d;
+    transition: 300ms;
+  }
+  
+  /* Container da tabela com barra de rolagem */
+  .table-container {
+    width: 100%;
+    height: 900px; /* Define um tamanho fixo */
+    max-height: 60vh; /* Não deixa crescer muito */
+    overflow-y: auto; /* Ativa a rolagem quando necessário */
+    border: solid 1px #ddd;
+}
+
+
+
+.table-container::-webkit-scrollbar {
+    width: 3px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #C9C9C9;
+    border-radius: 1px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #004A8D;
+    border-radius: 1px;
+}
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    
+   
+  
+  }
+  
+  thead .header {
+    color: black;
+    border-bottom: 3px solid #004A8D;
+    font-size: 1.6rem;
+    z-index: 10;
+}
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+   
+   
+  }
+
+  .btn-details {
+    width: 80px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #004A8D;
+    border: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+
+  
+ 
+  
+  /* Define o tamanho das colunas */
+  th:nth-child(1), td:nth-child(1) { /* Coluna "Inventário" */
+    width: 20%;
+  }
+  
+  th:nth-child(2), td:nth-child(2) { /* Coluna "Status" */
+    width: 60%;
+    text-align: center;
+  }
+  
+
+  th:nth-child(3), td:nth-child(3) {
+    width: 20%;
+    
+}
+
+
+td:nth-child(3) {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Espaço entre os botões */
+   
+    
+}
+  
+  
+  
+  td {
+    color: #333;
+    font-size: 1.6rem;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* Branco */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e4e4e4;
+    /* Cinza mais claro */
+}
+
+#rodape {
+  width: 100%;
+  background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+  height: 120px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#rodape h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  padding-right: 50px;
+}
+
+footer .logo {
+  width: 200px;
+}
+
+#checkbox {
+  display: none;
+}
