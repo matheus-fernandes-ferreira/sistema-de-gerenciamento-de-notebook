@@ -20,7 +20,7 @@ const db = getFirestore(app);
 // Lista de meses
 const meses = [
   "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  "Julio", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
 // Índice do mês atual
@@ -107,6 +107,7 @@ async function fetchReservas() {
           <p><strong>Horário:</strong> ${reserva.horaInicio} - ${reserva.horaFim}</p>
           <p><strong>Quantidade:</strong> ${reserva.quantidade}</p>
           <p><strong>Status:</strong> ${reserva.status}</p>
+          <p><strong>Entrega:</strong> ${reserva.entregue}</p>
         `,
         icon: 'info',
         confirmButtonText: 'Fechar',
@@ -145,6 +146,47 @@ async function fetchReservas() {
   });
 }
 
+// Função para deletar todas as reservas do mês atual
+async function deletarReservasDoMes() {
+  const historicoCollection = collection(db, "historico");
+  const historicoSnapshot = await getDocs(historicoCollection);
+
+  // Filtra as reservas que possuem a coluna "entregue" OU o status "cancelado"
+  const reservasList = historicoSnapshot.docs
+    .map(doc => ({ id: doc.id, ...doc.data() })) // Inclui o ID do documento
+    .filter(reserva => reserva.entregue || reserva.status === "cancelado"); // Inclui reservas canceladas
+
+  // Filtra as reservas pelo mês selecionado
+  const reservasFiltradas = filtrarReservasPorMes(reservasList, mesAtualIndex);
+
+  // Confirmação antes de deletar
+  Swal.fire({
+    title: 'Tem certeza?',
+    text: `Você está prestes a deletar todas as reservas de ${meses[mesAtualIndex]}.`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, deletar!',
+    cancelButtonText: 'Cancelar',
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        // Deleta cada reserva do mês
+        for (const reserva of reservasFiltradas) {
+          await deleteDoc(doc(db, "historico", reserva.id));
+        }
+        Swal.fire('Deletado!', `Todas as reservas de ${meses[mesAtualIndex]} foram deletadas.`, 'success');
+        // Recarrega as reservas após a exclusão
+        fetchReservas();
+      } catch (error) {
+        Swal.fire('Erro!', 'Não foi possível deletar as reservas.', 'error');
+        console.error("Erro ao deletar reservas: ", error);
+      }
+    }
+  });
+}
+
 // Event listeners para os botões de navegação do carrossel
 document.getElementById('btn-anterior').addEventListener('click', () => {
   mesAtualIndex = (mesAtualIndex - 1 + 12) % 12; // Volta para o mês anterior
@@ -155,6 +197,9 @@ document.getElementById('btn-proximo').addEventListener('click', () => {
   mesAtualIndex = (mesAtualIndex + 1) % 12; // Avança para o próximo mês
   atualizarMesCarrossel();
 });
+
+// Adiciona o event listener ao botão "Deletar Histórico Mensal"
+document.querySelector('.DivButton .buttonInferior:first-child').addEventListener('click', deletarReservasDoMes);
 
 // Inicializa o carrossel e carrega as reservas
 atualizarMesCarrossel();

@@ -324,6 +324,42 @@ tbody tr:nth-child(even) {
     /* Cinza mais claro */
 }
 
+.DivButton {
+
+   width: 100%;
+    margin-top: 40px; /* Dá um espaço entre a tabela e os botões */
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    
+
+}
+
+.buttonInferior{
+ padding: 15px;
+ border-radius: 10px;
+ border: none;
+ background-color: #004A8D;
+color: #ffffff;
+font-weight: bold;
+transition: 300ms;
+cursor: pointer;
+
+}
+
+.buttonInferior:hover {
+    background-color: #1d72c2;
+    transition: 300ms;
+}
+
+.buttonInferior:active {
+    transform: scale(0.95);
+    background-color: #012342;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 
 
 #Footerhistory {
