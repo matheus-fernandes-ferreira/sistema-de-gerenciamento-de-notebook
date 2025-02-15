@@ -314,3 +314,48 @@ footer .logo {
 #checkbox {
   display: none;
 }
+
+/* swal custom */
+
+.custom-swal-container {
+  width: 450px;
+  height: 280px;
+  border: 5px solid #004A8D;
+}
+
+.custom-swal-title {
+  font-size: 22px !important;
+  padding: 0;
+  /* Aumenta o tamanho do título */
+  color: #454545 !important;
+  /* Cor do título */
+}
+
+.custom-swal-text {
+  font-size: 14px !important;
+  padding: 0;
+}
+
+.icon-swal {
+  font-size: 13px !important;
+  color: #E37C02 !important;
+  border-color: #E37C02 !important;
+
+}
+
+.confirm-swal-button {
+  font-size: 15px !important;
+  width: 120px;
+  background-color: #E37C02 !important;
+
+
+}
+.cancel-swal-button {
+  font-size: 15px !important;
+  width: 100px;
+  background-color: #004A8D !important;
+
+}
+
+
+

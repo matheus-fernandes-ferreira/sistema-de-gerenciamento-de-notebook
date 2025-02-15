@@ -45,6 +45,13 @@ document.getElementById('btn-adicionar').addEventListener('click', () => {
     title: 'Adicionar Notebook',
     html: `<input type="number" id="inventario" class="swal2-input" placeholder="Número de Inventário">`,
     focusConfirm: false,
+    customClass: {
+      popup: "custom-swal-container",  // Define tamanho do container
+      title: "custom-swal-title",      // Estiliza o título
+      htmlContainer: "custom-swal-text", // Estiliza o texto
+      icon: 'icon-swal',
+      confirmButton: 'confirm-swal-button',
+    },
     preConfirm: () => {
       const inventario = Swal.getPopup().querySelector('#inventario').value;
       if (!inventario) {
@@ -110,7 +117,15 @@ async function loadNotebooks() {
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Sim, excluir!',
-          cancelButtonText: 'Cancelar'
+          cancelButtonText: 'Cancelar',
+          customClass: {
+            popup: "custom-swal-container",  // Define tamanho do container
+            title: "custom-swal-title",      // Estiliza o título
+            htmlContainer: "custom-swal-text", // Estiliza o texto
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+            cancelButton: 'cancel-swal-button',
+          }
         }).then(async (result) => {
           if (result.isConfirmed) {
             try {
@@ -141,6 +156,13 @@ async function loadNotebooks() {
             <label for="indisponivel">Indisponível</label>
           `,
           focusConfirm: false,
+          customClass: {
+            popup: "custom-swal-container",  // Define tamanho do container
+            title: "custom-swal-title",      // Estiliza o título
+            htmlContainer: "custom-swal-text", // Estiliza o texto
+            icon: 'icon-swal',
+            confirmButton: 'confirm-swal-button',
+          },
           preConfirm: () => {
             const status = Swal.getPopup().querySelector('#indisponivel').checked ? false : true;
             return { status: status };

@@ -50,7 +50,7 @@ margin-left: 50px;
 
 .menu {
     height: 100%;
-    width: 70%;
+    width: 85%;
     justify-content: flex-start;
     align-items: end;
     display: flex;
@@ -64,7 +64,7 @@ margin-left: 50px;
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    width: 600px;
+    width: 750px;
     justify-content: space-around;
     font-size: 5.5rem;
     font-weight: bold;

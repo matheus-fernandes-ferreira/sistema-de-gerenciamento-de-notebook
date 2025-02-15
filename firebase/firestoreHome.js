@@ -166,49 +166,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = dataInput.value;
     const horarioSelecionado = document.getElementById("horario").value;
     const [horaInicio, horaFim] = horarioSelecionado.split("-");
-
+  
     if (!data || !horarioSelecionado) {
       return; // Não faz nada se a data ou horário não forem preenchidos
     }
-
+  
     try {
-      const q = query(
+      // Busca todos os notebooks
+      const notebooksQuery = query(collection(db, "Notebooks"));
+      const notebooksSnapshot = await getDocs(notebooksQuery);
+  
+      // Busca as reservas para a data selecionada
+      const reservasQuery = query(
         collection(db, "reserva"),
         where("data", "==", data)
       );
-
-      const querySnapshot = await getDocs(q);
+      const reservasSnapshot = await getDocs(reservasQuery);
+  
       let notebooksIndisponiveis = [];
-
-      querySnapshot.forEach((doc) => {
+  
+      // Verifica conflitos de horário nas reservas
+      reservasSnapshot.forEach((doc) => {
         const reserva = doc.data();
         const reservaInicio = reserva.horaInicio;
         const reservaFim = reserva.horaFim;
-
+  
         // Verifica se há conflito de horário
         if (
           (horaInicio >= reservaInicio && horaInicio < reservaFim) ||
-          (horaInicio <= reservaInicio && horaInicio >= reservaFim)
+          (horaFim > reservaInicio && horaFim <= reservaFim) ||
+          (horaInicio <= reservaInicio && horaFim >= reservaFim)
         ) {
           notebooksIndisponiveis.push(...reserva.notebooksSelecionados);
         }
       });
-
+  
       // Atualiza a interface
       document.querySelectorAll('input[name="notebook"]').forEach(input => {
         const notebookLabel = input.parentElement.querySelector('.radio-label').textContent.trim();
-
-        if (notebooksIndisponiveis.includes(notebookLabel)) {
+  
+        // Verifica se o notebook está indisponível por conflito de horário ou status geral
+        const notebookDoc = notebooksSnapshot.docs.find(doc => doc.data().inventario.toString() === notebookLabel);
+        const notebookStatus = notebookDoc ? notebookDoc.data().status_notebook : false;
+  
+        if (notebooksIndisponiveis.includes(notebookLabel) || !notebookStatus) {
           input.disabled = true; // Torna o notebook indisponível
           input.checked = false; // Caso estivesse selecionado, desmarca
           input.parentElement.querySelector('.radio-icon svg').style.fill = "#8493B3";
         } else {
-          input.disabled = false; // Deixa disponível se não estiver reservado
+          input.disabled = false; // Deixa disponível se não estiver reservado e estiver ativo
         }
       });
-
+  
     } catch (error) {
-      console.error("Erro ao buscar reservas:", error);
+      console.error("Erro ao buscar reservas ou notebooks:", error);
     }
   }
 
