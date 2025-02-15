@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notebook</title>
-    <link rel="stylesheet" href="notebook.css">
+    <link rel="stylesheet" href="../styles/notebook.css">
+    <link rel="stylesheet" href="../styles/header-footer.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <header>
         <input id="checkbox" type="checkbox">
@@ -34,7 +37,7 @@
                             </svg>
                             <li>RESERVAR</li>
                         </a>
-                        <a href="#">
+                        <a href="painelR.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30"
                                 fill="white">
                                 <path
@@ -42,7 +45,7 @@
                             </svg>
                             <li>PAINEL</li>
                         </a>
-                        <a href="#">
+                        <a href="historico.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30"
                                 fill="white">
                                 <path
@@ -58,16 +61,15 @@
                             </svg>
                             <li>SUPORTE</li>
                         </a>
-                        <a href="#">
-
-                            <svg id="svg-laptop" xmlns="http://www.w3.org/2000/svg" height="20" width="25"
-                                viewBox="0 0 640 512" width="50" height="50"
-                                fill="white"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                                <path
-                                    d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 256-64 0 0-256L128 96l0 256-64 0L64 96zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM288 160c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z" />
+                        <a id="notebook-link" href="notebook.html" style="display: flex;">
+                            <svg id="svg-laptop" xmlns="http://www.w3.org/2000/svg" height="30" width="35" viewBox="0 0 640 512"
+                              width="50" height="50"
+                              fill="white"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                              <path
+                                d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 256-64 0 0-256L128 96l0 256-64 0L64 96zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM288 160c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z" />
                             </svg>
                             <li>NOTEBOOKS</li>
-                        </a>
+                          </a>
                     </ul>
                 </nav>
             </div>
@@ -77,65 +79,64 @@
     <div id="divgradientHome"></div>
 
     <main>
-        
-            <div class="container-titulo">
-                <div class="container-icone">
-                    <svg  xmlns="http://www.w3.org/2000/svg" 
-                                viewBox="0 0 640 512" width="110" height="110"
-                                fill="#454545"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                                <path
-                                    d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 256-64 0 0-256L128 96l0 256-64 0L64 96zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM288 160c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z" />
-                            </svg>
-                </div>
-                <div>
-                    <H1 class="titulo">NOTEBOOKS</H1>
-                </div>
-            </div>
 
-            <div class="container-paragrafo">
-                <p>Use esta página para adicionar, remover e gerenciar o uso dos notebooks.</p>
-            </div>
-            
-            <div class="container-main">
-                <div class="main-header">
-                  <h2>Notebooks Cadastrados:</h2>
-                  <button id="btn-adicionar" class="button-main">
+        <section class="container-titulo">
+            <figure class="container-icone">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="110" height="110"
+                    fill="#454545"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <path
+                        d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 256-64 0 0-256L128 96l0 256-64 0L64 96zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM288 160c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z" />
+                </svg>
+            </figure>
+                <h1 class="titulo">NOTEBOOKS</h1>
+        </section>
+
+        <div class="container-paragrafo">
+            <p>Use esta página para adicionar, remover e gerenciar o uso dos notebooks.</p>
+        </div>
+
+        <div class="container-main">
+            <div class="main-header">
+                <h2>Notebooks Cadastrados:</h2>
+                <button id="btn-adicionar" class="button-main">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="40" height="40" fill="white">
-                      <path d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 256-64 0 0-256L128 96l0 256-64 0L64 96zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM288 160c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z" />
+                        <path
+                            d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 256-64 0 0-256L128 96l0 256-64 0L64 96zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM288 160c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z" />
                     </svg>
                     ADICIONAR
-                  </button>
-                </div>
-                <div class="table-container"> <!-- Adicione esta div -->
-                  <table>
-                    <thead >
-                      <tr class="header">
-                        <th>Numero de Inventario</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-                      </tr>
+                </button>
+            </div>
+            <div class="table-container"> <!-- Adicione esta div -->
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th>Numero de Inventario</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
                     </thead>
                     <tbody id="reservas-body">
-                      <!-- As linhas serão adicionadas aqui dinamicamente -->
+                        <!-- As linhas serão adicionadas aqui dinamicamente -->
                     </tbody>
-                  </table>
-                </div>
-              </div>
-            
-            
+                </table>
+            </div>
+        </div>
 
-            
-        
+
+
+
+
     </main>
 
     <footer id="rodape">
-        <div class="logo" id="logo-rodape">
-            <img src="../sistema-de-gerenciamento-de-notebook/img/senac_logo_branco.png" alt="">
-        </div>
+        <figure>
+          <img id="logorodapeHome" src="./image/images-removebg-preview.png" alt="">
+        </figure>
         <h2>Senac Unidade Zona Norte</h2>
-    </footer>
+      </footer>
 
 
     <script type="module" src="./firebase/firestoreNotebook.js"></script>
 </body>
+
 </html>

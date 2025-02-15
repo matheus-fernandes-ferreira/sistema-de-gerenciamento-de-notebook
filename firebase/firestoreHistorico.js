@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -25,6 +25,41 @@ const meses = [
 
 // Índice do mês atual
 let mesAtualIndex = new Date().getMonth(); // Mês atual (0-11)
+
+// Função para carregar os dados do usuário e verificar o cargo
+async function loadUserData() {
+  const matricula = localStorage.getItem("matricula"); // Pega a matrícula do localStorage
+
+  if (!matricula) {
+    alert('Você precisa fazer login primeiro.');
+    window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
+    return;
+  }
+
+  const colaboradoresRef = collection(db, "colaboradores");
+  const q = query(colaboradoresRef, where("matricula", "==", matricula));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+
+      // Verifica o cargo do usuário
+      if (userData.cargo === "coordenador") {
+        // Mostra o link do menu para notebooks
+        document.getElementById("notebook-link").style.display = "flex";
+      } else {
+        // Oculta o link do menu para notebooks
+        document.getElementById("notebook-link").style.display = "none";
+      }
+    } else {
+      alert('Usuário não encontrado.');
+    }
+  } catch (error) {
+    console.error("Erro ao buscar dados do usuário:", error);
+  }
+}
 
 // Função para atualizar o mês exibido no carrossel
 function atualizarMesCarrossel() {
@@ -268,3 +303,6 @@ document.querySelector('.DivButton .buttonInferior:first-child').addEventListene
 
 // Inicializa o carrossel e carrega as reservas
 atualizarMesCarrossel();
+
+// Carrega os dados do usuário ao iniciar a página
+loadUserData();

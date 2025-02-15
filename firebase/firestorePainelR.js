@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where ,updateDoc, serverTimestamp, setDoc, getDoc  } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, updateDoc, serverTimestamp, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -47,6 +47,41 @@ async function getCargoUsuario(matricula) {
   } catch (error) {
     console.error("Erro ao buscar o cargo do usuário:", error);
     return null;
+  }
+}
+
+// Função para carregar os dados do usuário e verificar o cargo
+async function loadUserData() {
+  const matricula = localStorage.getItem("matricula"); // Pega a matrícula do localStorage
+
+  if (!matricula) {
+    alert('Você precisa fazer login primeiro.');
+    window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
+    return;
+  }
+
+  const colaboradoresRef = collection(db, "colaboradores");
+  const q = query(colaboradoresRef, where("matricula", "==", matricula));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+
+      // Verifica o cargo do usuário
+      if (userData.cargo === "coordenador") {
+        // Mostra o link do menu para notebooks
+        document.getElementById("notebook-link").style.display = "flex";
+      } else {
+        // Oculta o link do menu para notebooks
+        document.getElementById("notebook-link").style.display = "none";
+      }
+    } else {
+      alert('Usuário não encontrado.');
+    }
+  } catch (error) {
+    console.error("Erro ao buscar dados do usuário:", error);
   }
 }
 
@@ -228,7 +263,6 @@ async function cancelarReserva(reservaId) {
 }
 
 // Função para finalizar uma reserva
-
 async function finalizarReserva(reservaId) {
   const { value: formValues } = await Swal.fire({
     title: "Finalizar Reserva",
@@ -276,8 +310,8 @@ async function finalizarReserva(reservaId) {
       radioSim.addEventListener('change', toggleTextarea);
       radioNao.addEventListener('change', toggleTextarea);
     },
-    preConfirm: () => {
-      const confirmacao = Swal.getPopup().querySelector('input[name="confirmacao"]:checked').value;
+    preConfirm: () => { 
+       const confirmacao = Swal.getPopup().querySelector('input[name="confirmacao"]:checked').value;
       const descricaoProblema = Swal.getPopup().querySelector('#swal-textarea')?.value;
 
       return { confirmacao, descricaoProblema };
@@ -351,6 +385,7 @@ async function finalizarReserva(reservaId) {
 }
 
 // Chama a função após o carregamento do DOM
-window.addEventListener("DOMContentLoaded", carregarReservas);
-
-
+window.addEventListener("DOMContentLoaded", () => {
+  carregarReservas();
+  loadUserData(); // Carrega os dados do usuário e verifica o cargo
+});

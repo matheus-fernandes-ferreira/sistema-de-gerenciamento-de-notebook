@@ -16,17 +16,7 @@ body {
 
 }
 
-header {
-    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .central-page {
     display: flex;
@@ -113,22 +103,6 @@ td {
     transition: 0.5s;
 }
 
-#h2header {
-    color: white;
-    text-align: center;
-    font-size: 2.4rem;
-    margin-left: 20px;
-}
-
-.menu {
-    height: 100%;
-    width: 600px;
-    justify-content: center;
-    align-items: end;
-    display: flex;
-
-
-}
 
 #tituloPainel {
     display: flex;
@@ -380,31 +354,6 @@ button:active {
 }
 
 
-
-#Footerhistory {
-    width: 100%;
-    background-color: #005185;
-    height: 120px;
-    margin-top: 450px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-
-}
-
-#Footerhistory h2 {
-    font-size: 2.4rem;
-    color: #ffffff;
-    margin-right: 20px;
-}
-
-#logoFooterhistory {
-    width: 120px;
-    height: 120px;
-    margin-left: 20px;
-}
 
 .source {
     display: flex;

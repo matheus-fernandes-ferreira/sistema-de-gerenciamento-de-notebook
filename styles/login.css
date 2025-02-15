@@ -7,7 +7,7 @@ body {
     /* Centraliza todo o conteúdo da página*/
     align-items: center;
     /* Centraliza todo o conteúdo da página*/
-    background: url("./img/background.jpg") no-repeat center center;
+    background: url("../img/background.jpg") no-repeat center center;
     background-size: cover;
     /* Faz com que a imagem ocupe toda a largura */
     min-height: 100vh;

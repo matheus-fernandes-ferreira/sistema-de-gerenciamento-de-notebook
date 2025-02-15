@@ -13,36 +13,16 @@ body {
     font-family: "Open Sans", serif;
 }
 
-header {
-    height: 170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('/image/Header-wallpaper.png');
+
+
+#divgradientHome {
     width: 100%;
-
+    height: 50px;
+    background: linear-gradient(#005185, #ffffff);
+    
 }
 
-nav {
-    padding-left: 300px;
-}
 
-#h2header {
-    color: white;
-    text-align: center;
-    font-size: 2.4rem;
-    margin-left: 20px;
-}
-
-.menu {
-    height: 100%;
-    width: 600px;
-    justify-content: center;
-    align-items: end;
-    display: flex;
-
-
-}
 
 #tituloPainel {
     display: flex;
@@ -55,56 +35,7 @@ nav {
     font-weight: 700;
     letter-spacing: 1px;
 }
-
-.paginasmenu {
-    color: #F8F8F8;
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    width: 600px;
-    justify-content: space-around;
-    font-size: 3.7rem;
-    font-weight: bold;
-    align-items: center;
-    margin-bottom: 2px;
-}
-
-a {
-    text-decoration: none;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    color: #F8F8F8;
-    font-size: 17px;
-
-}
-
-li {
-    position: relative;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-
-}
-
-ul :hover {
-    color: #F7941D;
-    transition: 0.4s;
-
-}
-
-a :hover {
-    color: #F7941D;
-    transition: 0.4s;
-
-}
-
-.menu a:hover svg {
-    fill: #F7941D;
-    transition: 0.3s;
-}
-
-.suportePainel {
+/* .suportePainel {
     border: 1px solid #BCBCBC;
     display: flex;
     width: 700px;
@@ -116,29 +47,7 @@ a :hover {
 
 
 
-}
-
-.menuleft {
-    text-decoration: none;
-
-    color: #004A8D;
-    font-size: 1.6rem;
-}
-
-.menuright {
-    text-decoration: none;
-    color: #004A8D;
-    font-size: 1.6rem;
-
-}
-
-#divgradientHome {
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(#005185, #ffffff);
-
-}
-
+} */
 
 .info {
     display: flex;
@@ -179,6 +88,7 @@ a :hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     justify-items: center;
+    margin-bottom: 400px;
     /* grid-template-rows: repeat(3, 1fr) */
 
 }
@@ -355,31 +265,6 @@ button {
     border: 1px rgb(20, 44, 225) solid;
     width: 200px;
     height: 100px;
-}
-
-#Footerhistory {
-    width: 100%;
-    background-color: #005185;
-    height: 120px;
-    margin-top: 400px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-
-}
-
-#Footerhistory h2 {
-    font-size: 2.4rem;
-    color: #ffffff;
-    margin-right: 20px;
-}
-
-#logoFooterhistory {
-    width: 120px;
-    height: 120px;
-    margin-left: 20px;
 }
 
 

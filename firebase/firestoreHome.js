@@ -33,24 +33,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // Função para carregar os dados do usuário
   function loadUserData() {
     const matricula = localStorage.getItem("matricula"); // **Pegar a matrícula do localStorage**
-
+  
     if (!matricula) {
       alert('Você precisa fazer login primeiro.');
       window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
       return;
     }
-
+  
     const colaboradoresRef = collection(db, "colaboradores");
     const q = query(colaboradoresRef, where("matricula", "==", matricula));
-
+  
     getDocs(q)
       .then((querySnapshot) => {
         if (!querySnapshot.empty) {
           const userDoc = querySnapshot.docs[0];
           const userData = userDoc.data();
-
+  
           document.getElementById("nome").textContent = userData.nome;
           document.getElementById("matricula").textContent = userData.matricula;
+  
+          // Verifica o cargo do usuário
+          if (userData.cargo === "coordenador") {
+            // Mostra o link do menu para notebooks
+            document.getElementById("notebook-link").style.display = "flex";
+          } else {
+            // Oculta o link do menu para notebooks
+            document.getElementById("notebook-link").style.display = "none";
+          }
         } else {
           alert('Usuário não encontrado.');
         }
@@ -61,8 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // **Chamar loadUserData() ao carregar a página**
-  document.addEventListener("DOMContentLoaded", loadUserData);
-
+  document.addEventListener("DOMContentLoaded", () => {
+    loadUserData();
+  });
   // Função para carregar os notebooks
   async function carregarNote() {
     const notebooksContainer = document.getElementById("notestatus");

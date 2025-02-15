@@ -68,6 +68,41 @@ document.getElementById('btn-adicionar').addEventListener('click', () => {
 
 // Função para carregar os notebooks na tabela
 // Função para carregar os notebooks na tabela
+// Função para carregar os dados do usuário e verificar o cargo
+async function loadUserData() {
+  const matricula = localStorage.getItem("matricula"); // Pega a matrícula do localStorage
+
+  if (!matricula) {
+    alert('Você precisa fazer login primeiro.');
+    window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
+    return;
+  }
+
+  const colaboradoresRef = collection(db, "colaboradores");
+  const q = query(colaboradoresRef, where("matricula", "==", matricula));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+
+      // Verifica o cargo do usuário
+      if (userData.cargo === "coordenador") {
+        // Mostra o link do menu para notebooks
+        document.getElementById("notebook-link").style.display = "flex";
+      } else {
+        // Oculta o link do menu para notebooks
+        document.getElementById("notebook-link").style.display = "none";
+      }
+    } else {
+      alert('Usuário não encontrado.');
+    }
+  } catch (error) {
+    console.error("Erro ao buscar dados do usuário:", error);
+  }
+}
+
 async function loadNotebooks() {
   const notebooksBody = document.getElementById('reservas-body');
   notebooksBody.innerHTML = ''; // Limpa a tabela antes de carregar os dados
@@ -207,6 +242,9 @@ async function loadNotebooks() {
     console.error('Erro ao carregar notebooks:', error);
   }
 }
+
+// Carrega os dados do usuário ao carregar a página
+document.addEventListener("DOMContentLoaded", loadUserData);
 
 // Carrega os notebooks quando a página é carregada
 window.addEventListener('load', loadNotebooks);
