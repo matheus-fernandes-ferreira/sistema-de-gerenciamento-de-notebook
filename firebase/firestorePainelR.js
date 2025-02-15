@@ -86,9 +86,9 @@ async function carregarReservas() {
                         <p class="textreserva">Data <br> <b>${formatarData(data.data)}</b></p>
                         <p class="textreserva">Horário <br> <b>${data.horaInicio} - ${data.horaFim}</b></p>
                     </div>
+                    <p class="textreserva">Turma: <b> ${data.turma}</b> </p>
                     <p class="textreserva" id="notereserv">
-                        ${data.notebooksSelecionados ? data.notebooksSelecionados.length + " Notebook(s) reservado(s)" : "Notebook reservado"}
-                        <p class="textreserva">Turma: ${data.turma}</p>
+                    ${data.notebooksSelecionados ? data.notebooksSelecionados.length + " Notebook(s) reservado(s)" : "Notebook reservado"}
                     </p>
                 </div>
                 <div id="scrollreservas">

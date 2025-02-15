@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-size: 62.5%;
 
 }
 
@@ -21,6 +20,7 @@ header {
     align-items: center;
     background-image: url('/image/Header-wallpaper.png');
     width: 100%;
+
 }
 
 nav {
@@ -75,6 +75,8 @@ a {
     display: flex;
     justify-content: center;
     color: #F8F8F8;
+    font-size: 17px;
+
 }
 
 li {
@@ -239,7 +241,8 @@ figure {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 b {
@@ -358,7 +361,7 @@ button {
     width: 100%;
     background-color: #005185;
     height: 120px;
-    margin-top: 200px;
+    margin-top: 400px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -397,6 +400,7 @@ button {
 
 .custom-swal-text {
     font-size: 18px !important;
+    padding: 0;
 }
 
 .icon-swal {

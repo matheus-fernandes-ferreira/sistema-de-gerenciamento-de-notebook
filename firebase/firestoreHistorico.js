@@ -187,6 +187,71 @@ async function deletarReservasDoMes() {
   });
 }
 
+// Função para gerar o PDF com as reservas do mês
+async function gerarPDFMensal() {
+  const { jsPDF } = window.jspdf; // Importa o jsPDF
+  const doc = new jsPDF();
+
+  // Título do PDF
+  doc.setFontSize(18);
+  doc.text(`Reservas de ${meses[mesAtualIndex]}`, 10, 10);
+
+  // Busca as reservas do mês atual
+  const historicoCollection = collection(db, "historico");
+  const historicoSnapshot = await getDocs(historicoCollection);
+
+  // Filtra as reservas que possuem a coluna "entregue" OU o status "cancelado"
+  const reservasList = historicoSnapshot.docs
+    .map(doc => ({ id: doc.id, ...doc.data() })) // Inclui o ID do documento
+    .filter(reserva => reserva.entregue || reserva.status === "cancelado"); // Inclui reservas canceladas
+
+  // Filtra as reservas pelo mês selecionado
+  const reservasFiltradas = filtrarReservasPorMes(reservasList, mesAtualIndex);
+
+  // Cabeçalho da tabela no PDF
+  const headers = [["Nome", "Data", "Horário", "Quantidade", "Status", "Entregue"]];
+  const data = reservasFiltradas.map(reserva => {
+    let dataFormatada = reserva.data;
+
+    // Se a data for um timestamp do Firebase, converter para Date
+    if (dataFormatada && dataFormatada.seconds) {
+      dataFormatada = new Date(dataFormatada.seconds * 1000);
+    } else if (typeof dataFormatada === "string") {
+      dataFormatada = new Date(dataFormatada); // Converte string ISO para Date
+    }
+
+    // Formata para DD/MM/AAAA
+    const dataFinal = dataFormatada
+      ? dataFormatada.toLocaleDateString("pt-BR", { timeZone: "UTC" })
+      : "Data inválida";
+
+    return [
+      reserva.nome,
+      dataFinal,
+      `${reserva.horaInicio} - ${reserva.horaFim}`,
+      reserva.quantidade,
+      reserva.status || "N/A",
+      reserva.entregue ? "Sim" : "Não"
+    ];
+  });
+
+  // Adiciona a tabela ao PDF usando o plugin autoTable
+  doc.autoTable({
+    head: headers,
+    body: data,
+    startY: 20, // Posição inicial da tabela
+    theme: "grid", // Estilo da tabela
+    styles: { fontSize: 10 }, // Tamanho da fonte
+    headStyles: { fillColor: [22, 160, 133] } // Cor do cabeçalho
+  });
+
+  // Salva o PDF
+  doc.save(`reservas_${meses[mesAtualIndex]}.pdf`);
+}
+
+// Adiciona o event listener ao botão "Gerar PDF Mensal"
+document.getElementById('gerar-pdf').addEventListener('click', gerarPDFMensal);
+
 // Event listeners para os botões de navegação do carrossel
 document.getElementById('btn-anterior').addEventListener('click', () => {
   mesAtualIndex = (mesAtualIndex - 1 + 12) % 12; // Volta para o mês anterior

@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const reservarBtn = document.getElementById("reservar");
   const statusMsg = document.getElementById("status");
 
+  // Variável global para armazenar a quantidade de notebooks selecionados
+  let quantidade = 0;
+
   // Função para carregar os dados do usuário
   function loadUserData() {
     const matricula = localStorage.getItem("matricula"); // **Pegar a matrícula do localStorage**
@@ -62,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Função para carregar os notebooks
   async function carregarNote() {
-    let quantidade = 0;
     const notebooksContainer = document.getElementById("notestatus");
     const quantidadeElement = document.getElementById("quantidade");
 
@@ -202,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
           input.parentElement.querySelector('.radio-icon svg').style.fill = "#8493B3";
         } else {
           input.disabled = false; // Deixa disponível se não estiver reservado
-          input.parentElement.querySelector('.radio-icon svg').style.fill = "#0A3174";
         }
       });
 
@@ -223,13 +224,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = dataInput.value;
     const horarioSelecionado = document.getElementById("horario").value;
     const [horaInicio, horaFim] = horarioSelecionado.split("-");
-    const quantidade = quantidadeInput.textContent.trim();
 
     // Captura os notebooks selecionados
     const notebooksSelecionados = Array.from(document.querySelectorAll('input[name="notebook"]:checked'))
       .map(input => input.parentElement.querySelector('.radio-label').textContent.trim());
 
-    if (!nome || !matricula || !turma || !data || !horarioSelecionado || !quantidade || notebooksSelecionados.length === 0) {
+    if (!nome || !matricula || !turma || !data || !horarioSelecionado || notebooksSelecionados.length === 0) {
       Swal.fire({
         icon: "error",
         title: "Ocorreu um erro!",
@@ -288,12 +288,16 @@ document.addEventListener("DOMContentLoaded", () => {
           confirmButton: 'confirm-swal-button',
         }
       });
+
       // Limpar apenas os campos de entrada
       turmaInput.value = "";
       dataInput.value = "";
       document.getElementById("horario").value = "";
-      quantidadeInput.textContent = "";
+      quantidadeInput.textContent = "0"; // Reinicia a exibição da quantidade
       document.querySelectorAll('input[name="notebook"]:checked').forEach(input => input.checked = false);
+
+      // Reinicia a variável quantidade
+      quantidade = 0;
     } catch (error) {
       console.error("Erro ao salvar reserva: ", error);
       statusMsg.textContent = "Erro ao salvar!";

@@ -10,7 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 
 <body>
@@ -26,13 +28,15 @@
         </a>
         <a href="painelR.html">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="35" height="30" fill="white">
-            <path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 64l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0zM64 224l88 0 0 64-88 0 0-64zm232 0l0 64-88 0 0-64 88 0zm64 0l88 0 0 64-88 0 0-64zM152 352l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0z" />
+            <path
+              d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 64l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0zM64 224l88 0 0 64-88 0 0-64zm232 0l0 64-88 0 0-64 88 0zm64 0l88 0 0 64-88 0 0-64zM152 352l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0z" />
           </svg>
           <li>PAINEL</li>
         </a>
         <a href="historico.html">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="35" height="30" fill="white">
-            <path d="M40 48C26.7 48 16 58.7 16 72l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24L40 48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM16 232l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0z" />
+            <path
+              d="M40 48C26.7 48 16 58.7 16 72l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24L40 48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM16 232l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0z" />
           </svg>
           <li>HISTÓRICO</li>
         </a>
@@ -51,14 +55,19 @@
   <main class="central-page">
     <section id="tituloPainel">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="105" height="80" fill="#454545">
-        <path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 64l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0zM64 224l88 0 0 64-88 0 0-64zm232 0l0 64-88 0 0-64 88 0zm64 0l88 0 0 64-88 0 0-64zM152 352l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0z" />
+        <path
+          d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 64l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0zM64 224l88 0 0 64-88 0 0-64zm232 0l0 64-88 0 0-64 88 0zm64 0l88 0 0 64-88 0 0-64zM152 352l0 64-88 0 0-64 88 0zm56 0l88 0 0 64-88 0 0-64zm240 0l0 64-88 0 0-64 88 0z" />
       </svg>
       HISTÓRICO
     </section>
     <p>Histórico de reservas anteriores</p>
 
     <div class="source">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="35" height="30"  fill="#004A8D"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="35" height="30"
+        fill="#004A8D"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+        <path
+          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+      </svg>
       <input class="pesquisa" type="text" placeholder="Localizar">
     </div>
 
@@ -70,33 +79,33 @@
       <button id="btn-proximo">&gt;</button>
     </div>
 
-    <div>
+    
+    
+    <div class="reservas-table">
+      <table>
+        <thead>
+          <tr class="header">
+            <th>Nome colaborador</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Qt.</th>
+            <th>Detalhes</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <tbody id="reservas-body">
+          <!-- As linhas serão adicionadas aqui dinamicamente -->
+        </tbody>
+      </table>
+    </div>
 
-   
-    <table id="reservas-table">
-      <thead>
-        <tr class="header">
-          <th>Nome colaborador</th>
-          <th>Data</th>
-          <th>Horário</th>
-          <th>Qt.</th>
-          <th>Detalhes</th>
-          <th>Excluir</th>
-        </tr>
-      </thead>
-      <tbody  id="reservas-body">
-        <!-- As linhas serão adicionadas aqui dinamicamente -->
-      </tbody>
-    </table>
-  </div>
-
-  <div class="DivButton">
-    <button class="buttonInferior">Deletar Histórico Mensal</button>
-    <button class="buttonInferior">Gerar PDF Mensal</button>
-  </div>
+    <div class="DivButton">
+      <button class="buttonInferior">Deletar Histórico Mensal</button>
+      <button class="buttonInferior" id="gerar-pdf">Gerar PDF Mensal</button>
+    </div>
   </main>
 
-  
+
   <footer id="Footerhistory">
     <figure>
       <img id="logoFooterhistory" src="/image/images-removebg-preview.png" alt="Logo Senac">
@@ -104,7 +113,7 @@
     <h2>Senac Unidade Zona Norte</h2>
   </footer>
 
- <script type="module" src="firebase/firestoreHistorico.js"></script>
+  <script type="module" src="firebase/firestoreHistorico.js"></script>
 </body>
 
 </html>

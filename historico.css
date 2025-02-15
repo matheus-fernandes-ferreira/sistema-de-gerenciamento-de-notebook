@@ -33,15 +33,15 @@ header {
     flex-direction: column;
     padding: 20px;
     width: 1140px;
-    height: 500px;
 }
 
 table {
     width: 100%;
-    margin-top: 20px;
+    height: 100%;
     border: 1px solid rgb(168, 168, 168);
     border-radius: 15px;
     border-collapse: collapse;
+    
 }
 
 th {
@@ -59,6 +59,25 @@ td {
     /* Linha azul separando o cabeçalho */
 }
 
+.reservas-table::-webkit-scrollbar {
+    width: 3px;
+}
+
+.reservas-table::-webkit-scrollbar-track {
+    background: #C9C9C9;
+    border-radius: 1px;
+}
+
+.reservas-table::-webkit-scrollbar-thumb {
+    background: #004A8D;
+    border-radius: 1px;
+}
+
+.reservas-table{
+    width: 100%;
+    max-height: 65vh; /* Não deixa crescer muito */
+    overflow-y: auto; /* Ativa a rolagem quando necessário */
+}
 
 .btn-details {
     width: 80px;
@@ -354,7 +373,7 @@ cursor: pointer;
     transition: 300ms;
 }
 
-.buttonInferior:active {
+button:active {
     transform: scale(0.95);
     background-color: #012342;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
