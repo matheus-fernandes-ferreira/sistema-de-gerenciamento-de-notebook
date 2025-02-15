@@ -42,7 +42,7 @@ async function addNotebook(inventario) {
 // Função para exibir o alerta e adicionar o notebook
 document.getElementById('btn-adicionar').addEventListener('click', () => {
   Swal.fire({
-    title: 'Adicionar Notebook',
+    title: '<i class="fas fa-laptop" style="color:rgb(1, 55, 105); font-size: 32px; margin-top:20px;"></i> <br> Adicionar Notebook',
     html: `<input type="number" id="inventario" class="swal2-input" placeholder="Número de Inventário">`,
     focusConfirm: false,
     customClass: {
@@ -114,6 +114,8 @@ async function loadNotebooks() {
           text: 'Você realmente deseja excluir este notebook?',
           icon: 'warning',
           showCancelButton: true,
+          showCloseButton: true,
+
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Sim, excluir!',
@@ -130,7 +132,19 @@ async function loadNotebooks() {
           if (result.isConfirmed) {
             try {
               await deleteDoc(doc(db, 'Notebooks', notebookId));
-              Swal.fire('Excluído!', 'O notebook foi excluído com sucesso.', 'success');
+              Swal.fire({
+                title: "Excluído!",
+                icon: "success",
+                text:"O notebook foi excluído com sucesso.",
+                customClass: {
+                  popup: "custom-swal-container",  // Define tamanho do container
+                  title: "custom-swal-title",      // Estiliza o título
+                  htmlContainer: "custom-swal-text", // Estiliza o texto
+                  icon: 'icon-swal',
+                  confirmButton: 'confirm-swal-button',
+                }
+              });
+              
               loadNotebooks(); // Recarrega a lista de notebooks após deletar
             } catch (error) {
               console.error('Erro ao deletar notebook:', error);
@@ -149,19 +163,25 @@ async function loadNotebooks() {
 
         // Exibe o alerta de edição
         Swal.fire({
+          icon: "info",
           title: `Editando Notebook ${inventario}`,
           html: `
-            <p>Marca Este Notebook como Indisponível</p>
+            <p>Deseja marcar esse notebook como indisponível?</p>
             <input type="radio" id="indisponivel" name="status" value="false">
             <label for="indisponivel">Indisponível</label>
           `,
           focusConfirm: false,
+          showCloseButton: true,
+          showCancelButton: true,
+
           customClass: {
             popup: "custom-swal-container",  // Define tamanho do container
             title: "custom-swal-title",      // Estiliza o título
             htmlContainer: "custom-swal-text", // Estiliza o texto
             icon: 'icon-swal',
             confirmButton: 'confirm-swal-button',
+            cancelButton: 'cancel-swal-button',
+
           },
           preConfirm: () => {
             const status = Swal.getPopup().querySelector('#indisponivel').checked ? false : true;
