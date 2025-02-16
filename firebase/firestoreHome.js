@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Função para carregar os dados do usuário
   function loadUserData() {
+    // Oculta a tag instantaneamente ao carregar a página
+    document.getElementById("notebook-link").style.display = "none";
+  
     const matricula = localStorage.getItem("matricula"); // **Pegar a matrícula do localStorage**
   
     if (!matricula) {
@@ -57,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Mostra o link do menu para notebooks
             document.getElementById("notebook-link").style.display = "flex";
           } else {
-            // Oculta o link do menu para notebooks
+            // Mantém o link do menu para notebooks oculto
             document.getElementById("notebook-link").style.display = "none";
           }
         } else {
