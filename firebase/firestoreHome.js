@@ -76,12 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("DOMContentLoaded", () => {
     loadUserData();
   });
+
   // Função para carregar os notebooks
   async function carregarNote() {
     const notebooksContainer = document.getElementById("notestatus");
     const quantidadeElement = document.getElementById("quantidade");
 
     try {
+      // Mostra o overlay e o spinner
+      document.getElementById("loading-overlay").style.display = "block";
+
       const q = query(collection(db, "Notebooks"), orderBy("inventario", "asc"));
       const querySnapshot = await getDocs(q);
 
@@ -128,6 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (error) {
       console.error("Erro ao buscar os notebooks:", error);
+    } finally {
+      // Esconde o overlay e o spinner
+      document.getElementById("loading-overlay").style.display = "none";
     }
   }
 
