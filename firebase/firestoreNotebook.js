@@ -108,6 +108,9 @@ async function loadNotebooks() {
   notebooksBody.innerHTML = ''; // Limpa a tabela antes de carregar os dados
 
   try {
+    // Mostra o overlay e o spinner
+    document.getElementById("loading-overlay").style.display = "block";
+
     const querySnapshot = await getDocs(collection(db, 'Notebooks'));
     const notebooks = [];
 
@@ -240,6 +243,9 @@ async function loadNotebooks() {
     });
   } catch (error) {
     console.error('Erro ao carregar notebooks:', error);
+  } finally {
+    // Esconde o overlay e o spinner
+    document.getElementById("loading-overlay").style.display = "none";
   }
 }
 

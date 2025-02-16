@@ -88,6 +88,9 @@ async function loadUserData() {
 // Função para buscar as reservas e montar os cards
 async function carregarReservas() {
   try {
+    // Mostra o overlay e o spinner
+    document.getElementById("loading-overlay").style.display = "block";
+
     const colRef = collection(db, "reserva");
     const querySnapshot = await getDocs(colRef);
     const container = document.getElementById("container");
@@ -153,6 +156,9 @@ async function carregarReservas() {
     configurarEventos();
   } catch (error) {
     console.error("Erro ao buscar as reservas:", error);
+  } finally {
+    // Esconde o overlay e o spinner
+    document.getElementById("loading-overlay").style.display = "none";
   }
 }
 

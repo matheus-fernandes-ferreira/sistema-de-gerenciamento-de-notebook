@@ -124,7 +124,6 @@ li {
 
 #rodape {
 
-    bottom: 0;
     width: 100%;
     background-color: #005185;
     height: 120px;
@@ -148,3 +147,57 @@ li {
     height: 120px;
     margin-left: 20px;
 }
+
+
+
+/* loading */
+
+/* Estilos para o loading spinner */
+/* Estilos para o overlay (fundo com blur) */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+    backdrop-filter: blur(5px); /* Efeito de blur */
+    z-index: 999; /* Garante que fique acima de tudo, exceto o spinner */
+    display: none; /* Inicialmente oculto */
+  }
+  
+  /* Estilos para o loading spinner (ajustado para ficar acima do overlay) */
+  #loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000; /* Garante que o spinner fique acima do overlay */
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+  
+  #loading-spinner .spinner {
+    border: 4px solid #f3f3f3; /* Cor do círculo externo */
+    border-top: 4px solid #004A8D; /* Cor do círculo em movimento */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px; /* Espaçamento abaixo do spinner */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  #loading-spinner p {
+    font-size: 16px;
+    color: #454545;
+    margin: 0;
+  }
+/*--------------------------------------------------------*/
