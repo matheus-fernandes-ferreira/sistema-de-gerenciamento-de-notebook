@@ -138,21 +138,75 @@ async function fetchReservas() {
       const btnDetails = row.querySelector('.btn-details');
       btnDetails.addEventListener('click', () => {
         Swal.fire({
-          title: `Detalhes da Reserva`,
-          html: `
-            <p><strong>Nome:</strong> ${reserva.nome}</p>
-            <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
-            <p><strong>Turma:</strong> ${reserva.turma}</p>
-            <p><strong>Data:</strong> ${dataFinal}</p>
-            <p><strong>Horário:</strong> ${reserva.horaInicio} - ${reserva.horaFim}</p>
-            <p><strong>Quantidade:</strong> ${reserva.quantidade}</p>
-            <p><strong>Status:</strong> ${reserva.status}</p>
-            <p><strong>Entrega:</strong> ${reserva.entregue}</p>
-          `,
-          icon: 'info',
-          confirmButtonText: 'Fechar',
-          confirmButtonColor: '#3085d6',
-        });
+  title: `Detalhes da Reserva`,
+  html: `
+    <div class="reserva-grid">
+      <div class="info-box">
+        <p><strong>Nome:</strong> <br> ${reserva.nome}</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Matrícula:</strong> <br> ${reserva.matricula}</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Turma:</strong> <br> ${reserva.turma}</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Data:</strong> <br> ${dataFinal}</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Horário:</strong> <br> ${reserva.horaInicio} - ${reserva.horaFim}</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Quantidade:</strong> <br> ${reserva.quantidade}</p>
+      </div>
+      <div class="info-box">
+        <p><strong>Status:</strong> <br> ${reserva.status}</p>
+      </div>
+      <div class="info-box" id="entrega-box">
+        <p><strong>Entrega:</strong> <br> <span class="truncate-text">${reserva.entregue}</span></p>
+      </div>
+    </div>
+  `,
+  icon: 'info',
+  confirmButtonText: 'Fechar',
+  confirmButtonColor: '#3085d6',
+  customClass: {
+    popup: 'swal2-popup',
+    title: 'swal2-title',
+    htmlContainer: 'swal2-html-container',
+    confirmButton: 'swal2-confirm',
+    cancelButton: 'swal2-cancel',
+    icon: 'swal2-icon'
+  },
+  didOpen: () => {
+    const entregaBox = document.getElementById('entrega-box');
+    const truncateText = entregaBox.querySelector('.truncate-text');
+
+    // Verifica se o navegador suporta -webkit-line-clamp
+    const supportsLineClamp = typeof truncateText.style.webkitLineClamp !== 'undefined';
+
+    if (!supportsLineClamp) {
+      // Trunca o texto manualmente para navegadores que não suportam -webkit-line-clamp
+      const originalText = truncateText.textContent;
+      const maxLength = 100; // Defina o comprimento máximo do texto truncado
+      if (originalText.length > maxLength) {
+        truncateText.textContent = originalText.slice(0, maxLength) + '...';
+      }
+    }
+
+    // Adiciona o evento de clique para expandir a caixa de "Entrega"
+    entregaBox.addEventListener('click', () => {
+      entregaBox.classList.toggle('expanded');
+      if (entregaBox.classList.contains('expanded')) {
+        truncateText.textContent = reserva.entregue; // Restaura o texto completo
+      } else {
+        if (!supportsLineClamp) {
+          truncateText.textContent = originalText.slice(0, maxLength) + '...'; // Trunca novamente
+        }
+      }
+    });
+  }
+});
       });
 
       // Adiciona o event listener ao botão de exclusão

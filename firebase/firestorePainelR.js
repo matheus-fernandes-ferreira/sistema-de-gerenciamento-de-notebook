@@ -221,6 +221,7 @@ async function cancelarReserva(reservaId) {
         await setDoc(doc(db, "historico", reservaId), {
           ...dadosReserva, // Copia todos os dados da reserva
           status: "cancelado", // Adiciona o status de cancelamento
+          entregue: "Reserva cancelada", // Adiciona o campo "entregue" com o valor "Reserva cancelada"
           dataFinalizacao: serverTimestamp(), // Adiciona a data/hora do cancelamento
         });
 
@@ -316,9 +317,14 @@ async function finalizarReserva(reservaId) {
       radioSim.addEventListener('change', toggleTextarea);
       radioNao.addEventListener('change', toggleTextarea);
     },
-    preConfirm: () => { 
-       const confirmacao = Swal.getPopup().querySelector('input[name="confirmacao"]:checked').value;
+    preConfirm: () => {
+      const confirmacao = Swal.getPopup().querySelector('input[name="confirmacao"]:checked').value;
       const descricaoProblema = Swal.getPopup().querySelector('#swal-textarea')?.value;
+
+      if (confirmacao === "nao" && !descricaoProblema) {
+        Swal.showValidationMessage("Por favor, descreva o problema.");
+        return false; // Impede a confirmação
+      }
 
       return { confirmacao, descricaoProblema };
     }

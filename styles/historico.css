@@ -385,3 +385,102 @@ button:active {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
+
+  /* Estilo personalizado para o SweetAlert2 */
+.swal2-popup {
+    font-family: "Roboto", sans-serif;
+    background-size: cover;
+    background-color: #012342;
+    border-radius: 1em;
+    padding: 2em;
+  }
+  
+  .swal2-title {
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+  
+  .swal2-html-container {
+    color: black;
+    background-color: #afafaf;
+    padding: 1em;
+    border-radius: 1em;
+  }
+  
+  /* Layout de grade 2x2 */
+  .reserva-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 1rem; /* Espaçamento entre as caixas */
+  }
+  
+  /* Estilo de cada caixa de informação */
+  .info-box {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .swal2-icon{
+    color: #F7941D !important;
+    border-color: #F7941D !important;
+  }
+  
+  .info-box p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #004A8D;
+  }
+  .info-box strong {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .swal2-confirm {
+    background-color: #F7941D !important;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+  
+  .swal2-confirm:hover {
+    background-color: #f76d1d !important;
+    transition: 0.2s;
+  }
+  .swal2-cancel {
+    background-color: #fd0000 !important;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+  
+  .swal2-cancel:hover {
+    background-color: #9e0000 !important;
+    transition: 0.2s;
+  }
+
+  /* Estilo para o texto truncado */
+.truncate-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limita o texto a 2 linhas */
+    line-clamp: 3; /* Propriedade padrão */
+
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  /* Estilo para a caixa expandida */
+  .info-box.expanded {
+    grid-row: span 2; /* Expande a caixa para ocupar 2 linhas no grid */
+  }
+  
+  .info-box.expanded .truncate-text {
+    -webkit-line-clamp: unset; /* Remove a limitação de linhas */
+    line-clamp: 3; /* Propriedade padrão */
+
+  }
