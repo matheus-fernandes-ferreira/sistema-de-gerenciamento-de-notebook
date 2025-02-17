@@ -125,12 +125,19 @@ async function loadNotebooks() {
 
     // Preenche a tabela com os notebooks ordenados
     notebooks.forEach((notebook) => {
+      const statusSVG = notebook.status_notebook
+        ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="green"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="red"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>';
+
       const row = `
         <tr>
           <td>${notebook.inventario}</td>
-          <td>${notebook.status_notebook ? 'Disponível' : 'Indisponível'}</td>
           <td>
-            <button class="btn-details edit-btn" data-id="${notebook.id}" data-inventario="${notebook.inventario}">
+            ${statusSVG}
+            ${notebook.status_notebook ? 'Disponível' : 'Indisponível'}
+          </td>
+          <td>
+            <button class="btn-details edit-btn" data-id="${notebook.id}" data-inventario="${notebook.inventario}" data-status="${notebook.status_notebook}">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"  width="35" height="20" fill='white'><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z"/></svg>
             </button>
             <button class="btn-details delete-btn" data-id="${notebook.id}">
@@ -153,7 +160,6 @@ async function loadNotebooks() {
           text: 'Você realmente deseja excluir este notebook?',
           icon: 'warning',
           showCancelButton: true,
-
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Sim, excluir!',
@@ -198,15 +204,14 @@ async function loadNotebooks() {
       button.addEventListener('click', async () => {
         const notebookId = button.getAttribute('data-id');
         const inventario = button.getAttribute('data-inventario');
+        const currentStatus = button.getAttribute('data-status') === 'true';
 
         // Exibe o alerta de edição
         Swal.fire({
           icon: "info",
           title: `Editando Notebook ${inventario}`,
           html: `
-            <p>Deseja marcar esse notebook como indisponível?</p>
-            <input type="radio" id="indisponivel" name="status" value="false">
-            <label for="indisponivel">Indisponível</label>
+            <p>Deseja marcar esse notebook como ${currentStatus ? 'indisponível' : 'disponível'}?</p>
           `,
           focusConfirm: false,
           showCancelButton: true,
@@ -219,19 +224,14 @@ async function loadNotebooks() {
             icon: 'icon-swal',
             confirmButton: 'confirm-swal-button',
             cancelButton: 'cancel-swal-button',
-
-          },
-          preConfirm: () => {
-            const status = Swal.getPopup().querySelector('#indisponivel').checked ? false : true;
-            return { status: status };
           }
         }).then(async (result) => {
           if (result.isConfirmed) {
             try {
               await updateDoc(doc(db, 'Notebooks', notebookId), {
-                status_notebook: result.value.status
+                status_notebook: !currentStatus
               });
-              Swal.fire('Sucesso!', 'O status do notebook foi atualizado.', 'success');
+              Swal.fire('Sucesso!', `O notebook foi marcado como ${currentStatus ? 'indisponível' : 'disponível'}.`, 'success');
               loadNotebooks(); // Recarrega a lista de notebooks após editar
             } catch (error) {
               console.error('Erro ao atualizar notebook:', error);

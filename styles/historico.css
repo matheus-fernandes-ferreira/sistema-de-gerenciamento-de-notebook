@@ -390,7 +390,7 @@ button:active {
 .swal2-popup {
     font-family: "Roboto", sans-serif;
     background-size: cover;
-    background-color: #012342;
+    background-color: #f1f1f1;
     border-radius: 1em;
     padding: 2em;
   }
