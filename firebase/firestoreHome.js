@@ -32,14 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Função para carregar os dados do usuário
   function loadUserData() {
-    // Oculta a tag instantaneamente ao carregar a página
-    document.getElementById("notebook-link").style.display = "none";
+    const notebookLink = document.getElementById("notebook-link");
+    if (notebookLink) {
+      notebookLink.style.display = "none";
+    }
   
-    const matricula = localStorage.getItem("matricula"); // **Pegar a matrícula do localStorage**
+    const matricula = localStorage.getItem("matricula");
   
     if (!matricula) {
       alert('Você precisa fazer login primeiro.');
-      window.location.href = "login.html"; // Redireciona para o login se não estiver autenticado
+      window.location.href = "login.html";
       return;
     }
   
@@ -55,13 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("nome").textContent = userData.nome;
           document.getElementById("matricula").textContent = userData.matricula;
   
-          // Verifica o cargo do usuário
-          if (userData.cargo === "coordenador") {
-            // Mostra o link do menu para notebooks
-            document.getElementById("notebook-link").style.display = "flex";
-          } else {
-            // Mantém o link do menu para notebooks oculto
-            document.getElementById("notebook-link").style.display = "none";
+          if (userData.cargo === "coordenador" && notebookLink) {
+            notebookLink.style.display = "flex";
           }
         } else {
           alert('Usuário não encontrado.');

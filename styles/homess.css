@@ -283,7 +283,7 @@ main label {
 }
 
 main p {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: #000000;
 }
 
@@ -329,26 +329,28 @@ input:focus {
 .notebooksinfos {
     margin-top: 15px;
     color: #454545;
-    font-size: 2rem;
+    font-size: 1.8rem;
     list-style-type: none;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    position: relative;
+    right: 2.8rem;
 
 }
 
 #indisponivel {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: #8493B3;
     margin-right: 5px;
     border-radius: 2px;
 }
 
 #livres {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: #0A3174;
     margin-right: 5px;
     border-radius: 2px;
@@ -356,8 +358,8 @@ input:focus {
 }
 
 #selecionou {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: #E37C02;
     margin-right: 5px;
     border-radius: 2px;
@@ -366,17 +368,30 @@ input:focus {
 
 #notestatus {
     display: grid;
-    gap: 10px;
+    gap: 15px;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     margin-top: 30px;
     overflow-y: scroll;
 }
 
+#notestatus::-webkit-scrollbar {
+    width: 3px;
+}
+
+#notestatus::-webkit-scrollbar-track {
+    background: #C9C9C9;
+    border-radius: 1px;
+}
+
+#notestatus::-webkit-scrollbar-thumb {
+    background: #004A8D;
+    border-radius: 1px;
+}
+
 
 #rodape {
 
-    bottom: 0;
     width: 100%;
     background-color: #005185;
     height: 120px;
@@ -456,7 +471,8 @@ input:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70px;
+    width: 80px;
+    height: 80px;
     min-height: 70px;
     border-radius: 0.5rem;
     border: 2px solid #b5bfd9;
@@ -471,8 +487,8 @@ input:focus {
     content: "";
     position: absolute;
     display: block;
-    width: 0.45rem;
-    height: 0.45rem;
+    width: 0.55rem;
+    height: 0.55rem;
     border: 2px solid #b5bfd9;
     background-color: #fff;
     border-radius: 50%;
@@ -484,7 +500,7 @@ input:focus {
 }
 
 .radio-tile:hover {
-    border-color: #2260ff;
+    border-color: #E37C02;
 }
 
 .radio-tile:hover:before {
@@ -493,7 +509,7 @@ input:focus {
 }
 
 .radio-icon svg {
-    width: 3.5rem;
+    width: 2.5rem;
     height: 3rem;
     fill: #0A3174;
 }
@@ -517,34 +533,32 @@ input:focus {
 
 /* swal custom */
 
-.custom-swal-container {
-    width: 450px;
-    height: 280px;
-    border: 5px solid #004A8D;
-}
-
+/* swal custom */
 .custom-swal-title {
     font-size: 22px !important;
     padding: 0;
-    /* Aumenta o tamanho do título */
-    color: #454545 !important;
-    /* Cor do título */
+    margin: 15px;
 }
 
 .custom-swal-text {
     font-size: 14px !important;
-    padding: 0;
+
+
 }
 
-.icon-swal {
-    font-size: 13px !important;
-}
+.icon-swal{
+    font-size: 15px !important;
+  }
+
 
 .confirm-swal-button {
     font-size: 15px !important;
     width: 100px;
     background-color: #E37C02;
 }
+
+
+
 
 
 

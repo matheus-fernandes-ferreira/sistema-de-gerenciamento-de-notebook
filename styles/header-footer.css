@@ -23,7 +23,7 @@
 
   header {
     width: 100%;
-    height: 130px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -89,36 +89,8 @@ li {
     padding: 5px;
     display: flex;
     align-items: center;
-    font-weight: 300;
+    font-weight: normal;
 }
-
-#divgradientHome {
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(#005185, #ffffff);
-}
-
-.container-titulo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding-bottom: 20px;
-}
-
-.container-icone {
-    display: flex;
-    flex-direction: row;
-    width: 120px;
-    height: 110px;
-    padding-right: 17px;
-}
-
-
-.titulo {
-    font-size: 6.6rem;
-    color: #454545;
-}
-
 
 /* footer */
 
@@ -127,7 +99,7 @@ li {
     width: 100%;
     background-color: #005185;
     height: 120px;
-    margin-top:150px;
+    margin-top:200px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -205,22 +177,22 @@ li {
 .swal2-popup {
     font-family: "Roboto", sans-serif;
     background-size: cover;
-    background-color: #012342;
-    border: 3px solid #f76d1d;
+    background-color: #fff;
+    border: 3px solid #004A8D;
     border-radius: 1em;
     padding: 2em;
   }
   
   .swal2-title {
-    color: #f3f3f3;
+    color: #454545;
     font-size: 1.5em;
     margin-bottom: 1em;
   }
   
   .swal2-html-container {
     color: #020202;
-    background-color: #b6b6b6;
     border-radius: 15px;
+    font-size: 14px;
     font-weight: 600;
     padding: 0.8em;
   }
@@ -258,4 +230,323 @@ li {
     transform: scale(0.95);
     background-color: #012342;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/*================ INÍCIO RESPOSNIVIDADE /*================*/
+
+@media (max-width: 1440px) {
+  body {
+      width: 1440px;
+  }
+
+  main {
+      padding-inline: 100px;
+  }
+
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  body {
+      width: 1024px;
+  }
+
+  main {
+      padding-inline: 50px;
+  }
+
+  header {
+      height: 80px;
+  }
+
+  .logo {
+      width: 150px;
+  }
+
+  .logo img {
+      height: 60px;
+  }
+
+  .menu ul {
+      font-size: 1.8rem;
+      gap: 10px;
+  }
+
+  .menu a {
+      width: 150px;
+      height: 50px;
+      border-radius: 10px;
+      gap: 1px;
+      padding-left: 5px;
+      justify-content: center;
+  }
+
+  .titulo {
+      font-size: 3.3rem;
+      color: #454545;
+  }
+
+  #maindireita h2 {
+      font-size: 2.5rem;
+  }
+
+  .container-icone {
+      width: 90px;
+  }
+
+  .container-icone svg {
+      width: 90px;
+  }
+  
+
+}
+
+/* Smartphones grandes */
+@media (max-width: 767px) {
+  body {
+      width: 767px;
+  }
+
+  main {
+      padding-inline: 30px;
+  }
+
+  header {
+      height: 80px;
+  }
+
+  .logo {
+      width: 120px;
+  }
+
+  .menu ul {
+      font-size: 1.6rem;
+      gap: 5px;
+  }
+
+  .container-menu {
+      padding-left: 30px;
+  }
+
+  .menu a {
+      width: 130px;
+  }
+
+  .titulo {
+      font-size: 2.6rem;
+      color: #454545;
+  }
+
+  #mainesquerda>div.top-section>div.img-perfil {
+      width: 121px;
+      height: 103px;
+  }
+
+  .container-titulo {
+      padding-bottom: 15px;
+  }
+
+  .container-paragrafo {
+      font-size: 1.6rem;
+      height: 40px;
+  }
+
+  .label-suporte {
+      font-size: 1.8rem;
+  }
+
+  .input-suporte::placeholder {
+      font-size: 1.4rem;
+  }
+
+  #maindireita {
+      width: 48%;
+  }
+
+  #mainesquerda {
+      width: 48%;
+  }
+
+  #maindireita h2 {
+      font-size: 2rem;
+  }
+
+  #maindireita>ul>li {
+      font-size: 1.4rem;
+  }
+
+
+}
+
+
+/* Smartphones pequenos */
+@media screen and (min-width: 360px) and (max-width: 430px) {
+  body {
+      width: 430px;
+      font-size: 1.2rem;
+  }
+  main{
+      width: 100%;
+  }
+
+  .container-header {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+  }
+
+  .menu ul {
+      align-items: center;
+      height: 100%;
+      flex-direction: column;
+  }
+
+  #container-reserva {
+      flex-direction: column;
+  }
+
+  #mainesquerda {
+      width: 100%;
+      gap: 0px;
+  }
+
+  #maindireita {
+      width: 100%;
+      padding-top: 50px;
+      margin-bottom: 30px;
+  }
+
+  #reservar {
+      width: 100%;
+  }
+
+  .bottom-section2 {
+      display: flex;
+      flex-direction: column;
+
+  }
+
+  .formInputHome1 {
+      width: 100%;
+  }
+
+  .label-suporte {
+      padding-top: 15px;
+  }
+
+  body>main>div.container-titulo>div:nth-child(2)>h1 {
+      font-size: 2.2rem;
+  }
+
+  .formInputHome1{
+      height: max-content;
+  }
+
+  /* ================= menu hamburguer =================  */
+
+  #checkbox {
+      display: none;
+      position: fixed;
+  }
+
+  .toggle {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition-duration: .3s;
+      margin-left: 30px;
+  }
+
+  .bars {
+      width: 100%;
+      height: 4px;
+      background-color: rgb(253, 255, 243);
+      border-radius: 5px;
+      transition-duration: .3s;
+  }
+
+
+  #checkbox:checked+.toggle #bar2 {
+      transform: translateY(14px) rotate(60deg);
+      margin-left: 0;
+      transform-origin: right;
+      transition-duration: .3s;
+      z-index: 2;
+  }
+
+  #checkbox:checked+.toggle #bar1 {
+      transform: translateY(28px) rotate(-60deg);
+      transition-duration: .3s;
+      transform-origin: left;
+      z-index: 1;
+  }
+
+  #checkbox:checked+.toggle {
+      transform: rotate(-90deg);
+      z-index: 1001;
+  }
+
+  #checkbox:checked~.container-header {
+      display: block;
+  }
+
+  #checkbox:checked~.container-header .container-menu {
+      height: 100%;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      padding-right: 30px;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+      z-index: 1000;
+  }
+
+  #checkbox:checked~.container-header .container-menu .menu a {
+      justify-content: start;
+      width: 100vw;
+      height: 80px;
+      font-size: 2rem;
+  }
+
+  #checkbox:checked~.container-header .container-menu .menu a svg {
+      width: 60px;
+      height: 60px;
+      margin-left: 30%;
+
+  }
+
+  #checkbox:checked~.container-header .container-menu .menu a #svg-laptop {
+      width: 70px;
+  }
+
+  #checkbox:checked~.container-header .container-menu .menu ul {
+      height: 100%;
+
+  }
+
+  #checkbox:checked~.container-header .container-menu .menu ul li {
+      height: 100%;
+      width: 100%;
+      padding-left: 10px;
+  }
+
+  #rodape h2 {
+      font-size: 1.2rem;
+
+  }
+
+  /* ================= FIM MENU HAMBURGUER =================  */
+
+
+
 }

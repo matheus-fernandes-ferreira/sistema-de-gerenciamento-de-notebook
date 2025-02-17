@@ -4,32 +4,145 @@
     box-sizing: border-box;
 }
 
-body {
+:root {
+    font-size: 62.5%;
+}
+
+body, html {
     background-color: #ffffff;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     display: flex;
-    font-family: "Open Sans", serif;
+    font-family: "Poppins", serif;
     width: 100%;
-
-
 }
 
-#notebook-link{
-    display:flex;
-    flex-direction: row;
+/* =========== HEADER =========== */
+header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
 }
 
+.container-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 390px;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.container-menu {
+    flex: 1;
+    display: flex;
+    width: 100%;
+}
+
+.menu ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #F8F8F8;
+    gap: 5px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    transition: 300ms;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    gap: 5px;
+    padding-left: 5px;
+    justify-content: center;
+}
+
+.menu a:hover {
+    color: #F7941D;
+    background-color: #012342;
+}
+
+.menu a:hover svg {
+    fill: #F7941D;
+}
+
+li {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+}
+
+/* =========== DIV GRADIENTE =========== */
 #divgradientHome {
     width: 100%;
     height: 50px;
     background: linear-gradient(#005185, #ffffff);
+}
 
-
+#checkbox {
+    display: none;
 }
 
 
+/* FIM HEADER */
+
+
+.container-titulo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.container-icone {
+    display: flex;
+    flex-direction: row;
+    width: 110px;
+    height: 110px;
+    padding-right: 17px;
+}
+
+
+.titulo {
+    font-size: 6.6rem;
+    color: #454545;
+}
+
+.container-paragrafo {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    color: #454545;
+    padding-bottom: 20px;
+    font-size: 1.8rem;
+    line-height: 20px;
+}
+
+main {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 390px;
+}
 
 #sectionhome {
     display: flex;
@@ -37,7 +150,7 @@ body {
     justify-content: space-between;
     font-size: 40px;
     height: 100px;
-    width:610px;
+    width: 610px;
     color: #454545;
     font-weight: 700;
     letter-spacing: 1px;
@@ -58,7 +171,6 @@ h1 {
     width: 1000px;
     height: 500px;
     display: flex;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
 
 
@@ -67,43 +179,38 @@ h1 {
 #mainesquerda {
     display: grid;
     gap: 10px;
-    width: 50%;
+    width: 45%;
     height: 100%;
 }
 
 #maindireita {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 45%;
     height: 100%;
     font-family: "Poppins", serif;
-    letter-spacing: 1px;
-    margin-left: 50px;
 }
 
 #maindireita h2 {
-    font-size: 23px;
+    font-size: 30px;
     color: #454545;
 }
 
 #maindireita p {
     font-size: 16px;
     color: #454545;
+    padding-top: 10px;
 }
 
 .top-section {
     display: flex;
     align-items: center;
     gap: 15px;
-    /* Espaçamento entre o figure e as informações */
-    /* Espaçamento entre a seção superior e inferior */
 }
 
-.top-section figure {
-    width: 120px;
-    /* Largura da figura */
-    height: 90px;
-    /* Altura da figura */
+.img-perfil {
+    width: 141px;
+    height: 123px;
     background-color: #E4E6E7;
     /* Apenas para visualização, remova ou ajuste conforme necessário */
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -118,9 +225,13 @@ h1 {
     width: 100%;
 }
 
-#nome-matricula{
+.nome-matricula {
     display: flex;
     align-items: center;
+    width: 100%x;
+    height: 30px;
+    margin: 3px;
+    border-bottom: 1px solid #000000;
 }
 
 .bottom-section1 {
@@ -134,13 +245,14 @@ h1 {
 
 .formInputHome1 {
     width: 50%;
+    height: 112px;
     flex-direction: column;
-    height: 100%;
     display: flex;
     justify-content: center;
     gap: 10px;
 
 }
+
 .linha-input-button {
     width: 85%;
     display: flex;
@@ -156,7 +268,6 @@ h1 {
     /* Espaçamento entre os campos */
     align-items: center;
     margin-top: 20px;
-
 }
 
 
@@ -165,12 +276,18 @@ main label {
     color: #004A8D;
 }
 
+#container-reserva {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 main p {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: #000000;
 }
 
-main select {
+/* main select {
     font-size: 1.4rem;
     height: 40px;
     width: 150px;
@@ -188,7 +305,7 @@ main select:focus{
     transition: 3ms;
     outline: none;
 
-}
+} */
 
 
 input {
@@ -212,28 +329,28 @@ input:focus {
 .notebooksinfos {
     margin-top: 15px;
     color: #454545;
-    font-size: 20px;
+    font-size: 1.8rem;
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    width: 500px;
     justify-content: space-around;
     align-items: center;
     position: relative;
-    right: 33px;
+    right: 2.8rem;
+
 }
 
 #indisponivel {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background-color: #8493B3;
     margin-right: 5px;
     border-radius: 2px;
 }
 
 #livres {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background-color: #0A3174;
     margin-right: 5px;
     border-radius: 2px;
@@ -241,8 +358,8 @@ input:focus {
 }
 
 #selecionou {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background-color: #E37C02;
     margin-right: 5px;
     border-radius: 2px;
@@ -251,34 +368,52 @@ input:focus {
 
 #notestatus {
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(5, 1fr);
-    width: 450px;
+    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
     margin-top: 30px;
     overflow-y: scroll;
 }
 
+#notestatus::-webkit-scrollbar {
+    width: 3px;
+}
+
+#notestatus::-webkit-scrollbar-track {
+    background: #C9C9C9;
+    border-radius: 1px;
+}
+
+#notestatus::-webkit-scrollbar-thumb {
+    background: #004A8D;
+    border-radius: 1px;
+}
 
 
-button {
-    width: 150px;
-    height: 40px;
-    background-color: #004A8D;
-    border-radius: 16px;
-    font-size: 1rem;
-    color: white;
-    border: none;
-    font-family: "Open Sans", serif;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 15px;
+#rodape {
+    width: 100%;
+    background-color: #005185;
+    height: 120px;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
 
 }
 
+#rodape h2 {
+    font-size: 2.4rem;
+    color: #ffffff;
+    margin-right: 20px;
+}
 
-
-
+#logorodapeHome {
+    width: 120px;
+    height: 120px;
+    margin-left: 20px;
+}
 
 .radio-inputs {
     display: flex;
@@ -293,6 +428,8 @@ button {
 
 .radio-inputs>* {
     margin: 6px;
+    background-color: red;
+
 }
 
 .radio-input:checked+.radio-tile {
@@ -306,7 +443,7 @@ button {
     opacity: 1;
     background-color: #E37C02;
     border-color: #E37C02;
-    
+
 }
 
 .radio-input:checked+.radio-tile .radio-icon svg {
@@ -325,7 +462,7 @@ button {
 .radio-input:focus+.radio-tile:before {
     transform: scale(1);
     opacity: 1;
-    
+
 }
 
 .radio-tile {
@@ -333,7 +470,8 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70px;
+    width: 80px;
+    height: 80px;
     min-height: 70px;
     border-radius: 0.5rem;
     border: 2px solid #b5bfd9;
@@ -348,8 +486,8 @@ button {
     content: "";
     position: absolute;
     display: block;
-    width: 0.45rem;
-    height: 0.45rem;
+    width: 0.55rem;
+    height: 0.55rem;
     border: 2px solid #b5bfd9;
     background-color: #fff;
     border-radius: 50%;
@@ -361,7 +499,7 @@ button {
 }
 
 .radio-tile:hover {
-    border-color: #2260ff;
+    border-color: #E37C02;
 }
 
 .radio-tile:hover:before {
@@ -370,8 +508,8 @@ button {
 }
 
 .radio-icon svg {
-    width: 1.5rem;
-    height: 1rem;
+    width: 2.5rem;
+    height: 3rem;
     fill: #0A3174;
 }
 
@@ -379,7 +517,7 @@ button {
     color: #707070;
     transition: 0.375s ease;
     text-align: center;
-    font-size: 13px;
+    font-size: 18px;
 }
 
 .radio-input {
@@ -391,6 +529,8 @@ button {
     white-space: nowrap;
 }
 
+
+/* swal custom */
 
 /* swal custom */
 .custom-swal-title {
@@ -418,3 +558,321 @@ button {
 
 
 
+
+
+
+
+/*================ INÍCIO RESPOSNIVIDADE /*================*/
+
+@media (max-width: 1440px) {
+    body {
+        width: 1440px;
+    }
+
+    main {
+        padding-inline: 100px;
+    }
+
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    body {
+        width: 1024px;
+    }
+
+    main {
+        padding-inline: 50px;
+    }
+
+    header {
+        height: 80px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .menu ul {
+        font-size: 1.8rem;
+        gap: 10px;
+    }
+
+    .menu a {
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+        gap: 1px;
+        padding-left: 5px;
+        justify-content: center;
+    }
+
+    .titulo {
+        font-size: 3.3rem;
+        color: #454545;
+    }
+
+    #maindireita h2 {
+        font-size: 2.5rem;
+    }
+
+    .container-icone {
+        width: 90px;
+    }
+
+    .container-icone svg {
+        width: 90px;
+    }
+
+}
+
+/* Smartphones grandes */
+@media (max-width: 767px) {
+    body {
+        width: 767px;
+    }
+
+    main {
+        padding-inline: 30px;
+    }
+
+    header {
+        height: 80px;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .menu ul {
+        font-size: 1.6rem;
+        gap: 5px;
+    }
+
+    .container-menu {
+        padding-left: 30px;
+    }
+
+    .menu a {
+        width: 130px;
+    }
+
+    .titulo {
+        font-size: 2.6rem;
+        color: #454545;
+    }
+
+    #mainesquerda>div.top-section>div.img-perfil {
+        width: 121px;
+        height: 103px;
+    }
+
+    .container-titulo {
+        padding-bottom: 15px;
+    }
+
+    .container-paragrafo {
+        font-size: 1.6rem;
+        height: 40px;
+    }
+
+    .label-suporte {
+        font-size: 1.8rem;
+    }
+
+    .input-suporte::placeholder {
+        font-size: 1.4rem;
+    }
+
+    #maindireita {
+        width: 48%;
+    }
+
+    #mainesquerda {
+        width: 48%;
+    }
+
+    #maindireita h2 {
+        font-size: 2rem;
+    }
+
+    #maindireita>ul>li {
+        font-size: 1.4rem;
+    }
+
+
+}
+
+
+/* Smartphones pequenos */
+@media screen and (min-width: 360px) and (max-width: 430px) {
+    body {
+        width: 430px;
+        font-size: 1.2rem;
+    }
+    main{
+        width: 100%;
+    }
+
+    .container-header {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .menu ul {
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    #container-reserva {
+        flex-direction: column;
+    }
+
+    #mainesquerda {
+        width: 100%;
+        gap: 0px;
+    }
+
+    #maindireita {
+        width: 100%;
+        padding-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    #reservar {
+        width: 100%;
+    }
+
+    .bottom-section2 {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .formInputHome1 {
+        width: 100%;
+    }
+
+    .label-suporte {
+        padding-top: 15px;
+    }
+
+    body>main>div.container-titulo>div:nth-child(2)>h1 {
+        font-size: 2.2rem;
+    }
+
+    .formInputHome1{
+        height: max-content;
+    }
+
+    /* ================= menu hamburguer =================  */
+
+    #checkbox {
+        display: none;
+        position: fixed;
+    }
+
+    .toggle {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition-duration: .3s;
+        margin-left: 30px;
+    }
+
+    .bars {
+        width: 100%;
+        height: 4px;
+        background-color: rgb(253, 255, 243);
+        border-radius: 5px;
+        transition-duration: .3s;
+    }
+
+
+    #checkbox:checked+.toggle #bar2 {
+        transform: translateY(14px) rotate(60deg);
+        margin-left: 0;
+        transform-origin: right;
+        transition-duration: .3s;
+        z-index: 2;
+    }
+
+    #checkbox:checked+.toggle #bar1 {
+        transform: translateY(28px) rotate(-60deg);
+        transition-duration: .3s;
+        transform-origin: left;
+        z-index: 1;
+    }
+
+    #checkbox:checked+.toggle {
+        transform: rotate(-90deg);
+        z-index: 2;
+    }
+
+    #checkbox:checked~.container-header {
+        display: block;
+    }
+
+    #checkbox:checked~.container-header .container-menu {
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        padding-right: 30px;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+    }
+
+    #checkbox:checked~.container-header .container-menu .menu a {
+        justify-content: start;
+        width: 100vw;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    #checkbox:checked~.container-header .container-menu .menu a svg {
+        width: 60px;
+        height: 60px;
+        margin-left: 30%;
+
+    }
+
+    #checkbox:checked~.container-header .container-menu .menu a #svg-laptop {
+        width: 70px;
+    }
+
+    #checkbox:checked~.container-header .container-menu .menu ul {
+        height: 100%;
+
+    }
+
+    #checkbox:checked~.container-header .container-menu .menu ul li {
+        height: 100%;
+        width: 100%;
+        padding-left: 10px;
+    }
+
+    #rodape h2 {
+        font-size: 1.2rem;
+
+    }
+
+    /* ================= FIM MENU HAMBURGUER =================  */
+
+
+
+}

@@ -67,6 +67,32 @@ function atualizarMesCarrossel() {
   fetchReservas(); // Atualiza a tabela com as reservas do mês selecionado
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("search-input");
+  const tableBody = document.getElementById("reservas-body");
+
+  searchInput.addEventListener("input", function () {
+    const termo = searchInput.value.toLowerCase();
+    filtrarTabela(termo);
+  });
+
+  function filtrarTabela(termo) {
+    const linhas = tableBody.getElementsByTagName("tr");
+
+    for (let linha of linhas) {
+      const nome = linha.cells[0]?.textContent.toLowerCase() || "";
+      const data = linha.cells[1]?.textContent.toLowerCase() || "";
+      const turma = linha.cells[2]?.textContent.toLowerCase() || "";
+
+      if (nome.includes(termo) || data.includes(termo) || turma.includes(termo)) {
+        linha.style.display = "";
+      } else {
+        linha.style.display = "none";
+      }
+    }
+  }
+});
+
 // Função para filtrar as reservas pelo mês selecionado
 function filtrarReservasPorMes(reservas, mesIndex) {
   return reservas.filter(reserva => {
