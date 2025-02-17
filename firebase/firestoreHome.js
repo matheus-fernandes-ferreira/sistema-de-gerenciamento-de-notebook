@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Swal.fire({
         icon: "error",
         title: "Ocorreu um erro!",
-        text: "Preencha todos os campos para realizar a reserva.",
+        text: "Preencha todos os campos.",
         customClass: {
           popup: "custom-swal-container",  // Define tamanho do container
           title: "custom-swal-title",      // Estiliza o título
@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       Swal.fire({
-        title: "Reserva realizada com sucesso!",
+        title: "Reserva realizada!",
         icon: "success",
         customClass: {
           popup: "custom-swal-container",  // Define tamanho do container

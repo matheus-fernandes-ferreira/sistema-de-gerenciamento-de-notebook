@@ -201,3 +201,52 @@ li {
     margin: 0;
   }
 /*--------------------------------------------------------*/
+
+.swal2-popup {
+    font-family: "Roboto", sans-serif;
+    background-size: cover;
+    background-color: #012342;
+    border-radius: 1em;
+    padding: 2em;
+  }
+  
+  .swal2-title {
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+  
+  .swal2-html-container {
+    color: #afafaf;
+    font-weight: 600;
+    padding: 0.8em;
+  }
+
+  .swal2-icon{
+    color: #F7941D !important;
+    border-color: #F7941D !important;
+  }
+  
+  
+  .swal2-confirm {
+    background-color: #F7941D !important;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+  
+  .swal2-confirm:hover {
+    background-color: #f76d1d !important;
+    transition: 0.2s;
+  }
+  .swal2-cancel {
+    background-color: #fd0000 !important;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+  
+  .swal2-cancel:hover {
+    background-color: #9e0000 !important;
+    transition: 0.2s;
+  }

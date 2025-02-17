@@ -42,9 +42,10 @@ async function addNotebook(inventario) {
 // Função para exibir o alerta e adicionar o notebook
 document.getElementById('btn-adicionar').addEventListener('click', () => {
   Swal.fire({
-    title: '<i class="fas fa-laptop" style="color:rgb(1, 55, 105); font-size: 32px; margin-top:20px;"></i> <br> Adicionar Notebook',
+    title: '<i class="fas fa-laptop" style="color: #afafaf; font-size: 55px; margin-top:20px; margin-bottom:20px;"></i> <br> Adicionar Notebook',
     html: `<input type="number" id="inventario" class="swal2-input" placeholder="Número de Inventário">`,
     focusConfirm: false,
+    showCloseButton: true,
     customClass: {
       popup: "custom-swal-container",  // Define tamanho do container
       title: "custom-swal-title",      // Estiliza o título
@@ -152,7 +153,6 @@ async function loadNotebooks() {
           text: 'Você realmente deseja excluir este notebook?',
           icon: 'warning',
           showCancelButton: true,
-          showCloseButton: true,
 
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
@@ -209,9 +209,9 @@ async function loadNotebooks() {
             <label for="indisponivel">Indisponível</label>
           `,
           focusConfirm: false,
-          showCloseButton: true,
           showCancelButton: true,
-
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
           customClass: {
             popup: "custom-swal-container",  // Define tamanho do container
             title: "custom-swal-title",      // Estiliza o título

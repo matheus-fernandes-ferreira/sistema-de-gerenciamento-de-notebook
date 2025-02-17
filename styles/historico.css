@@ -407,36 +407,12 @@ button:active {
     padding: 1em;
     border-radius: 1em;
   }
-  
-  /* Layout de grade 2x2 */
-  .reserva-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
-    gap: 1rem; /* Espaçamento entre as caixas */
-  }
-  
-  /* Estilo de cada caixa de informação */
-  .info-box {
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
 
   .swal2-icon{
     color: #F7941D !important;
     border-color: #F7941D !important;
   }
   
-  .info-box p {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #004A8D;
-  }
-  .info-box strong {
-    margin: 0;
-    font-size: 1.5rem;
-  }
   
   .swal2-confirm {
     background-color: #F7941D !important;
@@ -460,6 +436,33 @@ button:active {
     background-color: #9e0000 !important;
     transition: 0.2s;
   }
+
+  
+  /* Layout de grade 2x2 */
+  .reserva-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 1rem; /* Espaçamento entre as caixas */
+  }
+  
+  /* Estilo de cada caixa de informação */
+  .info-box {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .info-box p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #004A8D;
+  }
+  .info-box strong {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+
 
   /* Estilo para o texto truncado */
 .truncate-text {
