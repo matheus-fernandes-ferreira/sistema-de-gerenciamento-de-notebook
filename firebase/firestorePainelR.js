@@ -231,7 +231,6 @@ async function cancelarReserva(reservaId) {
         // Exibe a confirmação do sucesso no cancelamento
         Swal.fire({
           title: "Reserva cancelada!",
-          text: "Sua reserva foi cancelada com sucesso.",
           icon: "success",
           confirmButtonColor: "#F7941D",
           customClass: {
@@ -274,6 +273,7 @@ async function finalizarReserva(reservaId) {
   const { value: formValues } = await Swal.fire({
     title: "Finalizar Reserva",
     html: `
+      <div class="swal-body">
       <p class="swal-check">Confirme se todos os notebooks foram entregues.</p>
       <div class="swal-radio-group">
         <label>
@@ -291,6 +291,7 @@ async function finalizarReserva(reservaId) {
         <a href="#" class="swal-link">clicando aqui</a>.
       </span>
       <p class="swal-aviso">Após o uso dos notebooks, coloque-os no local apropriado para carregamento e no carrinho.</p>
+      </div>
     `,
     showCloseButton: true,
     showCancelButton: true,

@@ -222,7 +222,7 @@ async function fetchReservas() {
         // Confirmação antes de deletar
         Swal.fire({
           title: 'Tem certeza?',
-          text: "Você não poderá reverter isso!",
+          text: "Você NÃO poderá reverter isso!",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',

@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where,updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -43,13 +43,14 @@ async function addNotebook(inventario) {
 document.getElementById('btn-adicionar').addEventListener('click', () => {
   Swal.fire({
     title: '<i class="fas fa-laptop" style="color: #afafaf; font-size: 55px; margin-top:20px; margin-bottom:20px;"></i> <br> Adicionar Notebook',
-    html: `<input type="number" id="inventario" class="swal2-input" placeholder="Número de Inventário">`,
+    html: `
+      <input type="number" id="inventario" class="swal2-input custom-input" placeholder="Número de Inventário">
+    `,
     focusConfirm: false,
     showCloseButton: true,
     customClass: {
-      popup: "custom-swal-container",  // Define tamanho do container
-      title: "custom-swal-title",      // Estiliza o título
-      htmlContainer: "custom-swal-text", // Estiliza o texto
+      popup: "custom-swal-container",
+      title: "custom-swal-title",
       icon: 'icon-swal',
       confirmButton: 'confirm-swal-button',
     },
@@ -66,6 +67,7 @@ document.getElementById('btn-adicionar').addEventListener('click', () => {
     }
   });
 });
+
 
 // Função para carregar os notebooks na tabela
 // Função para carregar os notebooks na tabela
@@ -179,7 +181,7 @@ async function loadNotebooks() {
               Swal.fire({
                 title: "Excluído!",
                 icon: "success",
-                text:"O notebook foi excluído com sucesso.",
+                text: "O notebook foi excluído com sucesso.",
                 customClass: {
                   popup: "custom-swal-container",  // Define tamanho do container
                   title: "custom-swal-title",      // Estiliza o título
@@ -188,7 +190,7 @@ async function loadNotebooks() {
                   confirmButton: 'confirm-swal-button',
                 }
               });
-              
+
               loadNotebooks(); // Recarrega a lista de notebooks após deletar
             } catch (error) {
               console.error('Erro ao deletar notebook:', error);
@@ -208,7 +210,7 @@ async function loadNotebooks() {
 
         // Exibe o alerta de edição
         Swal.fire({
-          icon: "info",
+          icon: "question",
           title: `Editando Notebook ${inventario}`,
           html: `
             <p>Deseja marcar esse notebook como ${currentStatus ? 'indisponível' : 'disponível'}?</p>

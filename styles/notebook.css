@@ -202,16 +202,29 @@ tbody tr:nth-child(even) {
   padding: 0;
 }
 
-.custom-swal-text {
-  font-size: 14px !important;
-  padding: 0;
+.custom-input {
+  height: 50px !important; /* Aumenta a altura do input */
+  color: rgb(0, 0, 0) !important; /* Deixa o texto branco para melhor contraste */
+  font-size: 18px !important; /* Aumenta o tamanho do texto */
+  border-radius: 8px !important; /* Bordas arredondadas */
+  border: 1px solid #000000 !important; /* Borda cinza */
+  text-align: center !important; /* Centraliza o texto */
+  margin-bottom: 15px;
 }
+
+.custom-input::placeholder { 
+  color: #000000 !important; /* Cor cinza clara */
+  opacity: 1 !important; /* Garante que a cor apareça corretamente */
+  font-weight: bold !important; /* Deixa o texto do placeholder em negrito */
+}
+
+
+
+
+
 
 .icon-swal {
   font-size: 13px !important;
-  color: #E37C02 !important;
-  border-color: #E37C02 !important;
-
 }
 
 .confirm-swal-button {

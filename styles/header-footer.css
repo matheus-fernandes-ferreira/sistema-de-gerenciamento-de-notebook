@@ -205,19 +205,22 @@ li {
 .swal2-popup {
     font-family: "Roboto", sans-serif;
     background-size: cover;
-    background-color: #ffffff;
+    background-color: #012342;
+    border: 3px solid #f76d1d;
     border-radius: 1em;
     padding: 2em;
   }
   
   .swal2-title {
-    color: rgb(0, 0, 0);
+    color: #f3f3f3;
     font-size: 1.5em;
     margin-bottom: 1em;
   }
   
   .swal2-html-container {
     color: #020202;
+    background-color: #b6b6b6;
+    border-radius: 15px;
     font-weight: 600;
     padding: 0.8em;
   }
@@ -250,3 +253,9 @@ li {
     background-color: #ff8742 !important;
     transition: 0.2s;
   }
+
+  button:active {
+    transform: scale(0.95);
+    background-color: #012342;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}

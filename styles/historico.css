@@ -347,11 +347,7 @@ cursor: pointer;
     transition: 300ms;
 }
 
-button:active {
-    transform: scale(0.95);
-    background-color: #012342;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
+
 
 
 
