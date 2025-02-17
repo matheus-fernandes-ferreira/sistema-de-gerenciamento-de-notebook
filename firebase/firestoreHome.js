@@ -36,27 +36,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (notebookLink) {
       notebookLink.style.display = "none";
     }
-  
+
     const matricula = localStorage.getItem("matricula");
-  
+
     if (!matricula) {
       alert('Você precisa fazer login primeiro.');
       window.location.href = "login.html";
       return;
     }
-  
+
     const colaboradoresRef = collection(db, "colaboradores");
     const q = query(colaboradoresRef, where("matricula", "==", matricula));
-  
+
     getDocs(q)
       .then((querySnapshot) => {
         if (!querySnapshot.empty) {
           const userDoc = querySnapshot.docs[0];
           const userData = userDoc.data();
-  
+
           document.getElementById("nome").textContent = userData.nome;
           document.getElementById("matricula").textContent = userData.matricula;
-  
+
           if (userData.cargo === "coordenador" && notebookLink) {
             notebookLink.style.display = "flex";
           }
@@ -69,11 +69,28 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // **Chamar loadUserData() ao carregar a página**
-  document.addEventListener("DOMContentLoaded", () => {
-    loadUserData();
-  });
+  // Função de logoff
+  function logoff() {
+    // Remove a matrícula do localStorage
+    localStorage.removeItem("matricula");
 
+    // Redireciona o usuário para a página de login
+    window.location.href = "login.html";
+  }
+
+  // Adiciona evento ao botão de logoff
+  const logoffButton = document.getElementById("logoffButton");
+  if (logoffButton) {
+    logoffButton.addEventListener("click", logoff);
+  } else {
+    console.error("Botão de logoff não encontrado!");
+  }
+
+  // Carregar dados do usuário ao iniciar
+  loadUserData();
+
+  // Restante do seu código (carregar notebooks, reservar, etc.)
+  carregarNote();
   // Função para carregar os notebooks
   async function carregarNote() {
     const notebooksContainer = document.getElementById("notestatus");
@@ -183,31 +200,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = dataInput.value;
     const horarioSelecionado = document.getElementById("horario").value;
     const [horaInicio, horaFim] = horarioSelecionado.split("-");
-  
+
     if (!data || !horarioSelecionado) {
       return; // Não faz nada se a data ou horário não forem preenchidos
     }
-  
+
     try {
       // Busca todos os notebooks
       const notebooksQuery = query(collection(db, "Notebooks"));
       const notebooksSnapshot = await getDocs(notebooksQuery);
-  
+
       // Busca as reservas para a data selecionada
       const reservasQuery = query(
         collection(db, "reserva"),
         where("data", "==", data)
       );
       const reservasSnapshot = await getDocs(reservasQuery);
-  
+
       let notebooksIndisponiveis = [];
-  
+
       // Verifica conflitos de horário nas reservas
       reservasSnapshot.forEach((doc) => {
         const reserva = doc.data();
         const reservaInicio = reserva.horaInicio;
         const reservaFim = reserva.horaFim;
-  
+
         // Verifica se há conflito de horário
         if (
           (horaInicio >= reservaInicio && horaInicio < reservaFim) ||
@@ -217,15 +234,15 @@ document.addEventListener("DOMContentLoaded", () => {
           notebooksIndisponiveis.push(...reserva.notebooksSelecionados);
         }
       });
-  
+
       // Atualiza a interface
       document.querySelectorAll('input[name="notebook"]').forEach(input => {
         const notebookLabel = input.parentElement.querySelector('.radio-label').textContent.trim();
-  
+
         // Verifica se o notebook está indisponível por conflito de horário ou status geral
         const notebookDoc = notebooksSnapshot.docs.find(doc => doc.data().inventario.toString() === notebookLabel);
         const notebookStatus = notebookDoc ? notebookDoc.data().status_notebook : false;
-  
+
         if (notebooksIndisponiveis.includes(notebookLabel) || !notebookStatus) {
           input.disabled = true; // Torna o notebook indisponível
           input.checked = false; // Caso estivesse selecionado, desmarca
@@ -234,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
           input.disabled = false; // Deixa disponível se não estiver reservado e estiver ativo
         }
       });
-  
+
     } catch (error) {
       console.error("Erro ao buscar reservas ou notebooks:", error);
     }
