@@ -302,8 +302,7 @@ button {
 }
 
 .swal-body{
-    background-color: #c2c2c2;
-    height: 180px !important;
+    height: auto !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -390,6 +389,8 @@ button {
 /* Estiliza a caixa de texto */
 #swal-textarea-container {
     margin-top: 10px;
+    height: 100px !important;
+    width: 90% !important;
 }
 
 #swal-textarea {
