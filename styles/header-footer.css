@@ -114,8 +114,8 @@ li {
 }
 
 #logorodapeHome {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   margin-left: 20px;
 }
 
@@ -508,6 +508,11 @@ button:active {
     height: max-content;
   }
 
+  #logorodapeHome{
+    width: 60px;
+    height: 60px;
+  }
+
   /* ================= menu hamburguer =================  */
 
   #checkbox {
@@ -536,6 +541,8 @@ button:active {
     border-radius: 5px;
     transition-duration: .3s;
   }
+
+
 
 
   #checkbox:checked+.toggle #bar2 {
@@ -604,7 +611,7 @@ button:active {
   }
 
   #rodape h2 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 
   }
 

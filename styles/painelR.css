@@ -1,8 +1,8 @@
+
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-
 }
 
 body,
@@ -15,23 +15,16 @@ html {
     font-family: "Open Sans", serif;
 }
 
-
-
-
-
 #divgradientHome {
     width: 100%;
     height: 50px;
     background: linear-gradient(#005185, #ffffff);
-
 }
-
-
 
 #tituloPainel {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;  /* Será alterado nas media queries */
     font-size: 40px;
     height: 100px;
     width: 550px;
@@ -39,8 +32,6 @@ html {
     font-weight: 700;
     letter-spacing: 1px;
 }
-
-
 
 .info {
     display: flex;
@@ -53,23 +44,17 @@ html {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    /* Espaçamento entre os campos */
     align-items: center;
     height: 100px;
 }
-
-
 
 .bottom-section2 {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    /* Espaçamento entre os campos */
     align-items: center;
     margin-top: 20px;
-
 }
-
 
 #centralizacao {
     width: 100%;
@@ -83,10 +68,8 @@ html {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    gap: 20px
+    gap: 20px;
 }
-
-
 
 .cardSeparator {
     display: flex;
@@ -101,7 +84,6 @@ html {
     align-items: baseline;
     border-radius: 5px;
     padding: 3px;
-
 }
 
 u {
@@ -110,21 +92,22 @@ u {
     bottom: 5px;
 }
 
-
 figure {
     width: 30px;
     margin: 5px;
 }
 
-
-
+/* ============================================================
+   Lateral laranja do card (mantido conforme solicitado)
+   ============================================================ */
 .leftCard {
     background: #F68B1F;
     width: 35px;
     height: auto;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    box-shadow: rgba(14, 30, 37, 0.30) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    box-shadow: rgba(14, 30, 37, 0.3) 0px 2px 4px 0px,
+                rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .bodyCard {
@@ -137,17 +120,15 @@ figure {
     border-bottom-right-radius: 15px;
     flex-direction: column;
     padding: 15px 45px 15px 15px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+                rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-
 
 .data-hora {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 b {
@@ -198,21 +179,12 @@ b {
 
 .notebookItem {
     font-size: 16px;
-    /* Aumenta o tamanho da fonte */
     font-weight: bold;
-    /* Deixa em negrito */
     color: #333;
-    /* Define uma cor */
     padding: 5px 10px;
-    /* Adiciona espaçamento interno */
     background-color: #c4c1c1;
-    /* Fundo cinza claro */
     border-radius: 5px;
-    /* Borda arredondada */
     display: inline-block;
-    /* Mantém os itens organizados */
-
-
 }
 
 .buttons {
@@ -242,15 +214,12 @@ button {
 #cancel {
     background-color: #F7941D;
     color: #ffffff;
-
 }
 
 #finish {
     background-color: #004A8D;
     color: #ffffff;
 }
-
-
 
 .textCard {
     text-align: center;
@@ -262,10 +231,7 @@ button {
     height: 100px;
 }
 
-
-/* swal styles cancel*/
-
-
+/* ===================== SWAL Styles (mantidos conforme seu código) ===================== */
 
 .custom-swal-title {
     font-size: 22px !important;
@@ -286,30 +252,23 @@ button {
 
 .cancel-swal-button {
     font-size: 14px !important;
-    
 }
 
 .custom-swal-check strong {
     border: 5px solid;
 }
 
-
-/* swal styles finish*/
-
-
-.swal-popup{
+.swal-popup {
     width: 400px !important;
 }
 
-.swal-body{
+.swal-body {
     height: auto !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    background-color: #d3d3d3;
-    padding: 15px;
 }
 
 .swal-title {
@@ -336,7 +295,6 @@ button {
     display: inline;
 }
 
-/* Estiliza o link */
 .swal-link {
     color: red;
     font-weight: bold;
@@ -349,7 +307,6 @@ button {
     text-decoration: underline;
 }
 
-/* Estiliza o botão de confirmação */
 .swal-confirm {
     background-color: #F7941D;
     color: white;
@@ -358,7 +315,6 @@ button {
     padding: 8px 16px;
 }
 
-/* Estiliza o botão de cancelamento */
 .swal-cancel {
     background-color: #004A8D;
     color: white;
@@ -367,17 +323,15 @@ button {
     padding: 8px 16px;
 }
 
-/* Estiliza o botão de fechar */
 .swal-close {
     color: white;
 }
 
-/* Estiliza os inputs de rádio */
 .swal-radio-group {
     margin: 10px 0;
 }
 
-.swal-html{
+.swal-html {
     background-color: #AFAFAF;
 }
 
@@ -388,7 +342,6 @@ button {
     color: #454545;
 }
 
-/* Estiliza a caixa de texto */
 #swal-textarea-container {
     margin-top: 10px;
     height: 100px !important;
@@ -404,3 +357,144 @@ button {
     font-size: 14px;
     resize: none;
 }
+
+/* ============================================================
+   Estilo para o FOOTER (modelo semelhante ao da página de suporte)
+   ============================================================ */
+
+#rodape {
+    width: 100%;
+    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
+    height: 120px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#rodape h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    padding-right: 50px;
+}
+
+footer .logo {
+    width: 200px;
+}
+
+/* ============================================================
+   MEDIA QUERIES - RESPONSIVIDADE
+   ============================================================ */
+
+/* --- Tela até 1440px --- */
+@media (max-width: 1440px) {
+    #container {
+        width: 90%;
+    }
+}
+
+/* --- Tela até 1024px --- */
+@media (max-width: 1024px) {
+    #tituloPainel {
+        font-size: 3.3rem;
+        justify-content: flex-start; /* Remove o space-between */
+    }
+    #tituloPainel svg {
+        padding: 17px;
+    }
+    #container {
+        grid-template-columns: repeat(2, 1fr);
+        width: 95%;
+    }
+    .cardSeparator {
+        height: 230px;
+    }
+    .bottom-section1,
+    .bottom-section2 {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+    #rodape h2 {
+        font-size: 1.5rem;
+        padding-right: 20px;
+    }
+    #logorodapeHome{
+        width: 100px;
+    }
+}
+
+/* --- Tela até 767px --- */
+@media (min-width: 768px) and (max-width: 834px) {
+    #tituloPainel {
+        font-size: 3.3rem;
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    #tituloPainel svg {
+        padding: 17px;
+    }
+    #container {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 10px;
+    }
+    /* Mantenha os cards lado a lado */
+    .cardSeparator {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .bodyCard {
+        padding: 10px;
+    }
+    .bottom-section1,
+    .bottom-section2 {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #centralizacao {
+        padding: 10px;
+        height: auto;
+    }
+    #rodape {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+    #rodape h2 {
+        padding-right: 0;
+        font-size: 1.2rem;
+    }
+   
+    #scrollreservas{
+        height: 50px;
+    }
+}
+
+
+
+/* --- Smartphones pequenos (até 420px) --- */
+@media screen and (max-width: 420px) {
+    #tituloPainel {
+        font-size: 3.3rem;
+    }
+    #container {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .bodyCard {
+        padding: 8px;
+    }
+    .textreserva {
+        font-size: 13px;
+    }
+    .notebookItem {
+        font-size: 14px;
+        padding: 3px 6px;
+    }
+
+    
+}
+

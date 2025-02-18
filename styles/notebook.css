@@ -1,188 +1,204 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style: none;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
+  text-decoration: none;
 }
 
 
 body {
-    width: 100%;
-    background-color: white;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
 }
 
 main {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding-inline: 390px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 390px;
+}
+.container-titulo{
+  display: flex;
+  font-size: 5rem;
+  align-items: center;
+  gap: 20px;
+  color: #454545;
 }
 
 
-
 .container-paragrafo {
-    width: 100%;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    color: #454545;
-    padding-bottom: 20px;
-    font-size: 1.8rem;
-    line-height: 20px;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  color: #454545;
+  padding-bottom: 20px;
+  font-size: 1.8rem;
+  line-height: 20px;
 }
 
 
 
 .container-main {
-    width: 1000px;
-    height: 600px; 
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Impede que o conteúdo ultrapasse o container */
-  }
-  
-  .main-header {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .main-header h2 {
-    font-size: 2.8rem;
-    color: #454545;
-    font-weight: bold;
-  }
-  
-  .main-header button {
-    padding: 5px;
-    background-color: #F7941D;
-    gap: 10px;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 2.0rem;
-    display: flex;
-    align-items: center;
-    border-radius: 15px;
-    border-style: none;
-    cursor: pointer;
-  }
-  
-  .main-header button:hover {
-    background-color: #fdae4d;
-    transition: 300ms;
-  }
-  
-  /* Container da tabela com barra de rolagem */
-  .table-container {
-    width: 100%;
-    height: 900px; /* Define um tamanho fixo */
-    max-height: 60vh; /* Não deixa crescer muito */
-    overflow-y: auto; /* Ativa a rolagem quando necessário */
-    border: solid 1px #ddd;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Impede que o conteúdo ultrapasse o container */
+}
+
+.main-header {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.main-header h2 {
+  font-size: 2.8rem;
+  color: #454545;
+  font-weight: bold;
+}
+
+.main-header button {
+  width: 200px;
+  height: 50px;
+  background-color: #F7941D;
+  gap: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  justify-content: center;
+  font-size: 2.0rem;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.main-header button:hover {
+  background-color: #fdae4d;
+  transition: 300ms;
+}
+
+/* Container da tabela com barra de rolagem */
+.table-container {
+  width: 100%;
+  height: 900px;
+  /* Define um tamanho fixo */
+  max-height: 60vh;
+  /* Não deixa crescer muito */
+  overflow-y: auto;
+  /* Ativa a rolagem quando necessário */
+  border: solid 1px #ddd;
 }
 
 
 
 .table-container::-webkit-scrollbar {
-    width: 3px;
+  width: 3px;
 }
 
 .table-container::-webkit-scrollbar-track {
-    background: #C9C9C9;
-    border-radius: 1px;
+  background: #C9C9C9;
+  border-radius: 1px;
 }
 
 .table-container::-webkit-scrollbar-thumb {
-    background: #004A8D;
-    border-radius: 1px;
-}
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    
-   
-  
-  }
-  
-  thead .header {
-    color: black;
-    border-bottom: 3px solid #004A8D;
-    font-size: 1.6rem;
-    z-index: 10;
+  background: #004A8D;
+  border-radius: 1px;
 }
 
-  th, td {
-    padding: 12px;
-    text-align: left;
-   
-   
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
 
-  .btn-details {
-    width: 80px;
-    height: 40px;
-    border-radius: 8px;
-    background-color: #004A8D;
-    border: none;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    
+
+
 }
 
-  
- 
-  
-  /* Define o tamanho das colunas */
-  th:nth-child(1), td:nth-child(1) { /* Coluna "Inventário" */
-    width: 20%;
-  }
-  
-  th:nth-child(2), td:nth-child(2) { /* Coluna "Status" */
-    width: 60%;
-    text-align: center;
-  }
-  
+thead .header {
+  color: black;
+  border-bottom: 3px solid #004A8D;
+  font-size: 1.6rem;
+  z-index: 10;
+}
 
-  th:nth-child(3), td:nth-child(3) {
-    width: 60%;
-    
+th,
+td {
+  padding: 12px;
+  text-align: left;
+
+
+}
+
+.btn-details {
+  width: 80px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #004A8D;
+  border: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+
+/* Define o tamanho das colunas */
+th:nth-child(1),
+td:nth-child(1) {
+  /* Coluna "Inventário" */
+  width: 20%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  /* Coluna "Status" */
+  width: 60%;
+  text-align: center;
+}
+
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 60%;
+
 }
 
 
 td:nth-child(3) {
-    display: flex;
-    justify-content: center; /* Centraliza os botões */
-    gap: 10px; /* Espaço entre os botões */
-   
-    
-}
-  
-  
-  
-  td {
-    color: #333;
-    font-size: 1.6rem;
-  }
+  display: flex;
+  justify-content: center;
+  /* Centraliza os botões */
+  gap: 10px;
+  /* Espaço entre os botões */
 
-  tbody tr:nth-child(odd) {
-    background-color: #ffffff;
-    /* Branco */
+
+}
+
+
+
+td {
+  color: #333;
+  font-size: 1.6rem;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+  /* Branco */
 }
 
 tbody tr:nth-child(even) {
-    background-color: #e4e4e4;
-    /* Cinza mais claro */
+  background-color: #e4e4e4;
+  /* Cinza mais claro */
 }
 
 
@@ -203,19 +219,28 @@ tbody tr:nth-child(even) {
 }
 
 .custom-input {
-  height: 50px !important; /* Aumenta a altura do input */
-  color: rgb(0, 0, 0) !important; /* Deixa o texto branco para melhor contraste */
-  font-size: 18px !important; /* Aumenta o tamanho do texto */
-  border-radius: 8px !important; /* Bordas arredondadas */
-  border: 1px solid #000000 !important; /* Borda cinza */
-  text-align: center !important; /* Centraliza o texto */
+  height: 50px !important;
+  /* Aumenta a altura do input */
+  color: rgb(0, 0, 0) !important;
+  /* Deixa o texto branco para melhor contraste */
+  font-size: 18px !important;
+  /* Aumenta o tamanho do texto */
+  border-radius: 8px !important;
+  /* Bordas arredondadas */
+  border: 1px solid #000000 !important;
+  /* Borda cinza */
+  text-align: center !important;
+  /* Centraliza o texto */
   margin-bottom: 15px;
 }
 
-.custom-input::placeholder { 
-  color: #000000 !important; /* Cor cinza clara */
-  opacity: 1 !important; /* Garante que a cor apareça corretamente */
-  font-weight: bold !important; /* Deixa o texto do placeholder em negrito */
+.custom-input::placeholder {
+  color: #000000 !important;
+  /* Cor cinza clara */
+  opacity: 1 !important;
+  /* Garante que a cor apareça corretamente */
+  font-weight: bold !important;
+  /* Deixa o texto do placeholder em negrito */
 }
 
 
@@ -234,6 +259,7 @@ tbody tr:nth-child(even) {
 
 
 }
+
 .cancel-swal-button {
   font-size: 15px !important;
   width: 100px;
@@ -243,3 +269,264 @@ tbody tr:nth-child(even) {
 
 
 
+/*Parte referente a responsividade, mantenham meu padrão! pls*/
+
+@media (min-width: 360px) and (max-width: 420px){
+
+  
+  body {
+    width: 100%;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  main {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 390px;
+  }
+  .container-titulo{
+    display: flex;
+    font-size: 5rem;
+    align-items: center;
+    gap: 20px;
+    color: #454545;
+  }
+  
+  
+  .container-paragrafo {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    color: #454545;
+    padding-bottom: 20px;
+    font-size: 1.8rem;
+    line-height: 20px;
+  }
+  
+  
+  
+  .container-main {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Impede que o conteúdo ultrapasse o container */
+  }
+  
+  .main-header {
+    width: 20%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .main-header h2 {
+    padding-right: 150px;
+    font-size: 1.8rem;
+    color: #454545;
+    font-weight: bold;
+    border: 1px solid red;
+  }
+  
+  .main-header button {
+    width: 100px;
+    height: 30px;
+    background-color: #F7941D;
+    gap: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    justify-content: center;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .main-header button:hover {
+    background-color: #fdae4d;
+    transition: 300ms;
+  }
+  
+  /* Container da tabela com barra de rolagem */
+  .table-container {
+    width: 100%;
+    height: 900px;
+    /* Define um tamanho fixo */
+    max-height: 60vh;
+    /* Não deixa crescer muito */
+    overflow-y: auto;
+    /* Ativa a rolagem quando necessário */
+    border: solid 1px #ddd;
+  }
+  
+  
+  
+  .table-container::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .table-container::-webkit-scrollbar-track {
+    background: #C9C9C9;
+    border-radius: 1px;
+  }
+  
+  .table-container::-webkit-scrollbar-thumb {
+    background: #004A8D;
+    border-radius: 1px;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  thead .header {
+    color: black;
+    border-bottom: 3px solid #004A8D;
+    font-size: 1.2rem;
+    z-index: 10;
+  }
+  
+  th,
+  td {
+    padding: 2px;
+    text-align: left;
+  }
+  
+  .btn-details {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #004A8D;
+    border: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  
+  }
+  
+  
+  
+  
+  /* Define o tamanho das colunas */
+  th:nth-child(1),
+  td:nth-child(1) {
+    /* Coluna "Inventário" */
+    width: 10%;
+  }
+  
+  th:nth-child(2),
+  td:nth-child(2) {
+    /* Coluna "Status" */
+    width: 60%;
+    text-align: center;
+  }
+  
+  
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 60%;
+  
+  }
+  
+  
+  td:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    /* Centraliza os botões */
+    gap: 10px;
+    /* Espaço entre os botões */
+  
+  
+  }
+  
+  
+  
+  td {
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* Branco */
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e4e4e4;
+    /* Cinza mais claro */
+  }
+  
+  
+  
+  #checkbox {
+    display: none;
+  }
+  
+  /* swal custom */
+  
+  .custom-swal-container {
+    width: 400px;
+  }
+  
+  .custom-swal-title {
+    font-size: 22px !important;
+    padding: 0;
+  }
+  
+  .custom-input {
+    height: 50px !important;
+    /* Aumenta a altura do input */
+    color: rgb(0, 0, 0) !important;
+    /* Deixa o texto branco para melhor contraste */
+    font-size: 18px !important;
+    /* Aumenta o tamanho do texto */
+    border-radius: 8px !important;
+    /* Bordas arredondadas */
+    border: 1px solid #000000 !important;
+    /* Borda cinza */
+    text-align: center !important;
+    /* Centraliza o texto */
+    margin-bottom: 15px;
+  }
+  
+  .custom-input::placeholder {
+    color: #000000 !important;
+    /* Cor cinza clara */
+    opacity: 1 !important;
+    /* Garante que a cor apareça corretamente */
+    font-weight: bold !important;
+    /* Deixa o texto do placeholder em negrito */
+  }
+  
+  
+  .icon-swal {
+    font-size: 13px !important;
+  }
+  
+  .confirm-swal-button {
+    font-size: 15px !important;
+    width: 120px;
+    background-color: #E37C02 !important;
+  
+  
+  }
+  
+  .cancel-swal-button {
+    font-size: 15px !important;
+    width: 100px;
+    background-color: #004A8D !important;
+  
+  }
+}
+
+/*---------------------------Fim-----------------------------*/
