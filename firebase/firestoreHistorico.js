@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+
 // Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDiFzkz8fypa5R29cdNvIDGyBMTGD9mfs8",
@@ -325,9 +326,42 @@ async function gerarPDFMensal() {
   const { jsPDF } = window.jspdf; // Importa o jsPDF
   const doc = new jsPDF();
 
+  // Função para converter imagem em base64
+  function getBase64Image(imgUrl) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous'; // Permite carregar imagens de diferentes origens
+      img.src = imgUrl;
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const dataURL = canvas.toDataURL('image/png');
+        resolve(dataURL);
+      };
+
+      img.onerror = error => reject(error);
+    });
+  }
+
+  // Caminho da imagem no seu computador (substitua pelo caminho correto)
+  const imgUrl = '../img/senac-logo.png';
+
+  // Converte a imagem para base64 e adiciona ao PDF
+  try {
+    const base64Image = await getBase64Image(imgUrl);
+    doc.addImage(base64Image, 'PNG', 150, 10, 35, 35); // Ajuste as coordenadas e o tamanho conforme necessário
+  } catch (error) {
+    console.error('Erro ao carregar a imagem:', error);
+  }
+
   // Título do PDF
   doc.setFontSize(18);
-  doc.text(`Reservas de ${meses[mesAtualIndex]}`, 10, 10);
+  doc.text(`Histórico de Reserva de ${meses[mesAtualIndex]}`, 10, 10);
+
 
   // Busca as reservas do mês atual
   const historicoCollection = collection(db, "historico");
@@ -341,45 +375,123 @@ async function gerarPDFMensal() {
   // Filtra as reservas pelo mês selecionado
   const reservasFiltradas = filtrarReservasPorMes(reservasList, mesAtualIndex);
 
-  // Cabeçalho da tabela no PDF
-  const headers = [["Nome", "Data", "Horário", "Quantidade", "Status", "Entregue"]];
-  const data = reservasFiltradas.map(reserva => {
-    let dataFormatada = reserva.data;
+  // Quantidade de reservas no mês
+  const quantidadeReservas = reservasFiltradas.length;
 
-    // Se a data for um timestamp do Firebase, converter para Date
-    if (dataFormatada && dataFormatada.seconds) {
-      dataFormatada = new Date(dataFormatada.seconds * 1000);
-    } else if (typeof dataFormatada === "string") {
-      dataFormatada = new Date(dataFormatada); // Converte string ISO para Date
+  // Professor que mais fez reservas
+  const professores = {};
+  reservasFiltradas.forEach(reserva => {
+    if (professores[reserva.nome]) {
+      professores[reserva.nome]++;
+    } else {
+      professores[reserva.nome] = 1;
     }
+  });
+  const professorMaisReservas = Object.keys(professores).reduce((a, b) => professores[a] > professores[b] ? a : b);
 
-    // Formata para DD/MM/AAAA
-    const dataFinal = dataFormatada
-      ? dataFormatada.toLocaleDateString("pt-BR", { timeZone: "UTC" })
-      : "Data inválida";
+  // Turma que mais fez reservas
+  const turmas = {};
+  reservasFiltradas.forEach(reserva => {
+    if (turmas[reserva.turma]) {
+      turmas[reserva.turma]++;
+    } else {
+      turmas[reserva.turma] = 1;
+    }
+  });
+  const turmaMaisReservas = Object.keys(turmas).reduce((a, b) => turmas[a] > turmas[b] ? a : b);
 
-    return [
-      reserva.nome,
-      dataFinal,
-      `${reserva.horaInicio} - ${reserva.horaFim}`,
-      reserva.quantidade,
-      reserva.status || "N/A",
-      reserva.entregue ? "Sim" : "Não"
-    ];
+  // Reservas onde os notebooks não foram entregues corretamente
+  const reservasComErro = reservasFiltradas.filter(reserva => {
+    return reserva.entregue !== "Todos os Notebooks Foram Entregues" && reserva.entregue !== "Reserva cancelada";
+  });
+  const quantidadeReservasComErro = reservasComErro.length;
+
+  // Adiciona os dados ao PDF
+  doc.setFontSize(12);
+  doc.text(`Quantidade de reservas no mês: ${quantidadeReservas}`, 10, 20);
+  doc.text(`Professor que mais fez reservas: ${professorMaisReservas}`, 10, 30);
+  doc.text(`Turma que mais fez reservas: ${turmaMaisReservas}`, 10, 40);
+  doc.text('Entrega de Notebooks:', 10, 50);
+  doc.text(`- Em ${ quantidadeReservas - quantidadeReservasComErro} reservas os notebooks foram entregues corretamente.`, 10, 60);
+
+// Adiciona as reservas com erro na mesma linha da frase
+let reservasComErroTexto = `- Em ${quantidadeReservasComErro} reservas os notebooks não foram entregues corretamente: `;
+reservasComErro.forEach((reserva, index) => {
+  let dataFormatada = reserva.data;
+
+  // Se a data for um timestamp do Firebase, converter para Date
+  if (dataFormatada && dataFormatada.seconds) {
+    dataFormatada = new Date(dataFormatada.seconds * 1000);
+  } else if (typeof dataFormatada === "string") {
+    dataFormatada = new Date(dataFormatada); // Converte string ISO para Date
+  }
+
+  // Formata para DD/MM/AAAA
+  const dataFinal = dataFormatada
+    ? dataFormatada.toLocaleDateString("pt-BR", { timeZone: "UTC" })
+    : "Data inválida";
+
+  // Adiciona o nome e a data da reserva ao texto
+  reservasComErroTexto += `${reserva.nome} (${dataFinal})`;
+
+if (index < reservasComErro.length - 1) {
+  reservasComErroTexto += ", "; // Adiciona vírgula entre as reservas, exceto na última
+}
   });
 
-  // Adiciona a tabela ao PDF usando o plugin autoTable
-  doc.autoTable({
-    head: headers,
-    body: data,
-    startY: 20, // Posição inicial da tabela
-    theme: "grid", // Estilo da tabela
-    styles: { fontSize: 10 }, // Tamanho da fonte
-    headStyles: { fillColor: [22, 160, 133] } // Cor do cabeçalho
-  });
+// Adiciona o texto das reservas com erro ao PDF
+doc.text(reservasComErroTexto, 10, 70);
 
-  // Salva o PDF
-  doc.save(`reservas_${meses[mesAtualIndex]}.pdf`);
+// Cabeçalho da tabela no PDF
+const headers = [["Nome", "Data", "Horário", "Quantidade", "Status", "Entregue"]];
+const data = reservasFiltradas.map(reserva => {
+  let dataFormatada = reserva.data;
+
+  // Se a data for um timestamp do Firebase, converter para Date
+  if (dataFormatada && dataFormatada.seconds) {
+    dataFormatada = new Date(dataFormatada.seconds * 1000);
+  } else if (typeof dataFormatada === "string") {
+    dataFormatada = new Date(dataFormatada); // Converte string ISO para Date
+  }
+
+  // Formata para DD/MM/AAAA
+  const dataFinal = dataFormatada
+    ? dataFormatada.toLocaleDateString("pt-BR", { timeZone: "UTC" })
+    : "Data inválida";
+
+  // Determina o valor da coluna "Entregue"
+  let entregueStatus;
+  if (reserva.entregue === "Todos os Notebooks Foram Entregues") {
+    entregueStatus = "Entregues";
+  } else if (reserva.entregue === "Reserva cancelada") {
+    entregueStatus = "Cancelada";
+  } else {
+    entregueStatus = "Os notebooks não foram entregues corretamente";
+  }
+
+  return [
+    reserva.nome,
+    dataFinal,
+    `${reserva.horaInicio} - ${reserva.horaFim}`,
+    reserva.quantidade,
+    reserva.status || "N/A",
+    entregueStatus
+  ];
+  
+});
+
+// Adiciona a tabela ao PDF usando o plugin autoTable
+doc.autoTable({
+  head: headers,
+  body: data,
+  startY: 80, // Posição inicial da tabela (abaixo dos dados adicionados)
+  theme: "grid", // Estilo da tabela
+  styles: { fontSize: 10 }, // Tamanho da fonte
+  headStyles: { fillColor: [22, 160, 133] } // Cor do cabeçalho
+});
+
+// Salva o PDF
+doc.save(`historico_reservas_${ meses[mesAtualIndex]}.pdf`);
 }
 
 // Adiciona o event listener ao botão "Gerar PDF Mensal"

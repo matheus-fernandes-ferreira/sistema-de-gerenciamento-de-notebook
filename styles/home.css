@@ -8,7 +8,8 @@
     font-size: 62.5%;
 }
 
-body, html {
+body,
+html {
     background-color: #ffffff;
     justify-content: center;
     align-items: center;
@@ -16,79 +17,12 @@ body, html {
     display: flex;
     font-family: "Poppins", serif;
     width: 100%;
+    overflow-x: hidden;
 }
 
-/* =========== HEADER =========== */
-header {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(90deg, #012342, #004a8d, #004a8d, #012342);
-}
+/* =========== HEADER NO CSS EXCLUSIVO =========== */
 
-.container-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
 
-.logo {
-    display: flex;
-    justify-content: center;
-    width: 390px;
-}
-
-.logo img {
-    height: 80px;
-}
-
-.container-menu {
-    flex: 1;
-    display: flex;
-    width: 100%;
-}
-
-.menu ul {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #F8F8F8;
-    gap: 5px;
-}
-
-.menu a {
-    text-decoration: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    transition: 300ms;
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    gap: 5px;
-    padding-left: 5px;
-    justify-content: center;
-}
-
-.menu a:hover {
-    color: #F7941D;
-    background-color: #012342;
-}
-
-.menu a:hover svg {
-    fill: #F7941D;
-}
-
-li {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    font-weight: normal;
-}
 
 /* =========== DIV GRADIENTE =========== */
 #divgradientHome {
@@ -100,25 +34,16 @@ li {
 #checkbox {
     display: none;
 
-    
+
 }
 
 
 /* FIM HEADER */
 
 
-#logoffButton {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
 
-#logoffButton:hover {
-    background-color: #ff1a1a;
-}
+
+
 
 .container-titulo {
     display: flex;
@@ -279,6 +204,7 @@ h1 {
     align-items: center;
     margin-top: 20px;
 }
+
 .bottom-section3 {
     width: 550px;
     display: flex;
@@ -567,9 +493,9 @@ input:focus {
 
 }
 
-.icon-swal{
+.icon-swal {
     font-size: 15px !important;
-  }
+}
 
 
 .confirm-swal-button {
@@ -577,7 +503,3 @@ input:focus {
     width: 100px;
     background-color: #E37C02;
 }
-
-
-
-
