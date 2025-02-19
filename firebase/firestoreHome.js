@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Função de logoff
   function logoff() {
     // Remove a matrícula do localStorage
-    localStorage.removeItem("matricula");
+    sessionStorage.removeItem("matricula");
 
     // Redireciona o usuário para a página de login
     window.location.href = "login.html";
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       notebookLink.style.display = "none";
     }
 
-    const matricula = localStorage.getItem("matricula");
+    const matricula = sessionStorage.getItem("matricula");
 
     if (!matricula) {
       alert('Você precisa fazer login primeiro.');

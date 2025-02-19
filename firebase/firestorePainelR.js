@@ -27,7 +27,7 @@ function resetInactivityTimer() {
 // Função de logoff
 function logoff() {
   // Remove a matrícula do localStorage
-  localStorage.removeItem("matricula");
+  sessionStorage.removeItem("matricula");
 
   // Redireciona o usuário para a página de login
   window.location.href = "login.html";
@@ -48,7 +48,7 @@ function formatarData(dataString) {
   return `${dia}/${mes}/${ano}`;
 }
 
-const matricula = localStorage.getItem("matricula");
+const matricula = sessionStorage.getItem("matricula");
 
 if (!matricula) {
   alert("Você precisa fazer login primeiro.");
@@ -78,7 +78,7 @@ async function getCargoUsuario(matricula) {
 
 // Função para carregar os dados do usuário e verificar o cargo
 async function loadUserData() {
-  const matricula = localStorage.getItem("matricula"); // Pega a matrícula do localStorage
+  const matricula = sessionStorage.getItem("matricula"); // Pega a matrícula do localStorage
 
   if (!matricula) {
     alert('Você precisa fazer login primeiro.');

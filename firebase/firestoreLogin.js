@@ -36,7 +36,7 @@ function login() {
                 const userData = userDoc.data();
 
                 // Salvar apenas a matrícula no localStorage
-                localStorage.setItem("matricula", matricula);
+                sessionStorage.setItem("matricula", matricula);
 
                 alert(`Bem-vindo, ${userData.nome}!`);
                 window.location.href = "home.html";

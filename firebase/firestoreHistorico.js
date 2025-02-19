@@ -29,7 +29,7 @@ function resetInactivityTimer() {
 // Função de logoff
 function logoff() {
   // Remove a matrícula do localStorage
-  localStorage.removeItem("matricula");
+  sessionStorage.removeItem("matricula");
 
   // Redireciona o usuário para a página de login
   window.location.href = "login.html";
@@ -54,7 +54,7 @@ let mesAtualIndex = new Date().getMonth(); // Mês atual (0-11)
 
 // Função para carregar os dados do usuário e verificar o cargo
 async function loadUserData() {
-  const matricula = localStorage.getItem("matricula"); // Pega a matrícula do localStorage
+  const matricula = sessionStorage.getItem("matricula"); // Pega a matrícula do localStorage
 
   if (!matricula) {
     alert('Você precisa fazer login primeiro.');
@@ -372,12 +372,12 @@ async function gerarPDFMensal() {
   }
 
   // Caminho da imagem no seu computador (substitua pelo caminho correto)
-  const imgUrl = '../img/senac-logo.png';
+  const imgUrl = './img/senac-logo.png';
 
   // Converte a imagem para base64 e adiciona ao PDF
   try {
     const base64Image = await getBase64Image(imgUrl);
-    doc.addImage(base64Image, 'PNG', 150, 10, 35, 35); // Ajuste as coordenadas e o tamanho conforme necessário
+    doc.addImage(base64Image, 'PNG', 170, 10, 30, 20); // Ajuste as coordenadas e o tamanho conforme necessário
   } catch (error) {
     console.error('Erro ao carregar a imagem:', error);
   }
@@ -428,43 +428,13 @@ async function gerarPDFMensal() {
   const reservasComErro = reservasFiltradas.filter(reserva => {
     return reserva.entregue !== "Todos os Notebooks Foram Entregues" && reserva.entregue !== "Reserva cancelada";
   });
-  const quantidadeReservasComErro = reservasComErro.length;
+
 
   // Adiciona os dados ao PDF
   doc.setFontSize(12);
   doc.text(`Quantidade de reservas no mês: ${quantidadeReservas}`, 10, 20);
   doc.text(`Professor que mais fez reservas: ${professorMaisReservas}`, 10, 30);
   doc.text(`Turma que mais fez reservas: ${turmaMaisReservas}`, 10, 40);
-  doc.text('Entrega de Notebooks:', 10, 50);
-  doc.text(`- Em ${ quantidadeReservas - quantidadeReservasComErro} reservas os notebooks foram entregues corretamente.`, 10, 60);
-
-// Adiciona as reservas com erro na mesma linha da frase
-let reservasComErroTexto = `- Em ${quantidadeReservasComErro} reservas os notebooks não foram entregues corretamente: `;
-reservasComErro.forEach((reserva, index) => {
-  let dataFormatada = reserva.data;
-
-  // Se a data for um timestamp do Firebase, converter para Date
-  if (dataFormatada && dataFormatada.seconds) {
-    dataFormatada = new Date(dataFormatada.seconds * 1000);
-  } else if (typeof dataFormatada === "string") {
-    dataFormatada = new Date(dataFormatada); // Converte string ISO para Date
-  }
-
-  // Formata para DD/MM/AAAA
-  const dataFinal = dataFormatada
-    ? dataFormatada.toLocaleDateString("pt-BR", { timeZone: "UTC" })
-    : "Data inválida";
-
-  // Adiciona o nome e a data da reserva ao texto
-  reservasComErroTexto += `${reserva.nome} (${dataFinal})`;
-
-if (index < reservasComErro.length - 1) {
-  reservasComErroTexto += ", "; // Adiciona vírgula entre as reservas, exceto na última
-}
-  });
-
-// Adiciona o texto das reservas com erro ao PDF
-doc.text(reservasComErroTexto, 10, 70);
 
 // Cabeçalho da tabela no PDF
 const headers = [["Nome", "Data", "Horário", "Quantidade", "Status", "Entregue"]];
@@ -508,7 +478,7 @@ const data = reservasFiltradas.map(reserva => {
 doc.autoTable({
   head: headers,
   body: data,
-  startY: 80, // Posição inicial da tabela (abaixo dos dados adicionados)
+  startY: 50, // Posição inicial da tabela (abaixo dos dados adicionados)
   theme: "grid", // Estilo da tabela
   styles: { fontSize: 10 }, // Tamanho da fonte
   headStyles: { fillColor: [22, 160, 133] } // Cor do cabeçalho
