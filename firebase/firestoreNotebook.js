@@ -16,6 +16,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let inactivityTimer;
+
+// Função para reiniciar o temporizador de inatividade
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer); // Limpa o temporizador atual
+  inactivityTimer = setTimeout(logoff, 5 * 60 * 1000); // 5 minutos
+}
+
+// Função de logoff
+function logoff() {
+  // Remove a matrícula do localStorage
+  localStorage.removeItem("matricula");
+
+  // Redireciona o usuário para a página de login
+  window.location.href = "login.html";
+}
+
+// Detectar atividade do usuário
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keydown", resetInactivityTimer);
+document.addEventListener("touchstart", resetInactivityTimer);
+
+// Iniciar o temporizador de inatividade ao carregar a página
+resetInactivityTimer();
+
+
 // Função para adicionar um novo notebook
 async function addNotebook(inventario) {
   try {

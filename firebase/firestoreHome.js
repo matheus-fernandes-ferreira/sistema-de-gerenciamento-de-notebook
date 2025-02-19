@@ -30,6 +30,40 @@ document.addEventListener("DOMContentLoaded", () => {
   // Variável global para armazenar a quantidade de notebooks selecionados
   let quantidade = 0;
 
+  // Temporizador de inatividade
+  let inactivityTimer;
+
+  // Função para reiniciar o temporizador de inatividade
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(logoff, 5 * 60 * 1000); // 5 minutos
+  }
+
+  // Função de logoff
+  function logoff() {
+    // Remove a matrícula do localStorage
+    localStorage.removeItem("matricula");
+
+    // Redireciona o usuário para a página de login
+    window.location.href = "login.html";
+  }
+
+  // Adiciona evento ao botão de logoff
+  const logoffButton = document.getElementById("logoffButton");
+  if (logoffButton) {
+    logoffButton.addEventListener("click", logoff);
+  } else {
+    console.error("Botão de logoff não encontrado!");
+  }
+
+  // Detectar atividade do usuário
+  document.addEventListener("mousemove", resetInactivityTimer);
+  document.addEventListener("keydown", resetInactivityTimer);
+  document.addEventListener("touchstart", resetInactivityTimer);
+
+  // Iniciar o temporizador de inatividade ao carregar a página
+  resetInactivityTimer();
+
   // Função para carregar os dados do usuário
   function loadUserData() {
     const notebookLink = document.getElementById("notebook-link");
@@ -67,23 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Erro ao buscar dados do usuário:", error);
       });
-  }
-
-  // Função de logoff
-  function logoff() {
-    // Remove a matrícula do localStorage
-    localStorage.removeItem("matricula");
-
-    // Redireciona o usuário para a página de login
-    window.location.href = "login.html";
-  }
-
-  // Adiciona evento ao botão de logoff
-  const logoffButton = document.getElementById("logoffButton");
-  if (logoffButton) {
-    logoffButton.addEventListener("click", logoff);
-  } else {
-    console.error("Botão de logoff não encontrado!");
   }
 
   // Carregar dados do usuário ao iniciar

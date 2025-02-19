@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-
 // Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDiFzkz8fypa5R29cdNvIDGyBMTGD9mfs8",
@@ -17,6 +16,32 @@ const firebaseConfig = {
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// Temporizador de inatividade
+let inactivityTimer;
+
+// Função para reiniciar o temporizador de inatividade
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer); // Limpa o temporizador atual
+  inactivityTimer = setTimeout(logoff, 5 * 60 * 1000); // 5 minutos
+}
+
+// Função de logoff
+function logoff() {
+  // Remove a matrícula do localStorage
+  localStorage.removeItem("matricula");
+
+  // Redireciona o usuário para a página de login
+  window.location.href = "login.html";
+}
+
+// Detectar atividade do usuário
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keydown", resetInactivityTimer);
+document.addEventListener("touchstart", resetInactivityTimer);
+
+// Iniciar o temporizador de inatividade ao carregar a página
+resetInactivityTimer();
 
 // Lista de meses
 const meses = [
@@ -102,7 +127,6 @@ function filtrarReservasPorMes(reservas, mesIndex) {
   });
 }
 
-// Função para buscar as reservas do histórico
 // Função para buscar as reservas do histórico
 async function fetchReservas() {
   try {
